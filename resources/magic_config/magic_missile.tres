@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MagicConfig" load_steps=2 format=3 uid="uid://kdvdwul2yqkx"]
+
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="1_5bins"]
+
+[resource]
+script = ExtResource("1_5bins")
+speed = 500
+duration = 1.0
+metadata/_custom_type_script = "uid://bo8a4oocqe1d0"

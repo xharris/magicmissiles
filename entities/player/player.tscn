@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://1f8ehcj7j667"]
+
+[ext_resource type="Script" uid="uid://bpibgh6m850ma" path="res://entities/player/player.gd" id="1_sglur"]
+[ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control.tscn" id="2_abrql"]
+[ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="2_sglur"]
+[ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="4_bls4j"]
+[ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/camera_focus_config/player.tres" id="5_fkugw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sglur"]
+radius = 4.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_sglur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_sglur")
+
+[node name="ActorSprite" parent="." instance=ExtResource("2_sglur")]
+unique_name_in_owner = true
+
+[node name="PlayerControl" parent="." instance=ExtResource("2_abrql")]
+unique_name_in_owner = true
+
+[node name="CameraFocus" parent="." instance=ExtResource("4_bls4j")]
+config = ExtResource("5_fkugw")

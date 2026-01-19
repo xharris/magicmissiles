@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CameraFocusConfig" load_steps=2 format=3 uid="uid://dfg2ddfm7enjx"]
+
+[ext_resource type="Script" uid="uid://bu07h85w8lnce" path="res://components/camera_focus/camera_focus_config.gd" id="1_ohewn"]
+
+[resource]
+script = ExtResource("1_ohewn")
+position_weight = 1.0
+focus_outside_view = true
+metadata/_custom_type_script = "uid://bu07h85w8lnce"

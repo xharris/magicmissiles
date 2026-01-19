@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://1t5twg5h7f0r"]
+
+[ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="1_grni7"]
+[ext_resource type="Script" uid="uid://beja0anjraj3i" path="res://entities/magic/magic.gd" id="1_kydgk"]
+
+[node name="Magic" type="CharacterBody2D"]
+script = ExtResource("1_kydgk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_grni7")
