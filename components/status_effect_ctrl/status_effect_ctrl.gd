@@ -15,7 +15,6 @@ func _process(delta: float) -> void:
         active.age += delta
 
 func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectContext):
-    print("apply status effect", effect.resource_path)
     ctx.target = target
     effect.apply(ctx)
 

@@ -8,7 +8,12 @@ static var TREE = preload("res://entities/tree/tree.tscn")
 @onready var tilemap: TileMapLayer = %TileMapLayer
 @onready var entities: Node2D = %Entities
 
+func _physics_process(delta: float) -> void:
+    wrapped_sprite.offset = -camera_manager.get_screen_center_position()
+
 func _ready() -> void:
+    Events.entity_created.connect(_on_entity_created)
+    
     var query = PhysicsPointQueryParameters2D.new()
     var space = get_world_2d().direct_space_state
     for x in range(0, 3000, 16 * 8):
@@ -25,5 +30,5 @@ func _ready() -> void:
                     y + (randf_range(-1, 1) * 16))
                 entities.add_child(tree)
 
-func _physics_process(delta: float) -> void:
-    wrapped_sprite.offset = -camera_manager.get_screen_center_position()
+func _on_entity_created(entity: Node2D):
+    entities.add_child(entity)

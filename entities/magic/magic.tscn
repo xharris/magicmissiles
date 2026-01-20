@@ -12,6 +12,7 @@ script = ExtResource("1_kydgk")
 unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("1_grni7")
 
 [node name="StatusEffectCtrl" parent="." instance=ExtResource("4_t1fop")]
