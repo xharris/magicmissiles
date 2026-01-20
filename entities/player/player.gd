@@ -20,7 +20,8 @@ func _process(delta: float) -> void:
         (global_position - control.aim_position).length(),
         100, 200, 0, 1), 0, 1)
     # movement
-    velocity = control.move_direction * 150
+    velocity = velocity.lerp(control.move_direction * 150, delta * 5)
+    sprite.walk_speed = clampf(velocity.length() / 150, 0, 1)
     move_and_slide()
 
 func _on_primary():
