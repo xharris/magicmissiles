@@ -1,0 +1,287 @@
+[gd_scene load_steps=13 format=3 uid="uid://1unta65jxpw0"]
+
+[ext_resource type="Script" uid="uid://c1q4q6wn77rq0" path="res://components/arms/arms.gd" id="1_ia214"]
+[ext_resource type="Texture2D" uid="uid://bbj8f2xd1yei4" path="res://components/arms/hand.png" id="2_mvj64"]
+[ext_resource type="Texture2D" uid="uid://dws2mrwvqim8" path="res://components/arms/wand.png" id="3_vyekd"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vyekd"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vyekd"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p4r30"]
+animation = &"point"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_rowb5"]
+filter_enabled = true
+filters = ["Base/ArmL/AnimatedArmL/HandL/WandSprite:position", "Base/ArmL/AnimatedArmL/HandL:position", "Base/ArmL/AnimatedArmL/HandL:rotation", "Base/ArmL/AnimatedArmL:rotation", "Base/ArmL/HandL/WandSprite:position", "Base/ArmL/HandL:position", "Base/ArmL/HandL:rotation", "Base/ArmL:rotation", "Base/ArmR/HandR:position", "Base/ArmR:rotation"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p4r30"]
+graph_offset = Vector2(-396.645, 80.8341)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vyekd")
+nodes/TimeScale/position = Vector2(-70, 320)
+nodes/idle/node = SubResource("AnimationNodeAnimation_vyekd")
+nodes/idle/position = Vector2(-220, 150)
+nodes/output/position = Vector2(360, 160)
+nodes/point/node = SubResource("AnimationNodeAnimation_p4r30")
+nodes/point/position = Vector2(-250, 330)
+nodes/point_blend/node = SubResource("AnimationNodeBlend2_rowb5")
+nodes/point_blend/position = Vector2(110, 160)
+node_connections = [&"TimeScale", 0, &"point", &"output", 0, &"point_blend", &"point_blend", 0, &"idle", &"point_blend", 1, &"TimeScale"]
+
+[sub_resource type="Animation" id="Animation_vyekd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/ArmL/AnimatedArmL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base/ArmR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Base/ArmL/AnimatedArmL/HandL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Base/ArmR/HandR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Base/ArmL/AnimatedArmL/HandL:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Base/ArmL/AnimatedArmL/HandL/Wand/WandSprite:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mvj64"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/ArmL/AnimatedArmL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base/ArmR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785398]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Base/ArmL/AnimatedArmL/HandL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Base/ArmR/HandR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Base/ArmL/AnimatedArmL/HandL/Wand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Base/ArmL/AnimatedArmL/HandL:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p4r30"]
+resource_name = "point"
+length = 30.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/ArmL/AnimatedArmL:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.785398, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Base/ArmL/AnimatedArmL/HandL:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.48353]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Base/ArmL/AnimatedArmL/HandL/Wand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 30),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 0), Vector2(4, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p4r30"]
+_data = {
+&"RESET": SubResource("Animation_vyekd"),
+&"idle": SubResource("Animation_mvj64"),
+&"point": SubResource("Animation_p4r30")
+}
+
+[node name="Arms" type="Node2D"]
+script = ExtResource("1_ia214")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_p4r30")
+anim_player = NodePath("../AnimationPlayer")
+parameters/TimeScale/scale = 50.0
+parameters/point_blend/blend_amount = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_p4r30")
+}
+speed_scale = 100.0
+
+[node name="Base" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ArmL" type="Node2D" parent="Base"]
+unique_name_in_owner = true
+
+[node name="AnimatedArmL" type="Node2D" parent="Base/ArmL"]
+unique_name_in_owner = true
+rotation = -0.785398
+
+[node name="HandL" type="Node2D" parent="Base/ArmL/AnimatedArmL"]
+unique_name_in_owner = true
+position = Vector2(0, 6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL"]
+texture = ExtResource("2_mvj64")
+
+[node name="Wand" type="Node2D" parent="Base/ArmL/AnimatedArmL/HandL"]
+position = Vector2(2, 0)
+
+[node name="WandSprite" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand"]
+position = Vector2(2, 0)
+rotation = 1.5708
+scale = Vector2(0.5, 0.75)
+texture = ExtResource("3_vyekd")
+
+[node name="WandTip" type="Marker2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand"]
+unique_name_in_owner = true
+position = Vector2(12, 0)
+
+[node name="ArmR" type="Node2D" parent="Base"]
+unique_name_in_owner = true
+rotation = 0.785398
+
+[node name="HandR" type="Node2D" parent="Base/ArmR"]
+unique_name_in_owner = true
+position = Vector2(0, 6)
+
+[node name="Sprite2D" type="Sprite2D" parent="Base/ArmR/HandR"]
+texture = ExtResource("2_mvj64")
