@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://1f8ehcj7j667"]
+[gd_scene load_steps=10 format=3 uid="uid://1f8ehcj7j667"]
 
 [ext_resource type="Script" uid="uid://bpibgh6m850ma" path="res://entities/player/player.gd" id="1_sglur"]
 [ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control.tscn" id="2_abrql"]
 [ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="2_sglur"]
+[ext_resource type="PackedScene" uid="uid://c0hlswibau2dk" path="res://components/status_effect_ctrl/status_effect_ctrl.tscn" id="3_26q78"]
 [ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="4_bls4j"]
 [ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/camera_focus_config/player.tres" id="5_fkugw"]
 [ext_resource type="PackedScene" uid="uid://1unta65jxpw0" path="res://components/arms/arms.tscn" id="6_8fjmc"]
+[ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="7_qiwj3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sglur"]
 radius = 4.0
@@ -15,17 +17,26 @@ collision_mask = 3
 script = ExtResource("1_sglur")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_sglur")
-
-[node name="ActorSprite" parent="." instance=ExtResource("2_sglur")]
-unique_name_in_owner = true
 
 [node name="PlayerControl" parent="." instance=ExtResource("2_abrql")]
 unique_name_in_owner = true
 
-[node name="CameraFocus" parent="." instance=ExtResource("4_bls4j")]
+[node name="StatusEffectCtrl" parent="." instance=ExtResource("3_26q78")]
+unique_name_in_owner = true
+
+[node name="Visual" type="Node2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="ActorSprite" parent="Visual" instance=ExtResource("2_sglur")]
+unique_name_in_owner = true
+
+[node name="CameraFocus" parent="Visual" instance=ExtResource("4_bls4j")]
 config = ExtResource("5_fkugw")
 
-[node name="Arms" parent="." instance=ExtResource("6_8fjmc")]
+[node name="Arms" parent="Visual" instance=ExtResource("6_8fjmc")]
+unique_name_in_owner = true
+
+[node name="Hurtbox" parent="." instance=ExtResource("7_qiwj3")]
 unique_name_in_owner = true

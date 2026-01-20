@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0hlswibau2dk"]
+
+[ext_resource type="Script" uid="uid://i04o83q47rqi" path="res://components/status_effect_ctrl/status_effect_ctrl.gd" id="1_gxf7b"]
+
+[node name="StatusEffectCtrl" type="Node2D"]
+script = ExtResource("1_gxf7b")

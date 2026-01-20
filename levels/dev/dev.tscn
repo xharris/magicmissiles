@@ -1,0 +1,22 @@
+[gd_scene load_steps=7 format=3 uid="uid://csuaageviba5u"]
+
+[ext_resource type="Script" uid="uid://dn2dqm0fdu5no" path="res://levels/dev/dev.gd" id="1_rjc3s"]
+[ext_resource type="PackedScene" uid="uid://1f8ehcj7j667" path="res://entities/player/player.tscn" id="2_53d16"]
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="3_0qlot"]
+[ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="3_qf2dv"]
+[ext_resource type="Resource" uid="uid://kdvdwul2yqkx" path="res://resources/magic_config/magic_missile.tres" id="4_x24ml"]
+[ext_resource type="Texture2D" uid="uid://beufpy48hs8mv" path="res://levels/forest/grass.png" id="6_0qlot"]
+
+[node name="Dev" type="Node2D"]
+script = ExtResource("1_rjc3s")
+
+[node name="Player" parent="." instance=ExtResource("2_53d16")]
+magic_configs = Array[ExtResource("3_0qlot")]([ExtResource("4_x24ml")])
+
+[node name="CameraFocusManager" parent="." instance=ExtResource("3_qf2dv")]
+unique_name_in_owner = true
+zoom = Vector2(3, 3)
+
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("6_0qlot")

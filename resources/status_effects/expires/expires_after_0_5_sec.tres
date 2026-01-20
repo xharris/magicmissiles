@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusExpires" load_steps=2 format=3 uid="uid://b1mh4ty2xccos"]
+
+[ext_resource type="Script" uid="uid://e086ludellwx" path="res://resources/status_effects/expires/expires.gd" id="1_onujr"]
+
+[resource]
+script = ExtResource("1_onujr")
+after = 0.5
+name = &""
+duration = 0.0
+metadata/_custom_type_script = "uid://e086ludellwx"

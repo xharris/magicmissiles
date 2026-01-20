@@ -17,7 +17,7 @@ filter_enabled = true
 filters = ["Base/ArmL/AnimatedArmL/HandL/WandSprite:position", "Base/ArmL/AnimatedArmL/HandL:position", "Base/ArmL/AnimatedArmL/HandL:rotation", "Base/ArmL/AnimatedArmL:rotation", "Base/ArmL/HandL/WandSprite:position", "Base/ArmL/HandL:position", "Base/ArmL/HandL:rotation", "Base/ArmL:rotation", "Base/ArmR/HandR:position", "Base/ArmR:rotation"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p4r30"]
-graph_offset = Vector2(-396.645, 80.8341)
+graph_offset = Vector2(-294.72, 175.68)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vyekd")
 nodes/TimeScale/position = Vector2(-70, 320)
 nodes/idle/node = SubResource("AnimationNodeAnimation_vyekd")
@@ -205,7 +205,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 30),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.48353]
+"values": [0.0, 1.5708]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -262,8 +262,6 @@ unique_name_in_owner = true
 
 [node name="ArmL" type="Node2D" parent="Base"]
 unique_name_in_owner = true
-z_index = -1
-z_as_relative = false
 
 [node name="AnimatedArmL" type="Node2D" parent="Base/ArmL"]
 unique_name_in_owner = true
@@ -277,7 +275,7 @@ position = Vector2(0, 6)
 texture = ExtResource("2_mvj64")
 
 [node name="Wand" type="Node2D" parent="Base/ArmL/AnimatedArmL/HandL"]
-position = Vector2(4, 0)
+position = Vector2(2, 0)
 
 [node name="WandSprite" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand"]
 position = Vector2(2, 0)
@@ -291,8 +289,6 @@ position = Vector2(12, 0)
 
 [node name="ArmR" type="Node2D" parent="Base"]
 unique_name_in_owner = true
-z_index = 1
-z_as_relative = false
 rotation = 0.785398
 
 [node name="HandR" type="Node2D" parent="Base/ArmR"]

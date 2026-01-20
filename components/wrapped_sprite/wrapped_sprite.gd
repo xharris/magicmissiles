@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 class_name WrappedSprite
 
@@ -17,3 +18,7 @@ func update():
 
 func _ready() -> void:
     update()
+
+func _process(delta: float) -> void:
+    if Engine.is_editor_hint():
+        update()
