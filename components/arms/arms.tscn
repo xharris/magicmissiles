@@ -248,7 +248,7 @@ root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_p4r30")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 50.0
-parameters/point_blend/blend_amount = 1.0
+parameters/point_blend/blend_amount = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

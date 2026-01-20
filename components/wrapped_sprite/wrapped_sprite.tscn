@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://s1mil07lieaw"]
 
 [ext_resource type="Script" uid="uid://npuyr3ebbdhs" path="res://components/wrapped_sprite/wrapped_sprite.gd" id="1_bwak8"]
-[ext_resource type="Texture2D" uid="uid://beufpy48hs8mv" path="res://levels/pve/grass.png" id="2_sxvj0"]
+[ext_resource type="Texture2D" uid="uid://beufpy48hs8mv" path="res://levels/forest/grass.png" id="2_sxvj0"]
 
 [node name="WrappedSprite" type="Node2D"]
 script = ExtResource("1_bwak8")

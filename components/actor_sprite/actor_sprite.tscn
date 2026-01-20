@@ -237,11 +237,11 @@ root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_371ag")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 80.0
-parameters/face_dir_x/blend_position = -0.0831485
+parameters/face_dir_x/blend_position = 1.0
 parameters/face_dir_x_blend/blend_amount = 1.0
 parameters/walk_speed/scale = 1.0
-parameters/walk_state/conditions/idle = false
-parameters/walk_state/conditions/walking = true
+parameters/walk_state/conditions/idle = true
+parameters/walk_state/conditions/walking = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
