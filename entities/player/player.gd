@@ -8,6 +8,7 @@ class_name Player
 @onready var hurtbox: Hurtbox = %Hurtbox
 
 @export var magic_configs: Array[MagicConfig]
+@export var move_speed: int = 200
 
 func _process(delta: float) -> void:
     sprite.face_direction = control.aim_direction
@@ -17,8 +18,8 @@ func _process(delta: float) -> void:
         (global_position - control.aim_position).length(),
         20, 40, 0, 1), 0, 1)
     # movement
-    velocity = velocity.lerp(control.move_direction * 150, delta * 5)
-    sprite.walk_speed = clampf(velocity.length() / 150, 0, 1)
+    velocity = velocity.lerp(control.move_direction * move_speed / global_scale, delta * 5)
+    sprite.walk_speed = clampf(velocity.length() / move_speed, 0, 1)
     move_and_slide()
     
 func _ready() -> void:

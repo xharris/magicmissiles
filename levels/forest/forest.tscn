@@ -131,7 +131,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="Entities" instance=ExtResource("4_k84yl")]
 position = Vector2(1952, 800)
-scale = Vector2(4, 4)
 
 [node name="Trees" type="Node2D" parent="Entities"]
 y_sort_enabled = true

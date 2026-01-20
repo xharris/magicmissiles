@@ -15,7 +15,6 @@ magic_configs = Array[ExtResource("3_0qlot")]([ExtResource("4_x24ml")])
 
 [node name="CameraFocusManager" parent="." instance=ExtResource("3_qf2dv")]
 unique_name_in_owner = true
-zoom = Vector2(3, 3)
 
 [node name="Grass" type="Sprite2D" parent="."]
 position = Vector2(0, 16)

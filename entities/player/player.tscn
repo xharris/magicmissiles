@@ -10,15 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="7_qiwj3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sglur"]
-radius = 4.0
+radius = 12.0416
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_sglur")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_sglur")
 
 [node name="PlayerControl" parent="." instance=ExtResource("2_abrql")]
 unique_name_in_owner = true
@@ -28,6 +24,7 @@ unique_name_in_owner = true
 
 [node name="Visual" type="Node2D" parent="."]
 position = Vector2(0, -7)
+scale = Vector2(4, 4)
 
 [node name="ActorSprite" parent="Visual" instance=ExtResource("2_sglur")]
 unique_name_in_owner = true
@@ -37,6 +34,10 @@ config = ExtResource("5_fkugw")
 
 [node name="Arms" parent="Visual" instance=ExtResource("6_8fjmc")]
 unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("CircleShape2D_sglur")
 
 [node name="Hurtbox" parent="." instance=ExtResource("7_qiwj3")]
 unique_name_in_owner = true
