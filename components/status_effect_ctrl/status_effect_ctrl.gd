@@ -25,7 +25,7 @@ func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectCo
             target_is_me, ctx.can_hit_me, target_is_source, ctx.can_hit_source, effect.name
         ])
         return
-    log.info("apply %s to %s from %s's %s" % [
+    log.debug("apply %s to %s from %s's %s" % [
         effect.name, target.node, ctx.source.node, ctx.me.node
     ])
     effect.apply(ctx)

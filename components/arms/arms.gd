@@ -3,6 +3,7 @@ class_name Arms
 
 @onready var base: Node2D = %Base
 @onready var animation_tree: AnimationTree = %AnimationTree
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var arm_l: Node2D = %ArmL
 @onready var wand_tip: Node2D = %WandTip
 
@@ -18,5 +19,5 @@ func _process(delta: float) -> void:
     else:
         base.scale.x = abs(base.scale.x)
     # pointing
-    animation_tree["parameters/point_blend/blend_amount"] = pointing
+    animation_tree["parameters/TimeSeek/seek_request"] = pointing * 30
     arm_l.global_rotation = face_direction.angle()
