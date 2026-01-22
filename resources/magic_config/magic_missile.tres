@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="MagicConfig" load_steps=5 format=3 uid="uid://kdvdwul2yqkx"]
+[gd_resource type="Resource" script_class="MagicConfig" load_steps=6 format=3 uid="uid://kdvdwul2yqkx"]
 
 [ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="1_5bins"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_pjbhv"]
 [ext_resource type="Resource" uid="uid://b1mh4ty2xccos" path="res://resources/status_effects/expires/expires_after_0_5_sec.tres" id="2_6e5sw"]
 [ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="3_ns4xr"]
+[ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="3_wc7ec"]
 
 [resource]
 script = ExtResource("1_5bins")
+piercing = false
 on_ready_effects = Array[ExtResource("1_pjbhv")]([ExtResource("2_6e5sw")])
-on_hit_effects = Array[ExtResource("1_pjbhv")]([ExtResource("3_ns4xr")])
+on_hit_effects = Array[ExtResource("1_pjbhv")]([ExtResource("3_ns4xr"), ExtResource("3_wc7ec")])
 metadata/_custom_type_script = "uid://bo8a4oocqe1d0"

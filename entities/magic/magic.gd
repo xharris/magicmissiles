@@ -64,5 +64,4 @@ func update():
         on_hit.source = source
         on_hit.status_effects.clear()
         for config in configs:
-            for eff in config.on_hit_effects:
-                on_hit.status_effects.append_array(config.on_hit_effects)
+            on_hit.status_effects.append_array(config.on_hit_effects)

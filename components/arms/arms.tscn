@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1unta65jxpw0"]
+[gd_scene load_steps=14 format=3 uid="uid://1unta65jxpw0"]
 
 [ext_resource type="Script" uid="uid://c1q4q6wn77rq0" path="res://components/arms/arms.gd" id="1_ia214"]
 [ext_resource type="Texture2D" uid="uid://bbj8f2xd1yei4" path="res://components/arms/hand.png" id="2_mvj64"]
@@ -16,18 +16,22 @@ animation = &"point"
 filter_enabled = true
 filters = ["Base/ArmL/AnimatedArmL/HandL/WandSprite:position", "Base/ArmL/AnimatedArmL/HandL:position", "Base/ArmL/AnimatedArmL/HandL:rotation", "Base/ArmL/AnimatedArmL:rotation", "Base/ArmL/HandL/WandSprite:position", "Base/ArmL/HandL:position", "Base/ArmL/HandL:rotation", "Base/ArmL:rotation", "Base/ArmR/HandR:position", "Base/ArmR:rotation"]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_vyekd"]
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p4r30"]
-graph_offset = Vector2(-254.395, 63.1144)
+graph_offset = Vector2(-307.195, 156.234)
 nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_vyekd")
 nodes/TimeSeek/position = Vector2(-40, 320)
 nodes/idle/node = SubResource("AnimationNodeAnimation_vyekd")
 nodes/idle/position = Vector2(-220, 150)
 nodes/output/position = Vector2(310, 260)
 nodes/point/node = SubResource("AnimationNodeAnimation_p4r30")
-nodes/point/position = Vector2(-220, 360)
+nodes/point/position = Vector2(-370, 350)
 nodes/point_blend/node = SubResource("AnimationNodeBlend2_rowb5")
 nodes/point_blend/position = Vector2(140, 260)
-node_connections = [&"TimeSeek", 0, &"point", &"output", 0, &"point_blend", &"point_blend", 0, &"idle", &"point_blend", 1, &"TimeSeek"]
+nodes/point_no_auto_play/node = SubResource("AnimationNodeTimeScale_vyekd")
+nodes/point_no_auto_play/position = Vector2(-220, 350)
+node_connections = [&"TimeSeek", 0, &"point_no_auto_play", &"output", 0, &"point_blend", &"point_blend", 0, &"idle", &"point_blend", 1, &"TimeSeek", &"point_no_auto_play", 0, &"point"]
 
 [sub_resource type="Animation" id="Animation_vyekd"]
 length = 0.001
@@ -249,6 +253,7 @@ tree_root = SubResource("AnimationNodeBlendTree_p4r30")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeSeek/seek_request = -1.0
 parameters/point_blend/blend_amount = 1.0
+parameters/point_no_auto_play/scale = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

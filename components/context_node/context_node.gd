@@ -8,6 +8,7 @@ var vfx: Vfx
 var character: CharacterBody2D
 ## node containing (or is) all visual elements EXCLUDING vfx
 var visual_node: Node2D
+var hp: Hp
 
 func duplicate() -> ContextNode:
     var dupe = ContextNode.new()

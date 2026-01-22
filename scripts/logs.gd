@@ -12,6 +12,7 @@ static var global_level = Level.INFO:
         if not global_level:
             return Level.NONE
         return global_level
+static var _prev_msg: String
 
 @export var ignore_repeats = true
 var _level = Level.NONE
@@ -26,7 +27,6 @@ var _id: String = "":
         _id = v.strip_edges()
         _update_full_prefix()
 var _full_prefix: String = ""
-var _prev_msg: String
 var _ellipsis_printed = false
 var _lines: Array[String]
 

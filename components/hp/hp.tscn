@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://u1ixt652jdjr"]
+
+[ext_resource type="Script" uid="uid://bvj8ahkku4tdr" path="res://components/hp/hp.gd" id="1_vjjcq"]
+
+[node name="Hp" type="Node2D"]
+script = ExtResource("1_vjjcq")

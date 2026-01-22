@@ -1,7 +1,7 @@
 extends Node2D
 class_name StatusEffectCtrl
 
-var _log = Logger.new("status_effect_ctrl")
+var _log = Logger.new("status_effect_ctrl")#, Logger.Level.DEBUG)
 
 class Active extends RefCounted:
     var effect: StatusEffect
@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
     for active in active_effects:
         # status effect expired
         if active.effect.duration and active.age > active.effect.duration:
-            pass
+            remove_effect(active)
         active.age += delta
 
 func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectContext):
@@ -29,6 +29,12 @@ func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectCo
         effect.name, target.node, ctx.source.node, ctx.me.node
     ])
     effect.apply(ctx)
+    # is ongoing effect
+    if effect.duration > 0:
+        var active = Active.new()
+        active.effect = effect
+        active.age = 0
+        active_effects.append(active)
 
 func remove_effect(active: StatusEffectCtrl.Active):
     active_effects = active_effects.filter(

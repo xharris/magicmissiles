@@ -8,9 +8,21 @@ var _log = Logger.new("player")
 @onready var arms: Arms = %Arms
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var hurtbox: Hurtbox = %Hurtbox
+@onready var hp: Hp = %Hp
+
+
 
 @export var magic_configs: Array[MagicConfig]
 @export var move_speed: int = 200
+
+func context() -> ContextNode:
+    var ctx = ContextNode.new()
+    ctx.node = self
+    ctx.status_ctrl = status_effect_ctrl
+    ctx.hurtbox = hurtbox
+    ctx.character = self
+    ctx.hp = hp
+    return ctx
 
 func _process(delta: float) -> void:
     sprite.face_direction = control.aim_direction
@@ -27,25 +39,17 @@ func _process(delta: float) -> void:
 func _ready() -> void:
     control.primary.connect(_on_primary)
     hurtbox.apply_status_effect.connect(_on_apply_status_effect)
+    hp.died.connect(_on_died)
 
+func _on_died():
+    queue_free()
+    
 func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
-    # add me as the target
-    var target = ContextNode.new()
-    target.node = self
-    target.status_ctrl = status_effect_ctrl
-    target.hurtbox = hurtbox
-    target.character = self
     # apply effect
-    status_effect_ctrl.apply_effect(target, effect, ctx)
+    status_effect_ctrl.apply_effect(context(), effect, ctx)
 
 func _on_primary():
-    # set source context (me)
-    var source = ContextNode.new()
-    source.node = self
-    source.hurtbox = hurtbox
-    source.status_ctrl = status_effect_ctrl
-    source.character = self
     # create magic [missile]
-    var magic = Magic.create(source, magic_configs)
+    var magic = Magic.create(context(), magic_configs)
     magic.velocity = Vector2.from_angle(arms.wand_tip.global_rotation) * 500
     magic.global_position = arms.wand_tip.global_position

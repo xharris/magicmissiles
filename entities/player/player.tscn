@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1f8ehcj7j667"]
+[gd_scene load_steps=13 format=3 uid="uid://1f8ehcj7j667"]
 
 [ext_resource type="Script" uid="uid://bpibgh6m850ma" path="res://entities/player/player.gd" id="1_sglur"]
 [ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control.tscn" id="2_abrql"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://1unta65jxpw0" path="res://components/arms/arms.tscn" id="6_8fjmc"]
 [ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="7_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="9_bectd"]
+[ext_resource type="PackedScene" uid="uid://u1ixt652jdjr" path="res://components/hp/hp.tscn" id="10_wvtmh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sglur"]
 radius = 12.0416
@@ -54,3 +55,6 @@ shape = SubResource("CapsuleShape2D_bectd")
 
 [node name="Vfx" parent="." node_paths=PackedStringArray("node") instance=ExtResource("9_bectd")]
 node = NodePath("..")
+
+[node name="Hp" parent="." instance=ExtResource("10_wvtmh")]
+unique_name_in_owner = true
