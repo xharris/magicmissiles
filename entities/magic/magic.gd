@@ -23,10 +23,13 @@ var source: ContextNode:
         source = v
         update()
 
+var _log = Logger.new("magic")
+
 func _ready() -> void:
     if configs.is_empty():
         push_error("no magic configs, src=", source, ", self=", self)
         queue_free()
+    on_hit.hit.connect(_on_hit)
     
     update()
     for config in configs:
@@ -46,10 +49,15 @@ func _ready() -> void:
             var target = ctx.me.duplicate()
             status_effect_ctrl.apply_effect(target, effect, ctx)
 
+func _on_hit(body: Node2D):
+    # remove non-piercing effects
+    configs = configs.filter(func(c:MagicConfig):
+        return c.piercing)
+
 func _process(delta: float) -> void:
     var collision = move_and_collide(velocity * delta)
-    if collision:
-        pass
+    if configs.size() == 0:
+        queue_free()
 
 func update():
     if on_hit:

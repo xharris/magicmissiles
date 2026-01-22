@@ -1,7 +1,7 @@
 extends Node2D
 class_name StatusEffectCtrl
 
-var log = Logger.new("status_effect_ctrl")
+var _log = Logger.new("status_effect_ctrl")
 
 class Active extends RefCounted:
     var effect: StatusEffect
@@ -21,11 +21,11 @@ func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectCo
     var target_is_me = ctx.target.node == ctx.me.node
     var target_is_source = ctx.target.node == ctx.source.node
     if (not ctx.can_hit_me and target_is_me) or (not ctx.can_hit_source and target_is_source):
-        log.debug("invalid target, is_me=%s, can_hit_me=%s, is_source=%s, can_hit_source=%s, effect=%s" % [
+        _log.debug("invalid target, is_me=%s, can_hit_me=%s, is_source=%s, can_hit_source=%s, effect=%s" % [
             target_is_me, ctx.can_hit_me, target_is_source, ctx.can_hit_source, effect.name
         ])
         return
-    log.debug("apply %s to %s from %s's %s" % [
+    _log.debug("apply %s to %s from %s's %s" % [
         effect.name, target.node, ctx.source.node, ctx.me.node
     ])
     effect.apply(ctx)

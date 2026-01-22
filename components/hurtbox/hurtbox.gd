@@ -18,7 +18,7 @@ func _on_area_exited(area: Area2D):
     _on_body_exited(area)
     
 func _on_body_exited(body: Node2D):
-    _body_entered.filter(func(b: Node2D): return b != body)
+    _body_entered = _body_entered.filter(func(b: Node2D): return b != body)
 
 func _on_body_entered(body: Node2D):
     if not _body_entered.has(body):

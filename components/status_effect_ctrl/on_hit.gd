@@ -1,5 +1,8 @@
 extends Area2D
 class_name OnHit
+
+signal hit(target: Node2D)
+
 static func get_on_hit(node: Node2D) -> OnHit:
     return node.get_meta(Meta.ON_HIT)
 
@@ -12,10 +15,24 @@ var source: ContextNode:
 @export var status_effects: Array[StatusEffect]
 
 var _clearing = false
+var _body_entered: Array[Node2D]
 
 func _ready() -> void:    
+    area_entered.connect(_on_hit)
+    area_exited.connect(_on_body_exited)
+    body_entered.connect(_on_hit)
+    body_exited.connect(_on_body_exited)
     update()
-    
+
+func _on_hit(body: Node2D):
+    if not _body_entered.has(body):
+        _body_entered.append(body)
+        hit.emit(body)
+
+func _on_body_exited(body: Node2D):
+    _body_entered.filter(func(b: Node2D):
+        return b != body)
+
 func _exit_tree() -> void:
     clear()
 

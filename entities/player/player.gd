@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-var log = Logger.new("player")
+var _log = Logger.new("player")
 
 @onready var control: ActorControl = %PlayerControl
 @onready var sprite: ActorSprite = %ActorSprite
