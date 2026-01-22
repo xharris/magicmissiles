@@ -49,7 +49,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     var collision = move_and_collide(velocity * delta)
     if collision:
-        print("Magic collided with: ", collision.get_collider())
+        pass
 
 func update():
     if on_hit:

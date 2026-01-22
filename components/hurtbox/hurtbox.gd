@@ -25,12 +25,10 @@ func _on_body_entered(body: Node2D):
         _body_entered.append(body)
         
         var on_hit: OnHit = body
-        print(self, " hit by ", body)
         if on_hit:
             if not on_hit.source:
                 push_warning(on_hit, " is missing source")
             else:
-                print(on_hit.source.node, "'s ", body, " hits ", get_parent(),  " and applies ", on_hit.status_effects.size(), " effects")
                 for effect in on_hit.status_effects:
                     # setup context
                     var ctx = StatusEffectContext.new()

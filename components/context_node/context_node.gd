@@ -18,12 +18,12 @@ func duplicate() -> ContextNode:
     dupe.visual_node = visual_node
     return dupe
 
-func print():
-    print("node=%s, hurtbox=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s" % [
+func _to_string() -> String:
+    return "node=%s, hurtbox=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s" % [
         node,
         hurtbox != null,
         status_ctrl != null,
         vfx != null,
         character != null,
         visual_node != null,
-    ])
+    ]

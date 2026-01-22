@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player
 
+var log = Logger.new("player")
+
 @onready var control: ActorControl = %PlayerControl
 @onready var sprite: ActorSprite = %ActorSprite
 @onready var arms: Arms = %Arms
@@ -33,8 +35,6 @@ func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
     target.status_ctrl = status_effect_ctrl
     target.hurtbox = hurtbox
     target.character = self
-    print("apply effect")
-    target.print()
     # apply effect
     status_effect_ctrl.apply_effect(target, effect, ctx)
 
