@@ -18,9 +18,9 @@ func _process(delta: float) -> void:
         (global_position - control.aim_position).length(),
         60, 90, 0, 1), 0, 1)
     # movement
-    velocity = velocity.lerp(control.move_direction * move_speed / global_scale, delta * 5)
+    velocity = velocity.lerp(control.move_direction * move_speed, delta * 5)
     sprite.walk_speed = clampf(velocity.length() / move_speed, 0, 1)
-    move_and_slide()
+    move_and_collide(velocity * delta)
     
 func _ready() -> void:
     control.primary.connect(_on_primary)
@@ -32,6 +32,9 @@ func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
     target.node = self
     target.status_ctrl = status_effect_ctrl
     target.hurtbox = hurtbox
+    target.character = self
+    print("apply effect")
+    target.print()
     # apply effect
     status_effect_ctrl.apply_effect(target, effect, ctx)
 
@@ -41,6 +44,7 @@ func _on_primary():
     source.node = self
     source.hurtbox = hurtbox
     source.status_ctrl = status_effect_ctrl
+    source.character = self
     # create magic [missile]
     var magic = Magic.create(source, magic_configs)
     magic.velocity = Vector2.from_angle(arms.wand_tip.global_rotation) * 500

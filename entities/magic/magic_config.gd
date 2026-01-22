@@ -5,3 +5,6 @@ class_name MagicConfig
 @export var on_ready_effects: Array[StatusEffect]
 ## applied to target on collision
 @export var on_hit_effects: Array[StatusEffect]
+
+@export var vfx: VfxConfig # TODO
+@export var sprite: Texture2D # TODO

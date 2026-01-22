@@ -12,6 +12,11 @@ func apply(ctx: StatusEffectContext):
     ctx.target.node.add_child(timer)
     
 func _on_timer_timeout(ctx: StatusEffectContext):
+    if ctx.target.visual_node:
+        ctx.target.visual_node.hide()
+    if ctx.target.vfx:
+        ctx.target.vfx.particles.emitting = false
+        await ctx.target.vfx.particles.finished
     ctx.target.node.queue_free()
 
 func remove():

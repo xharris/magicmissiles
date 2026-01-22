@@ -7,23 +7,38 @@ var _body_entered: Array[Node2D]
 
 func _ready() -> void:
     body_entered.connect(_on_body_entered)
+    body_exited.connect(_on_body_exited)
+    area_entered.connect(_on_area_entered)
+    area_exited.connect(_on_area_exited)
+
+func _on_area_entered(area: Area2D):
+    _on_body_entered(area)
+
+func _on_area_exited(area: Area2D):
+    _on_body_exited(area)
+    
+func _on_body_exited(body: Node2D):
+    _body_entered.filter(func(b: Node2D): return b != body)
 
 func _on_body_entered(body: Node2D):
     if not _body_entered.has(body):
         _body_entered.append(body)
         
-        if body.has_meta("on_hit"):
-            var on_hit: OnHit = body.get_meta("on_hit")
-            
-            for effect in on_hit.status_effects:
-                # setup context
-                var ctx = StatusEffectContext.new()
-                # add me
-                ctx.me = ContextNode.new()
-                ctx.me.node = body
-                # add source
-                ctx.source = ContextNode.new()
-                ctx.source.node = on_hit.source
-                # NOTE ctx.target (hurtbox owner) is typically set in apply_status_effect listeners
-                # have listener resolve status effect
-                apply_status_effect.emit(effect)
+        var on_hit: OnHit = body
+        print(self, " hit by ", body)
+        if on_hit:
+            if not on_hit.source:
+                push_warning(on_hit, " is missing source")
+            else:
+                print(on_hit.source.node, "'s ", body, " hits ", get_parent(),  " and applies ", on_hit.status_effects.size(), " effects")
+                for effect in on_hit.status_effects:
+                    # setup context
+                    var ctx = StatusEffectContext.new()
+                    # add me
+                    ctx.me = ContextNode.new()
+                    ctx.me.node = body
+                    # add source
+                    ctx.source = on_hit.source
+                    # NOTE ctx.target (hurtbox owner) is typically set in apply_status_effect listeners
+                    # have listener resolve status effect
+                    apply_status_effect.emit(effect, ctx)

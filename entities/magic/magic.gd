@@ -12,40 +12,49 @@ static func create(source: ContextNode, configs: Array[MagicConfig]) -> Magic:
 
 @onready var on_hit: OnHit = %OnHit
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
+@onready var vfx: Vfx = %Vfx
 
 var configs: Array[MagicConfig]:
     set(v):
         configs = v
         update()
-var source: ContextNode
+var source: ContextNode:
+    set(v):
+        source = v
+        update()
 
 func _ready() -> void:
     if configs.is_empty():
         push_error("no magic configs, src=", source, ", self=", self)
         queue_free()
+    
     update()
     for config in configs:
         for effect in config.on_ready_effects:
             # create context
             var ctx = StatusEffectContext.new()
+            ctx.can_hit_me = true
             # add me
             ctx.me = ContextNode.new()
             ctx.me.node = self
             ctx.me.status_ctrl = status_effect_ctrl
+            ctx.me.vfx = vfx
+            ctx.me.visual_node = %Sprite2D
             # add source
             ctx.source = source
             # add target (also me)
-            var target = ContextNode.new()
-            target.node = self
-            target.status_ctrl = status_effect_ctrl
+            var target = ctx.me.duplicate()
             status_effect_ctrl.apply_effect(target, effect, ctx)
 
 func _process(delta: float) -> void:
-    move_and_slide()
+    var collision = move_and_collide(velocity * delta)
+    if collision:
+        print("Magic collided with: ", collision.get_collider())
 
 func update():
     if on_hit:
-        set_meta("on_hit", on_hit)
+        on_hit.source = source
         on_hit.status_effects.clear()
         for config in configs:
-            on_hit.status_effects.append_array(config.on_hit_effects)
+            for eff in config.on_hit_effects:
+                on_hit.status_effects.append_array(config.on_hit_effects)

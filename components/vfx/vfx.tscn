@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxm55vrlk1q2q"]
+
+[ext_resource type="Script" uid="uid://dwtcej8d660we" path="res://components/vfx/vfx.gd" id="1_o3b2c"]
+
+[node name="Vfx" type="Node2D"]
+script = ExtResource("1_o3b2c")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="Line2D" type="Line2D" parent="."]
+unique_name_in_owner = true
+top_level = true
+points = PackedVector2Array(39, -40, 36, -21, 19, -6, 0, 0)
+width = 5.0
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true

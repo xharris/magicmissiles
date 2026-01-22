@@ -7,3 +7,6 @@ var me: ContextNode
 var source: ContextNode
 ## Who the status effect is being applied to
 var target: ContextNode
+
+var can_hit_me: bool = false
+var can_hit_source: bool = false

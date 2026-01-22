@@ -16,6 +16,12 @@ func _process(delta: float) -> void:
 
 func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectContext):
     ctx.target = target
+    var target_is_me = ctx.target.node == ctx.me.node
+    var target_is_source = ctx.target.node == ctx.source.node
+    if (not ctx.can_hit_me and target_is_me) or (not ctx.can_hit_source and target_is_source):
+        print("invalid target, is_me=", target_is_me, ", can_hit_me", ctx.can_hit_me, ", is_source=", target_is_source, ", can_hit_source=", ctx.can_hit_source, " effect=", effect.name)
+        return
+    print("apply ", effect.name, " to ", target.node, " from ", ctx.source.node, "'s ", ctx.me.node)
     effect.apply(ctx)
 
 func remove_effect(active: StatusEffectCtrl.Active):
