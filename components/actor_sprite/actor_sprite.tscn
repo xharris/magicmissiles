@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bk0of6tmtqpdh"]
+[gd_scene load_steps=17 format=3 uid="uid://bk0of6tmtqpdh"]
 
-[ext_resource type="Texture2D" uid="uid://cq4judig3vlfb" path="res://entities/player/player.png" id="1_371ag"]
+[ext_resource type="AnimationLibrary" uid="uid://c7bsayy8dogee" path="res://entities/slime/slime_animations.res" id="2_17kfk"]
 [ext_resource type="Script" uid="uid://crttnkx3nhwfa" path="res://components/actor_sprite/actor_sprite.gd" id="2_qcuct"]
+[ext_resource type="Texture2D" uid="uid://dbqr5uq8xjh8a" path="res://entities/slime/slime.png" id="3_qcuct"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_371ag"]
 
@@ -69,165 +70,6 @@ nodes/walk_state/node = SubResource("AnimationNodeStateMachine_hwjrh")
 nodes/walk_state/position = Vector2(-210, 220)
 node_connections = [&"TimeScale", 0, &"walk_speed", &"face_dir_x_blend", 0, &"TimeScale", &"face_dir_x_blend", 1, &"face_dir_x", &"output", 0, &"face_dir_x_blend", &"walk_speed", 0, &"walk_state"]
 
-[sub_resource type="Animation" id="Animation_qcuct"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite/Sprite/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_sfh5e"]
-resource_name = "face_left"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_kxf2m"]
-resource_name = "face_right"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_371ag"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite/Sprite/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_17kfk"]
-resource_name = "walk"
-length = 30.0
-loop_mode = 1
-step = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite/Sprite/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 15),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [5, 4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 5, 15, 20, 30),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -1.5), Vector2(0, 0), Vector2(0, 0.5), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite:scale")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 5, 15, 20, 30),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.95, 1), Vector2(1, 1), Vector2(1, 0.95), Vector2(1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_17kfk"]
-_data = {
-&"RESET": SubResource("Animation_qcuct"),
-&"face_left": SubResource("Animation_sfh5e"),
-&"face_right": SubResource("Animation_kxf2m"),
-&"idle": SubResource("Animation_371ag"),
-&"walk": SubResource("Animation_17kfk")
-}
-
 [node name="ActorSprite" type="Node2D"]
 script = ExtResource("2_qcuct")
 
@@ -244,8 +86,9 @@ parameters/walk_state/conditions/idle = true
 parameters/walk_state/conditions/walking = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_17kfk")
+&"": ExtResource("2_17kfk")
 }
 speed_scale = 80.0
 
@@ -256,5 +99,5 @@ unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite/Sprite"]
 unique_name_in_owner = true
-texture = ExtResource("1_371ag")
-hframes = 7
+texture = ExtResource("3_qcuct")
+hframes = 2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2j0kjls8mpy3"]
+[gd_scene load_steps=8 format=3 uid="uid://d2j0kjls8mpy3"]
 
 [ext_resource type="Script" uid="uid://dqinry7alixpt" path="res://entities/slime/slime.gd" id="1_jt6hj"]
 [ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="1_oby5s"]
 [ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="2_r130b"]
+[ext_resource type="Resource" uid="uid://chu17qariadbr" path="res://entities/slime/slime_actor_sprite.tres" id="3_l087p"]
 [ext_resource type="Script" uid="uid://i04o83q47rqi" path="res://components/status_effect_ctrl/status_effect_ctrl.gd" id="4_vly41"]
 [ext_resource type="PackedScene" uid="uid://u1ixt652jdjr" path="res://components/hp/hp.tscn" id="5_vtnpc"]
 
@@ -18,6 +19,8 @@ unique_name_in_owner = true
 scale = Vector2(4, 4)
 
 [node name="ActorSprite" parent="Visual" instance=ExtResource("1_oby5s")]
+scale = Vector2(0.6, 0.6)
+config = ExtResource("3_l087p")
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_r130b")]
 unique_name_in_owner = true

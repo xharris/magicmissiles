@@ -1,8 +1,16 @@
+@tool
 extends Node2D
 class_name ActorSprite
 
-@onready var sprite: Node2D = %Sprite
+@onready var sprite: Sprite2D = %Sprite2D
 @onready var animation_tree: AnimationTree = %AnimationTree
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
+
+@export var config: ActorSpriteConfig:
+    set(v):
+        if config != v:
+            config = v
+            update()
 
 var face_direction: Vector2
 var walk_speed: float
@@ -21,3 +29,15 @@ func _process(delta: float) -> void:
     animation_tree["parameters/walk_speed/scale"] = is_walking and walk_speed or 1
     animation_tree["parameters/walk_state/conditions/idle"] = is_idle
     animation_tree["parameters/walk_state/conditions/walking"] = is_walking
+
+func _ready() -> void:
+    update()
+
+func update():
+    if sprite and config:
+        sprite.texture = config.sprite
+        sprite.hframes = config.sprite_hframes
+        sprite.vframes = config.sprite_vframes
+    if animation_player and config:
+        animation_player.remove_animation_library("default")
+        animation_player.add_animation_library("default", config.animation_library)
