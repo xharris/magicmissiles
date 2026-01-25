@@ -2,6 +2,8 @@
 extends Node2D
 class_name Vfx
 
+signal line_finished
+
 @onready var particles: GPUParticles2D = %GPUParticles2D
 @onready var line: Line2D = %Line2D
 
@@ -20,22 +22,16 @@ class_name Vfx
 @export_tool_button("Update")
 var update_action = update
 
-var active:bool = true
-
 var _shaded_node: CanvasItem
+var _disabled: bool
 
-func _ready() -> void:
-    if not Engine.is_editor_hint():
-        line.clear_points()
-    update()
-
-func _process(delta: float) -> void:
-    if not Engine.is_editor_hint():
-        ## create new point in line
-        if config and config.line_max_points > 0 and line.visible:
-            line.add_point(global_position)
-        if line.get_point_count() > (config.line_max_points if config else 0):
-            line.remove_point(0)
+func disable():
+    _disabled = true
+    if particles.emitting and particles.process_material and particles.texture:
+        particles.emitting = false
+        await particles.finished
+    if line.get_point_count() > 0:
+        await line_finished
 
 func clear():
     if _shaded_node:
@@ -68,3 +64,18 @@ func update():
     if _shaded_node:
         var mat = config.material if config else null
         _shaded_node.material = mat
+    
+func _ready() -> void:
+    if not Engine.is_editor_hint():
+        line.clear_points()
+    update()
+
+func _process(delta: float) -> void:
+    if not Engine.is_editor_hint():
+        ## create new point in line
+        if _disabled and config and config.line_max_points > 0 and line.visible:
+            line.add_point(global_position)
+        if line.get_point_count() > (config.line_max_points if config else 0):
+            line.remove_point(0)
+            if line.get_point_count() == 0:
+                line_finished.emit()

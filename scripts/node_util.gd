@@ -5,7 +5,7 @@ static func reconnect(sig: Signal, method: Callable):
     if not sig.is_connected(method):
         sig.connect(method)
 
-static func reconnect_str(node: Node, sig_name: String, method: Callable):
+static func reconnect_str(node: Object, sig_name: String, method: Callable):
     if node.has_signal(sig_name) and not node.is_connected(sig_name, method):
         node.connect(sig_name, method)
         
@@ -27,3 +27,8 @@ static func is_enabled(node: Node):
     if node is Node2D:
         return node.visible
     return true
+
+static func remove(node: Node):
+    var parent = node.get_parent()
+    parent.remove_child(node)
+    node.queue_free()

@@ -24,7 +24,7 @@ var source: ContextNode:
         source = v
         update()
 
-var _log = Logger.new("magic", Logger.Level.DEBUG)
+var _log = Logger.new("magic")#, Logger.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()

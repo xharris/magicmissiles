@@ -24,6 +24,7 @@ var hp: Hp
 var faction: Faction
 var sense: Sense
 var actor_ctrl: ActorControl
+var on_hit: OnHit
 
 ## TODO why do I need this?
 func duplicate() -> ContextNode:
@@ -35,6 +36,9 @@ func duplicate() -> ContextNode:
     dupe.visual_node = visual_node
     dupe.faction = faction
     dupe.sense = sense
+    dupe.on_hit = on_hit
+    dupe.actor_ctrl = actor_ctrl
+    dupe.character = character
     return dupe
 
 func _to_string() -> String:

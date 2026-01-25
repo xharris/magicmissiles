@@ -12,12 +12,17 @@ func apply(ctx: StatusEffectContext):
     ctx.target.node.add_child(timer)
     
 func _on_timer_timeout(ctx: StatusEffectContext):
+    if ctx.target.on_hit:
+        NodeUtil.disable(ctx.target.on_hit)
+    if ctx.target.hurtbox:
+        NodeUtil.disable(ctx.target.hurtbox)
+    if ctx.target.character:
+        NodeUtil.disable(ctx.target.character)
     if ctx.target.visual_node:
-        ctx.target.visual_node.hide()
+        NodeUtil.disable(ctx.target.visual_node)
     if ctx.target.vfx:
-        ctx.target.vfx.particles.emitting = false
-        await ctx.target.vfx.particles.finished
-    ctx.target.node.queue_free()
+        await ctx.target.vfx.disable()
+    NodeUtil.remove(ctx.target.node)
 
 func remove():
     pass # TODO remove timer

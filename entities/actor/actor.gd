@@ -38,6 +38,8 @@ var _log = Logger.new("actor", Logger.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
+    if Engine.is_editor_hint():
+        return ctx
     ctx.node = self
     ctx.status_ctrl = status_effect_ctrl
     ctx.hurtbox = hurtbox
@@ -46,11 +48,13 @@ func context() -> ContextNode:
     ctx.faction = config.faction if config else null
     ctx.actor_ctrl = control
     ctx.sense = sense
+    ctx.on_hit = on_hit
     return ctx
 
 func update():
     if not config:
         return
+    NodeUtil.reconnect_str(config, "changed", update)
     # camera
     if camera:
         camera.config = config.camera

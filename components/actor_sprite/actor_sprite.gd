@@ -8,9 +8,8 @@ class_name ActorSprite
 
 @export var config: ActorSpriteConfig:
     set(v):
-        if config != v:
-            config = v
-            update()
+        config = v
+        update()
 
 var face_direction: Vector2
 var walk_speed: float

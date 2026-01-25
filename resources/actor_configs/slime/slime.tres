@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActorConfig" load_steps=11 format=3 uid="uid://cquh7rme0ac0e"]
+[gd_resource type="Resource" script_class="ActorConfig" load_steps=12 format=3 uid="uid://cquh7rme0ac0e"]
 
 [ext_resource type="Resource" uid="uid://bc2yf82wl8h7s" path="res://resources/factions/slime.tres" id="1_3h644"]
 [ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="1_b6ki0"]
@@ -9,8 +9,10 @@
 [ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_self_mid.tres" id="5_pxuim"]
 [ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="6_oiwtk"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7m2b0"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg6wn"]
-radius = 32.0
+radius = 20.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tbwq1"]
 radius = 16.0
@@ -19,10 +21,10 @@ radius = 16.0
 script = ExtResource("3_jr44v")
 faction = ExtResource("1_3h644")
 hp_max = 5
-move_speed = 200
+move_speed = 150
 magic_configs = Array[ExtResource("1_b6ki0")]([])
 hurtbox = Array[Shape2D]([SubResource("CircleShape2D_gg6wn")])
-body = Array[Shape2D]([])
+body = Array[Shape2D]([SubResource("CircleShape2D_7m2b0")])
 body_position = Vector2(0, 0)
 visual_scale = Vector2(2, 2)
 sprite = ExtResource("5_jr44v")
