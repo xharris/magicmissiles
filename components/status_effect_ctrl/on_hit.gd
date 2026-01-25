@@ -38,7 +38,7 @@ func _on_hit(body: Node2D):
         hit.emit(body)
 
 func _on_body_exited(body: Node2D):
-    _body_entered.filter(func(b: Node2D):
+    _body_entered = _body_entered.filter(func(b: Node2D):
         return b != body)
 
 func _exit_tree() -> void:

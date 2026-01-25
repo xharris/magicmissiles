@@ -3,6 +3,7 @@ class_name Hurtbox
 
 signal apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext)
 
+var _log = Logger.new("hurtbox", Logger.Level.DEBUG)
 var _body_entered: Array[Node2D]
 
 func _ready() -> void:
@@ -27,9 +28,11 @@ func _on_body_entered(body: Node2D):
         var on_hit: OnHit = body
         if on_hit:
             if not on_hit.source:
-                push_warning(on_hit, " is missing source")
+                _log.warn("%s is missing source" % [on_hit.get_path()])
             elif not on_hit.source.node.is_ancestor_of(self):
+                _log.debug("%s hit by %s" % [self.get_path(), body.get_path()])
                 for effect in on_hit.status_effects:
+                    _log.debug("apply %s" % [effect.name])
                     # setup context
                     var ctx = StatusEffectContext.new()
                     # add me

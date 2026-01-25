@@ -34,6 +34,8 @@ var control: ActorControl:
 @export_tool_button("Update", "Callable")
 var update_action = update
 
+var _log = Logger.new("actor", Logger.Level.DEBUG)
+
 func context() -> ContextNode:
     var ctx = ContextNode.new()
     ctx.node = self
@@ -130,6 +132,7 @@ func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
 func _on_primary():
     # create magic [missile]
     var magic = Magic.create(context(), config.magic_configs)
+    _log.debug("fire magic with configs: %s" % [config.magic_configs.map(func(c:MagicConfig):return c.resource_path)])
     var angle = control.move_direction.angle()
     var magic_position = global_position
     if arms:

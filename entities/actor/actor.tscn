@@ -19,7 +19,6 @@
 [ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="15_ctand"]
 
 [node name="Actor" type="CharacterBody2D"]
-collision_mask = 17
 script = ExtResource("1_oawin")
 config = ExtResource("2_sbr6v")
 

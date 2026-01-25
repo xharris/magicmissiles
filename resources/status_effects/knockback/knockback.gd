@@ -22,5 +22,6 @@ func apply(ctx: StatusEffectContext):
         var impact_direction: Vector2 = \
             (me_node.global_position - target_char.global_position).normalized()
         target_char.velocity = -impact_direction * amount_curve.sample(amount)
+        _log.debug("knockback: %s" % [target_char.velocity])
     else:
         _log.debug("knockback: target does not have CharacterBody2D (%s)" % [ctx.target])

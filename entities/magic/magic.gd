@@ -24,7 +24,7 @@ var source: ContextNode:
         source = v
         update()
 
-var _log = Logger.new("magic")
+var _log = Logger.new("magic", Logger.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -38,10 +38,11 @@ func _ready() -> void:
     if configs.is_empty():
         push_error("no magic configs, src=", source, ", self=", self)
         queue_free()
+    name = "Magic-%s"%["=".join(configs.map(func(c:MagicConfig):return c.resource_path.get_file()))]
+    _log.debug("casted %s" % [name])
     on_hit.hit.connect(_on_hit)
     set_meta(Meta.CONTEXT_NODE, context())
     
-    update()
     for config in configs:
         for effect in config.on_ready_effects:
             # create context
@@ -58,11 +59,16 @@ func _ready() -> void:
             # add target (also me)
             var target = ctx.me.duplicate()
             status_effect_ctrl.apply_effect(target, effect, ctx)
+    update()
 
-func _on_hit(body: Node2D):
-    # remove non-piercing effects
+func _remove_non_piercing():
     configs = configs.filter(func(c:MagicConfig):
         return c.piercing)
+    update()
+
+func _on_hit(body: Node2D):
+    # remove non-piercing effects (deferred so hurtbox can process the hit first)
+    _remove_non_piercing.call_deferred()
 
 func _process(delta: float) -> void:
     var collision = move_and_collide(velocity * delta)
@@ -75,3 +81,5 @@ func update():
         on_hit.status_effects.clear()
         for config in configs:
             on_hit.status_effects.append_array(config.on_hit_effects)
+        _log.debug("magic with effects: %s" % [on_hit.status_effects.map(func(c:StatusEffect):return c.resource_path)])
+            

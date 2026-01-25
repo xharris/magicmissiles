@@ -13,7 +13,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
         return FAILURE
     # no enemies
     if not ctx.sense or ctx.sense.sensed.is_empty():
-        _log.warn("not sensing anything")
+        _log.debug("not sensing anything")
         blackboard.erase_value(position_key)
         return FAILURE
     var enemies: Array[Node2D] = ctx.sense.sensed.duplicate()
