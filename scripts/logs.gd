@@ -107,10 +107,13 @@ func info_if(cond: bool, msg: String) -> bool:
     if cond:
         info(msg)
     return cond
-    
+
+var _warned: Dictionary[String, bool]
+
 func warn(msg: String):
     if not _is_level_enabled(Level.WARN): return
-    if _print(Color.YELLOW, "WARN", msg):
+    if not _warned.get(msg) and _print(Color.YELLOW, "WARN", msg):
+        _warned[msg] = true
         push_warning(msg)
 
 ## prints warning if [code]cond[/code] is [code]true[/code]

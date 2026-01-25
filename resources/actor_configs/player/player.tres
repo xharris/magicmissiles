@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="ActorConfig" load_steps=10 format=3 uid="uid://c6stj4cbu1kpw"]
+
+[ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/actor_configs/player/player_camera.tres" id="1_ig03h"]
+[ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_nwbdg"]
+[ext_resource type="Resource" uid="uid://q1qrr8y6juns" path="res://resources/factions/human.tres" id="1_u0c0c"]
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="2_elwq2"]
+[ext_resource type="Script" uid="uid://x5j4t41vi5jt" path="res://entities/actor/actor_config.gd" id="2_u0c0c"]
+[ext_resource type="Resource" uid="uid://kdvdwul2yqkx" path="res://resources/magic_config/magic_missile.tres" id="3_l8rgj"]
+[ext_resource type="Resource" uid="uid://db7kufdiotf5n" path="res://resources/actor_configs/player/player_actor_sprite.tres" id="4_u0c0c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l8rgj"]
+radius = 12.0416
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_elwq2"]
+radius = 8.0
+height = 48.0
+
+[resource]
+script = ExtResource("2_u0c0c")
+faction = ExtResource("1_u0c0c")
+hp_max = 3
+move_speed = 200
+magic_configs = Array[ExtResource("2_elwq2")]([ExtResource("3_l8rgj")])
+hurtbox = Array[Shape2D]([SubResource("CapsuleShape2D_elwq2")])
+body = Array[Shape2D]([SubResource("CircleShape2D_l8rgj")])
+body_position = Vector2(0, 16)
+visual_scale = Vector2(4, 4)
+sprite = ExtResource("4_u0c0c")
+arms = true
+camera = ExtResource("1_ig03h")
+ai_sense_radius = 0
+on_hit = Array[Shape2D]([])
+on_hit_status_effects = Array[ExtResource("1_nwbdg")]([])
+metadata/_custom_type_script = "uid://x5j4t41vi5jt"

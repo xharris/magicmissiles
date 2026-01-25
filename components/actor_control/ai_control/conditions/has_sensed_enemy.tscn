@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2i3505wra0py"]
+
+[ext_resource type="Script" uid="uid://qgbuocjw5mcs" path="res://components/actor_control/ai_control/conditions/has_sensed_enemy.gd" id="1_kjh8d"]
+
+[node name="HasSensedEnemy" type="Node"]
+editor_description = "closest_enemy: Node2D"
+script = ExtResource("1_kjh8d")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"

@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://cbpdxa1jy4kp4"]
+
+[ext_resource type="Script" uid="uid://bl4rjg2ssfuia" path="res://components/actor_control/ai_control/ai_control.gd" id="1_03dc4"]
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_wuxqn"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_eq8g6"]
+[ext_resource type="PackedScene" uid="uid://b2i3505wra0py" path="res://components/actor_control/ai_control/conditions/has_sensed_enemy.tscn" id="4_7mrm8"]
+[ext_resource type="Script" uid="uid://2qri6rrfv8ui" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="5_6xj8j"]
+[ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="6_p7sda"]
+[ext_resource type="PackedScene" uid="uid://c8fmhpeviovvn" path="res://components/actor_control/ai_control/actions/path_to_position.tscn" id="7_23iwh"]
+
+[node name="ActorAi" type="Node2D"]
+script = ExtResource("1_03dc4")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+unique_name_in_owner = true
+script = ExtResource("2_wuxqn")
+blackboard = NodePath("@Node@21821")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="Chase" type="Node" parent="BeehaveTree"]
+script = ExtResource("3_eq8g6")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="HasSensedEnemy" parent="BeehaveTree/Chase" instance=ExtResource("4_7mrm8")]
+position_key = "chase_position"
+
+[node name="CooldownDecorator" type="Node" parent="BeehaveTree/Chase"]
+script = ExtResource("5_6xj8j")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://2qri6rrfv8ui"
+
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/Chase/CooldownDecorator"]
+script = ExtResource("6_p7sda")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://we22430vcb44"
+
+[node name="PathToPosition" parent="BeehaveTree/Chase/CooldownDecorator/TimeLimiterDecorator" instance=ExtResource("7_23iwh")]
+position_key = "chase_position"

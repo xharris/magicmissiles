@@ -1,14 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2j0kjls8mpy3"]
+[gd_scene load_steps=14 format=3 uid="uid://d2j0kjls8mpy3"]
 
 [ext_resource type="Script" uid="uid://dqinry7alixpt" path="res://entities/slime/slime.gd" id="1_jt6hj"]
 [ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="1_oby5s"]
 [ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="2_r130b"]
-[ext_resource type="Resource" uid="uid://chu17qariadbr" path="res://entities/slime/slime_actor_sprite.tres" id="3_l087p"]
+[ext_resource type="Resource" uid="uid://chu17qariadbr" path="res://resources/actor_configs/slime/slime_actor_sprite.tres" id="3_l087p"]
 [ext_resource type="Script" uid="uid://i04o83q47rqi" path="res://components/status_effect_ctrl/status_effect_ctrl.gd" id="4_vly41"]
 [ext_resource type="PackedScene" uid="uid://u1ixt652jdjr" path="res://components/hp/hp.tscn" id="5_vtnpc"]
+[ext_resource type="PackedScene" uid="uid://dd2svjblodqmd" path="res://components/sense/sense.tscn" id="7_o4m1g"]
+[ext_resource type="PackedScene" uid="uid://cvord14bqvlx0" path="res://components/actor_control/actor_control.tscn" id="8_vukhm"]
+[ext_resource type="PackedScene" uid="uid://cbpdxa1jy4kp4" path="res://components/actor_control/ai_control/ai_control.tscn" id="9_vupdh"]
+[ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit.tscn" id="10_7jeum"]
+[ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="11_s7822"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg6wn"]
 radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbwq1"]
+radius = 16.0
 
 [node name="Slime" type="CharacterBody2D"]
 motion_mode = 1
@@ -27,6 +35,7 @@ unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CircleShape2D_gg6wn")
+debug_color = Color(0.545098, 0.764706, 0.290196, 0.419608)
 
 [node name="StatusEffectCtrl" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -35,3 +44,19 @@ metadata/_custom_type_script = "uid://i04o83q47rqi"
 
 [node name="Hp" parent="." instance=ExtResource("5_vtnpc")]
 unique_name_in_owner = true
+
+[node name="Sense" parent="." instance=ExtResource("7_o4m1g")]
+unique_name_in_owner = true
+
+[node name="ActorControl" parent="." instance=ExtResource("8_vukhm")]
+unique_name_in_owner = true
+
+[node name="ActorAi" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_vupdh")]
+actor = NodePath("..")
+
+[node name="OnHit" parent="." instance=ExtResource("10_7jeum")]
+status_effects = Array[ExtResource("11_s7822")]([null])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit"]
+shape = SubResource("CircleShape2D_tbwq1")
+debug_color = Color(0.956863, 0.262745, 0.211765, 0.419608)

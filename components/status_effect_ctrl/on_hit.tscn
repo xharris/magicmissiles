@@ -3,6 +3,6 @@
 [ext_resource type="Script" uid="uid://bo0jafpym64x4" path="res://components/status_effect_ctrl/on_hit.gd" id="1_tbu63"]
 
 [node name="OnHit" type="Area2D"]
-collision_layer = 4
+collision_layer = 36
 collision_mask = 8
 script = ExtResource("1_tbu63")

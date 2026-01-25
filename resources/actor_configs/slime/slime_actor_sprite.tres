@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActorSpriteConfig" load_steps=4 format=3 uid="uid://chu17qariadbr"]
+
+[ext_resource type="Script" uid="uid://rh72tkykk5nn" path="res://components/actor_sprite/actor_sprite_config.gd" id="1_kcm76"]
+[ext_resource type="AnimationLibrary" uid="uid://c7bsayy8dogee" path="res://resources/actor_configs/slime/slime_animations.res" id="1_ss8qd"]
+[ext_resource type="Texture2D" uid="uid://dbqr5uq8xjh8a" path="res://resources/actor_configs/slime/slime.png" id="3_t6vym"]
+
+[resource]
+script = ExtResource("1_kcm76")
+sprite = ExtResource("3_t6vym")
+sprite_hframes = 2
+sprite_vframes = 0
+animation_library = ExtResource("1_ss8qd")
+metadata/_custom_type_script = "uid://rh72tkykk5nn"

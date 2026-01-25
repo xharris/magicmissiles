@@ -5,8 +5,10 @@ class_name Slime
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var visual: Node2D = %Visual
 @onready var hp: Hp = %Hp
+@onready var sense: Sense = %Sense
+@onready var control: ActorControl = %ActorControl
 
-@export var move_speed: int = 200
+@export var move_speed: int = 150
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -15,14 +17,18 @@ func context() -> ContextNode:
     ctx.hurtbox = hurtbox
     ctx.character = self
     ctx.hp = hp
+    ctx.faction = preload("res://resources/factions/slime.tres")
+    ctx.sense = sense
+    ctx.actor_ctrl = control
     return ctx
     
 func _process(delta: float) -> void:
-    var target_velocity = Vector2.ZERO # control.move_direction * move_speed
+    var target_velocity = control.move_direction * move_speed
     velocity = velocity.lerp(target_velocity, delta * 5)
     move_and_collide(velocity * delta)
 
 func _ready() -> void:
+    ContextNode.attach_ctx(self, context())
     hurtbox.apply_status_effect.connect(_on_apply_status_effect)
     hp.died.connect(_on_died)
 

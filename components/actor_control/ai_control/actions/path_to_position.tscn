@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8fmhpeviovvn"]
+
+[ext_resource type="Script" uid="uid://ck05255c1c6l" path="res://components/actor_control/ai_control/actions/path_to_position.gd" id="1_1dc7c"]
+
+[node name="PathToPosition" type="Node"]
+script = ExtResource("1_1dc7c")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"

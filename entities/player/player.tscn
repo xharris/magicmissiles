@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="2_sglur"]
 [ext_resource type="PackedScene" uid="uid://c0hlswibau2dk" path="res://components/status_effect_ctrl/status_effect_ctrl.tscn" id="3_26q78"]
 [ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="4_bls4j"]
-[ext_resource type="Resource" uid="uid://db7kufdiotf5n" path="res://entities/player/player_actor_sprite.tres" id="5_7thud"]
-[ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/camera_focus_config/player.tres" id="5_fkugw"]
+[ext_resource type="Resource" uid="uid://db7kufdiotf5n" path="res://resources/actor_configs/player/player_actor_sprite.tres" id="5_7thud"]
+[ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/actor_configs/player/player_camera.tres" id="5_fkugw"]
 [ext_resource type="PackedScene" uid="uid://1unta65jxpw0" path="res://components/arms/arms.tscn" id="6_8fjmc"]
 [ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="7_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="9_bectd"]
@@ -20,6 +20,7 @@ radius = 8.0
 height = 48.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 33
 collision_mask = 3
 motion_mode = 1
 script = ExtResource("1_sglur")

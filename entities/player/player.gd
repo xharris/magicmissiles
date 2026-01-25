@@ -10,8 +10,6 @@ var _log = Logger.new("player")
 @onready var hurtbox: Hurtbox = %Hurtbox
 @onready var hp: Hp = %Hp
 
-
-
 @export var magic_configs: Array[MagicConfig]
 @export var move_speed: int = 200
 
@@ -22,6 +20,8 @@ func context() -> ContextNode:
     ctx.hurtbox = hurtbox
     ctx.character = self
     ctx.hp = hp
+    ctx.faction = preload("res://resources/factions/human.tres")
+    ctx.actor_ctrl = control
     return ctx
 
 func _process(delta: float) -> void:
@@ -37,6 +37,7 @@ func _process(delta: float) -> void:
     move_and_collide(velocity * delta)
     
 func _ready() -> void:
+    ContextNode.attach_ctx(self, context())
     control.primary.connect(_on_primary)
     hurtbox.apply_status_effect.connect(_on_apply_status_effect)
     hp.died.connect(_on_died)

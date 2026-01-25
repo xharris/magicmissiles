@@ -18,11 +18,6 @@ var walk_speed: float
 func _process(delta: float) -> void:
     var is_walking = walk_speed > 0.2
     var is_idle = not is_walking
-    
-    #if face_direction.sign().x < 0:
-        #sprite.scale.x = -abs(sprite.scale.x)
-    #else:
-        #sprite.scale.x = abs(sprite.scale.x)
     # face direction
     animation_tree["parameters/face_dir_x/blend_position"] = face_direction.normalized().x
     # walk animation
@@ -36,8 +31,8 @@ func _ready() -> void:
 func update():
     if sprite and config:
         sprite.texture = config.sprite
-        sprite.hframes = config.sprite_hframes
-        sprite.vframes = config.sprite_vframes
+        sprite.hframes = max(1, config.sprite_hframes)
+        sprite.vframes = max(1, config.sprite_vframes)
     if animation_player and config:
-        animation_player.remove_animation_library("default")
-        animation_player.add_animation_library("default", config.animation_library)
+        animation_player.remove_animation_library("")
+        animation_player.add_animation_library("", config.animation_library)

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://be3ado7oh8nqd"]
+
+[sub_resource type="GDScript" id="GDScript_vh6t3"]
+script/source = "extends ConditionLeaf
+"
+
+[node name="IsNearPosition" type="Node"]
+script = SubResource("GDScript_vh6t3")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"

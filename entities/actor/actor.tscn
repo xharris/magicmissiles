@@ -1,0 +1,67 @@
+[gd_scene load_steps=18 format=3 uid="uid://ps1ujo34e48p"]
+
+[ext_resource type="Script" uid="uid://bg2661hheag5t" path="res://entities/actor/actor.gd" id="1_oawin"]
+[ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="2_jsxbd"]
+[ext_resource type="Resource" uid="uid://cquh7rme0ac0e" path="res://resources/actor_configs/slime/slime.tres" id="2_sbr6v"]
+[ext_resource type="PackedScene" uid="uid://1unta65jxpw0" path="res://components/arms/arms.tscn" id="3_jsxbd"]
+[ext_resource type="Resource" uid="uid://chu17qariadbr" path="res://resources/actor_configs/slime/slime_actor_sprite.tres" id="4_wq7k8"]
+[ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="4_yxgyw"]
+[ext_resource type="Script" uid="uid://i04o83q47rqi" path="res://components/status_effect_ctrl/status_effect_ctrl.gd" id="5_xbjxt"]
+[ext_resource type="PackedScene" uid="uid://u1ixt652jdjr" path="res://components/hp/hp.tscn" id="6_g7icj"]
+[ext_resource type="PackedScene" uid="uid://dd2svjblodqmd" path="res://components/sense/sense.tscn" id="7_8hfo6"]
+[ext_resource type="PackedScene" uid="uid://cbpdxa1jy4kp4" path="res://components/actor_control/ai_control/ai_control.tscn" id="9_wq7k8"]
+[ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit.tscn" id="10_bash0"]
+[ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="11_ltbwc"]
+[ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control.tscn" id="12_7gc83"]
+[ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="12_yxgyw"]
+[ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="13_bash0"]
+[ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_self_mid.tres" id="14_ltbwc"]
+[ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="15_ctand"]
+
+[node name="Actor" type="CharacterBody2D"]
+collision_mask = 17
+script = ExtResource("1_oawin")
+config = ExtResource("2_sbr6v")
+
+[node name="Visual" type="Node2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+
+[node name="ActorSprite" parent="Visual" instance=ExtResource("2_jsxbd")]
+unique_name_in_owner = true
+config = ExtResource("4_wq7k8")
+
+[node name="Arms" parent="Visual" instance=ExtResource("3_jsxbd")]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_yxgyw")]
+unique_name_in_owner = true
+
+[node name="StatusEffectCtrl" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_xbjxt")
+metadata/_custom_type_script = "uid://i04o83q47rqi"
+
+[node name="Hp" parent="." instance=ExtResource("6_g7icj")]
+unique_name_in_owner = true
+
+[node name="Sense" parent="." instance=ExtResource("7_8hfo6")]
+unique_name_in_owner = true
+
+[node name="AiControl" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_wq7k8")]
+unique_name_in_owner = true
+actor = NodePath("..")
+
+[node name="OnHit" parent="." instance=ExtResource("10_bash0")]
+unique_name_in_owner = true
+status_effects = Array[ExtResource("11_ltbwc")]([ExtResource("13_bash0"), ExtResource("14_ltbwc"), ExtResource("15_ctand")])
+
+[node name="PlayerControl" parent="." instance=ExtResource("12_7gc83")]
+unique_name_in_owner = true
+process_mode = 4
+visible = false
+
+[node name="CameraFocus" parent="." instance=ExtResource("12_yxgyw")]
+unique_name_in_owner = true

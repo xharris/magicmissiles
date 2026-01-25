@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://scripts/events.gd"
+BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
+BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 [debug]
 
@@ -32,6 +34,10 @@ window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 [input]
 
@@ -71,9 +77,8 @@ primary={
 2d_physics/layer_2="solid"
 2d_physics/layer_3="hit"
 2d_physics/layer_4="hurt"
-2d_physics/layer_5="sight"
-2d_physics/layer_6="sight_target"
-2d_physics/layer_7="sight_block"
+2d_physics/layer_5="sense"
+2d_physics/layer_6="stimulus"
 2d_physics/layer_8="walkable"
 
 [rendering]

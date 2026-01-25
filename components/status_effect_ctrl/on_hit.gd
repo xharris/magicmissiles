@@ -17,7 +17,15 @@ var source: ContextNode:
 var _clearing = false
 var _body_entered: Array[Node2D]
 
-func _ready() -> void:    
+func context() -> ContextNode:
+    var ctx = source
+    if not ctx:
+        ctx = ContextNode.new()
+    ctx.node = self
+    return ctx
+
+func _ready() -> void:
+    set_meta(Meta.CONTEXT_NODE, context())
     area_entered.connect(_on_hit)
     area_exited.connect(_on_body_exited)
     body_entered.connect(_on_hit)
@@ -51,5 +59,4 @@ func update():
     if not source.node:
         source.node = get_parent()
     if source.node:
-        #set_meta(Meta.SOURCE, source)
         source.node.set_meta(Meta.ON_HIT, self)

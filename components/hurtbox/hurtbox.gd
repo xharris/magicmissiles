@@ -28,7 +28,7 @@ func _on_body_entered(body: Node2D):
         if on_hit:
             if not on_hit.source:
                 push_warning(on_hit, " is missing source")
-            else:
+            elif not on_hit.source.node.is_ancestor_of(self):
                 for effect in on_hit.status_effects:
                     # setup context
                     var ctx = StatusEffectContext.new()

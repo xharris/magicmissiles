@@ -6,6 +6,10 @@ class_name StatusEffect
 ## `0` happens for single frame
 var duration: float
 
+func _init() -> void:
+    if name.is_empty():
+        pass
+
 ## Apply status effect
 func apply(ctx: StatusEffectContext):
     pass

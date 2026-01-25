@@ -30,6 +30,7 @@ shape = SubResource("CircleShape2D_1bg2c")
 unique_name_in_owner = true
 
 [node name="CanvasGroup" type="CanvasGroup" parent="."]
+unique_name_in_owner = true
 
 [node name="Vfx" parent="CanvasGroup" node_paths=PackedStringArray("node") instance=ExtResource("5_1bg2c")]
 unique_name_in_owner = true

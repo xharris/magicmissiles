@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://bk0of6tmtqpdh"]
 
-[ext_resource type="AnimationLibrary" uid="uid://c7bsayy8dogee" path="res://entities/slime/slime_animations.res" id="2_17kfk"]
+[ext_resource type="AnimationLibrary" uid="uid://c7bsayy8dogee" path="res://resources/actor_configs/slime/slime_animations.res" id="2_17kfk"]
 [ext_resource type="Script" uid="uid://crttnkx3nhwfa" path="res://components/actor_sprite/actor_sprite.gd" id="2_qcuct"]
-[ext_resource type="Texture2D" uid="uid://dbqr5uq8xjh8a" path="res://entities/slime/slime.png" id="3_qcuct"]
+[ext_resource type="Texture2D" uid="uid://dbqr5uq8xjh8a" path="res://resources/actor_configs/slime/slime.png" id="3_qcuct"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_371ag"]
 
@@ -79,9 +79,9 @@ root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_371ag")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 80.0
-parameters/face_dir_x/blend_position = 1.0
+parameters/face_dir_x/blend_position = 0.0
 parameters/face_dir_x_blend/blend_amount = 1.0
-parameters/walk_speed/scale = 1.0
+parameters/walk_speed/scale = true
 parameters/walk_state/conditions/idle = true
 parameters/walk_state/conditions/walking = false
 

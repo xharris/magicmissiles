@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Faction" load_steps=2 format=3 uid="uid://bc2yf82wl8h7s"]
+
+[ext_resource type="Script" uid="uid://cas0qhtd8qved" path="res://components/faction/faction.gd" id="1_t6fld"]
+
+[resource]
+script = ExtResource("1_t6fld")
+name = &"slime"
+good_evil = 2
+law_chaos = 2
+attacks = Dictionary[StringName, bool]({})
+helps = Dictionary[StringName, bool]({})
+metadata/_custom_type_script = "uid://cas0qhtd8qved"

@@ -1,21 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://csuaageviba5u"]
+[gd_scene load_steps=5 format=3 uid="uid://csuaageviba5u"]
 
 [ext_resource type="Script" uid="uid://dn2dqm0fdu5no" path="res://levels/dev/dev.gd" id="1_rjc3s"]
-[ext_resource type="PackedScene" uid="uid://1f8ehcj7j667" path="res://entities/player/player.tscn" id="2_53d16"]
-[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="3_0qlot"]
+[ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="2_x24ml"]
+[ext_resource type="Resource" uid="uid://c6stj4cbu1kpw" path="res://resources/actor_configs/player/player.tres" id="3_n1i44"]
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="3_qf2dv"]
-[ext_resource type="Resource" uid="uid://kdvdwul2yqkx" path="res://resources/magic_config/magic_missile.tres" id="4_x24ml"]
-[ext_resource type="PackedScene" uid="uid://d2j0kjls8mpy3" path="res://entities/slime/slime.tscn" id="6_0qlot"]
 
 [node name="Dev" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_rjc3s")
 
-[node name="Player" parent="." instance=ExtResource("2_53d16")]
-magic_configs = Array[ExtResource("3_0qlot")]([ExtResource("4_x24ml")])
+[node name="Player" parent="." instance=ExtResource("2_x24ml")]
+position = Vector2(0, -32)
+config = ExtResource("3_n1i44")
 
 [node name="CameraFocusManager" parent="." instance=ExtResource("3_qf2dv")]
 unique_name_in_owner = true
 zoom = Vector2(0.5, 0.5)
 
-[node name="Slime" parent="." instance=ExtResource("6_0qlot")]
-position = Vector2(304, -8)
+[node name="Slime" parent="." instance=ExtResource("2_x24ml")]
+position = Vector2(336, -16)

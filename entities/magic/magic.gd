@@ -13,6 +13,7 @@ static func create(source: ContextNode, configs: Array[MagicConfig]) -> Magic:
 @onready var on_hit: OnHit = %OnHit
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var vfx: Vfx = %Vfx
+@onready var visual: CanvasGroup = %CanvasGroup
 
 var configs: Array[MagicConfig]:
     set(v):
@@ -25,11 +26,20 @@ var source: ContextNode:
 
 var _log = Logger.new("magic")
 
+func context() -> ContextNode:
+    var ctx = ContextNode.new()
+    ctx.status_ctrl = status_effect_ctrl
+    ctx.vfx = vfx
+    ctx.visual_node = visual
+    ctx.node = self
+    return ctx
+
 func _ready() -> void:
     if configs.is_empty():
         push_error("no magic configs, src=", source, ", self=", self)
         queue_free()
     on_hit.hit.connect(_on_hit)
+    set_meta(Meta.CONTEXT_NODE, context())
     
     update()
     for config in configs:
