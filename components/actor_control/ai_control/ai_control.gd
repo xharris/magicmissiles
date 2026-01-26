@@ -3,6 +3,15 @@ class_name AiControl
 
 @onready var tree: BeehaveTree = %BeehaveTree
 
+@onready var chase_cooldown: CooldownDecorator = %ChaseCooldown
+@onready var chase_time_limit: TimeLimiterDecorator = %ChaseTimeLimiter
+
+## TODO
+@export var config: AiControlConfig:
+    set(v):
+        config = v
+        update()
+
 @export var actor: Node:
     set(v):
         actor = v
@@ -27,3 +36,7 @@ func update():
             tree.actor = null
         else:
             NodeUtil.enable(tree)
+        if config:
+            # configure ai nodes
+            chase_cooldown.wait_time = config.chase_cooldown
+            chase_time_limit.wait_time = config.chase_time_limit

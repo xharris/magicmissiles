@@ -34,7 +34,7 @@ var control: ActorControl:
 @export_tool_button("Update", "Callable")
 var update_action = update
 
-var _log = Logger.new("actor", Logger.Level.DEBUG)
+var _log = Logger.new("actor")#, Logger.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -76,6 +76,7 @@ func update():
     # control (player/ai)
     if sense:
         sense.radius = config.ai_sense_radius
+        ai_ctrl.config = config.ai_config
     if ai_ctrl and player_ctrl:
         if ai_enabled:
             NodeUtil.disable(player_ctrl)
@@ -88,7 +89,7 @@ func update():
     if on_hit:
         _update_shapes(on_hit, config.on_hit, Color.html("f443366b"))
         on_hit.set("status_effects", config.on_hit_status_effects)
-        on_hit.set("context", context())
+        on_hit.set("source", context())
     # arms
     if arms:
         if config.arms:

@@ -36,7 +36,7 @@ func _on_body_entered(body: Node2D):
                     # setup context
                     var ctx = StatusEffectContext.new()
                     # add me
-                    ctx.me = ContextNode.new()
+                    ctx.me = ContextNode.get_ctx(body)
                     ctx.me.node = body
                     # add source
                     ctx.source = on_hit.source

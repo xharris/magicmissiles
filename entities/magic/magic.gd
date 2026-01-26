@@ -32,6 +32,8 @@ func context() -> ContextNode:
     ctx.vfx = vfx
     ctx.visual_node = visual
     ctx.node = self
+    ctx.character = self
+    ctx.on_hit = on_hit
     return ctx
 
 func _ready() -> void:
@@ -41,7 +43,6 @@ func _ready() -> void:
     name = "Magic-%s"%["=".join(configs.map(func(c:MagicConfig):return c.resource_path.get_file()))]
     _log.debug("casted %s" % [name])
     on_hit.hit.connect(_on_hit)
-    set_meta(Meta.CONTEXT_NODE, context())
     
     for config in configs:
         for effect in config.on_ready_effects:
@@ -76,10 +77,11 @@ func _process(delta: float) -> void:
         queue_free()
 
 func update():
+    ContextNode.attach_ctx(self, context())
     if on_hit:
         on_hit.source = source
         on_hit.status_effects.clear()
         for config in configs:
             on_hit.status_effects.append_array(config.on_hit_effects)
         _log.debug("magic with effects: %s" % [on_hit.status_effects.map(func(c:StatusEffect):return c.resource_path)])
-            
+        

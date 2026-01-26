@@ -18,7 +18,8 @@ class_name ActorConfig
 @export var arms: bool
 @export var camera: CameraFocusConfig
 
-@export_group("Ai", "ai")
+@export_group("Ai", "ai_")
+@export var ai_config: AiControlConfig
 ## [code]0[/code] disables AI and uses player control
 @export var ai_sense_radius: int
 

@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_onujr")
-after = 0.5
 name = &"expires_0_5_sec"
-duration = 0.0
+duration = 0.5
 metadata/_custom_type_script = "uid://e086ludellwx"

@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="ActorConfig" load_steps=12 format=3 uid="uid://cquh7rme0ac0e"]
+[gd_resource type="Resource" script_class="ActorConfig" load_steps=14 format=3 uid="uid://cquh7rme0ac0e"]
 
 [ext_resource type="Resource" uid="uid://bc2yf82wl8h7s" path="res://resources/factions/slime.tres" id="1_3h644"]
 [ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="1_b6ki0"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="2_3h644"]
 [ext_resource type="Script" uid="uid://x5j4t41vi5jt" path="res://entities/actor/actor_config.gd" id="3_jr44v"]
 [ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="4_7m2b0"]
+[ext_resource type="Resource" uid="uid://d0c8datlyg78l" path="res://resources/status_effects/stunned/stun_src_1.tres" id="4_oiwtk"]
 [ext_resource type="Resource" uid="uid://chu17qariadbr" path="res://resources/actor_configs/slime/slime_actor_sprite.tres" id="5_jr44v"]
-[ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_self_mid.tres" id="5_pxuim"]
-[ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="6_oiwtk"]
+[ext_resource type="Resource" uid="uid://lyc75rah8y14" path="res://resources/status_effects/stunned/stun_1.tres" id="5_oiwtk"]
+[ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_mid_target_from_src.tres" id="7_l6f6a"]
+[ext_resource type="Resource" uid="uid://m0bu8gbxv6ff" path="res://resources/status_effects/knockback/knockback_mid_src_from_target.tres" id="8_ukk1k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7m2b0"]
 
@@ -31,5 +33,5 @@ sprite = ExtResource("5_jr44v")
 arms = false
 ai_sense_radius = 300
 on_hit = Array[Shape2D]([SubResource("CircleShape2D_tbwq1")])
-on_hit_status_effects = Array[ExtResource("2_3h644")]([ExtResource("4_7m2b0"), ExtResource("5_pxuim"), ExtResource("6_oiwtk")])
+on_hit_status_effects = Array[ExtResource("2_3h644")]([ExtResource("4_oiwtk"), ExtResource("5_oiwtk"), ExtResource("4_7m2b0"), ExtResource("7_l6f6a"), ExtResource("8_ukk1k")])
 metadata/_custom_type_script = "uid://x5j4t41vi5jt"

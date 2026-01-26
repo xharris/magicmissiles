@@ -4,6 +4,7 @@ class_name StatusEffectCtrl
 var _log = Logger.new("status_effect_ctrl")#, Logger.Level.DEBUG)
 
 class Active extends RefCounted:
+    var context: StatusEffectContext
     var effect: StatusEffect
     var age: float
 
@@ -34,9 +35,14 @@ func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectCo
         var active = Active.new()
         active.effect = effect
         active.age = 0
+        active.context = ctx
         active_effects.append(active)
 
 func remove_effect(active: StatusEffectCtrl.Active):
     active_effects = active_effects.filter(
-        func(a: StatusEffectCtrl.Active): return a == active
+        func(a: StatusEffectCtrl.Active): 
+            var rm = a == active
+            if rm:
+                a.effect.remove(a.context)
+            return rm
     )

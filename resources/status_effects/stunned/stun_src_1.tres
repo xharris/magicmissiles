@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusStunned" load_steps=2 format=3 uid="uid://d0c8datlyg78l"]
+
+[ext_resource type="Script" uid="uid://cebnh8w8q24ld" path="res://resources/status_effects/stunned/stunned.gd" id="1_caga2"]
+
+[resource]
+script = ExtResource("1_caga2")
+name = &"stun_me_1"
+duration = 1.0
+target = 1
+metadata/_custom_type_script = "uid://cebnh8w8q24ld"

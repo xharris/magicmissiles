@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control.tscn" id="12_7gc83"]
 [ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="12_yxgyw"]
 [ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="13_bash0"]
-[ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_self_mid.tres" id="14_ltbwc"]
+[ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_mid_target_from_src.tres" id="14_ltbwc"]
 [ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="15_ctand"]
 
 [node name="Actor" type="CharacterBody2D"]

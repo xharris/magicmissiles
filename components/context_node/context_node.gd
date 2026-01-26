@@ -6,7 +6,9 @@ static var _log = Logger.new("context_node")
 static func get_ctx(node: Node) -> ContextNode:
     if not node.has_meta(Meta.CONTEXT_NODE):
         _log.warn("missing context node for %s" % [node.get_path()])
-        return null
+        var ctx = ContextNode.new()
+        ctx.node = node
+        return ctx
     return node.get_meta(Meta.CONTEXT_NODE)
 
 static func attach_ctx(node: Node, ctx: ContextNode):
