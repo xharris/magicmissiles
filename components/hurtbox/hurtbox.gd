@@ -35,10 +35,10 @@ func _on_body_entered(body: Node2D):
                     _log.debug("apply %s" % [effect.name])
                     # setup context
                     var ctx = StatusEffectContext.new()
-                    # add me
+                    # add me (who collided with me)
                     ctx.me = ContextNode.get_ctx(body)
                     ctx.me.node = body
-                    # add source
+                    # add source (who owns other collider)
                     ctx.source = on_hit.source
                     # NOTE ctx.target (hurtbox owner) is typically set in apply_status_effect listeners
                     # have listener resolve status effect

@@ -3,15 +3,22 @@ class_name StatusEffect
 
 enum Target {ME, SOURCE, TARGET}
 
-@export var name: StringName
-@export_range(0, 0, 0.5, "or_greater", "suffix:sec")
+var duration_curve: Curve = preload("res://resources/status_effects/duration_curve.tres")
+
+@export_placeholder("auto-generated") var name: String
+@export var target: StatusEffect.Target = StatusEffect.Target.TARGET
+@export var can_hit: Dictionary[Target, bool] = {
+    StatusEffect.Target.ME: false,
+    StatusEffect.Target.SOURCE: false,
+    StatusEffect.Target.TARGET: true,
+}
 ## `0` happens for single frame
-var duration: float
-@export var target: Target = Target.TARGET
+@export_range(0, 1, 0.1) var duration: float
+@export var duration_curve_override: Curve
 
 func _init() -> void:
     if name.is_empty():
-        pass
+        name = resource_path.get_file().trim_suffix('.tres')
 
 func get_target(ctx: StatusEffectContext) -> ContextNode:
     match target:

@@ -22,9 +22,11 @@ var move_direction: Vector2:
     set(v):
         if not v:
             v = Vector2.ZERO
-        if not can_move:
-            return
         move_direction = v.normalized()
+    get:
+        if not can_move:
+            return Vector2.ZERO
+        return move_direction
         
 var aim_position: Vector2:
     set(v):

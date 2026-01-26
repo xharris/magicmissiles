@@ -30,7 +30,6 @@ var control: ActorControl:
         else:
             return player_ctrl
 
-
 @export_tool_button("Update", "Callable")
 var update_action = update
 

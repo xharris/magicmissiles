@@ -9,14 +9,16 @@ var source: ContextNode:
         update()
 @export var status_effects: Array[StatusEffect]
 
+var _log = Logger.new("on_hit")
 var _clearing = false
 var _body_entered: Array[Node2D]
 
 func context() -> ContextNode:
     var ctx = source
     if not ctx:
+        _log.warn("missing source for %s" % [self])
         ctx = ContextNode.new()
-    ctx.node = self
+        ctx.node = self
     return ctx
 
 func _ready() -> void:
