@@ -246,7 +246,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vyekd"]
 radius = 3.5355325
-height = 18.384779
+height = 31.112701
 
 [node name="Arms" type="Node2D" unique_id=1035988319]
 script = ExtResource("1_ia214")
@@ -295,11 +295,12 @@ texture = ExtResource("3_vyekd")
 unique_name_in_owner = true
 position = Vector2(12, 0)
 
-[node name="MagicDest" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=156510821 instance=ExtResource("4_p4r30")]
+[node name="MagicDest" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=156510821 node_paths=PackedStringArray("receive_target") instance=ExtResource("4_p4r30")]
 unique_name_in_owner = true
+receive_target = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip/MagicDest" unique_id=1379977671]
-position = Vector2(5.0918846, 0.3639574)
+position = Vector2(11.455846, -0.34315038)
 rotation = 1.5707941
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("CapsuleShape2D_vyekd")

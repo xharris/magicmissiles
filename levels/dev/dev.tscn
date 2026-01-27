@@ -25,13 +25,12 @@ zoom = Vector2(0.5, 0.5)
 [node name="Slime" parent="." unique_id=85275103 instance=ExtResource("2_x24ml")]
 position = Vector2(336, -16)
 
+[node name="Campfire" parent="." unique_id=1682679037 instance=ExtResource("6_0qlot")]
+position = Vector2(-240, 96)
+
 [node name="PatrolArea" parent="." unique_id=1003190847 instance=ExtResource("5_qf2dv")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PatrolArea" unique_id=68733950]
 modulate = Color(1, 1, 1, 0.2)
 position = Vector2(576, 0)
 shape = SubResource("CircleShape2D_qf2dv")
-
-[node name="Campfire" parent="PatrolArea" unique_id=1682679037 instance=ExtResource("6_0qlot")]
-modulate = Color(1, 1, 1, 0.2)
-position = Vector2(-240, 96)

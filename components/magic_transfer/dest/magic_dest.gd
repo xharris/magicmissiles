@@ -4,12 +4,22 @@ class_name MagicDest
 signal receive_started(magic: MagicConfig)
 signal receive_finished(magic: MagicConfig)
 
-var _receiving: Dictionary[MagicConfig, float]
+class Receiving:
+    var magic: MagicConfig
+    var dest: MagicDest
+    var source: MagicSrc
+    var time: float
+    var transfer: MagicTransfer
+    
+    func update():
+        transfer.progress = time / source.transfer_duration
 
+@export var receive_target: Node2D
 var enabled: bool = false
 var magic: Array[MagicConfig]
 
-var _log = Logs.new("magic_dest", Logs.Level.DEBUG)
+var _log = Logs.new("magic_dest")#, Logs.Level.DEBUG)
+var _receiving: Dictionary[MagicConfig, Receiving]
 
 func _ready() -> void:
     area_entered.connect(_area_entered)
@@ -25,18 +35,27 @@ func _area_entered(area: Area2D):
     if area is MagicSrc:
         if not _receiving.has(area.magic) and not magic.has(area.magic):
             _log.debug("receive magic start: %s" % [area.magic])
-            _receiving.set(area.magic, area.transfer_duration)
+            # show transfer progress
+            var recv = Receiving.new()
+            recv.magic = area.magic
+            recv.dest = self
+            recv.source = area
+            recv.time = 0
+            var target = self
+            if receive_target:
+                target = receive_target
+            recv.transfer = MagicTransfer.create(area.global_position, target, recv.magic)
+            _receiving.set(area.magic, recv)
             receive_started.emit(area.magic)
 
 func _process(delta: float) -> void:
     visible = enabled
-    for m in _receiving:
-        var time = _receiving.get(m, 0)
-        if time <= 0:
-            _receiving.erase(m)
-            magic.append(m)
-            _log.debug("receive magic finish: %s" % [m])
-            receive_finished.emit(m)
+    for recv: Receiving in _receiving.values():
+        recv.transfer.progress = recv.time / recv.magic.transfer_duration
+        if recv.time >= recv.magic.transfer_duration:
+            _receiving.erase(recv.magic)
+            magic.append(recv.magic)
+            _log.debug("receive magic finish: %s" % [recv.magic])
+            receive_finished.emit(recv.magic)
         else:
-            time -= delta
-            _receiving[m] = time
+            recv.time += delta

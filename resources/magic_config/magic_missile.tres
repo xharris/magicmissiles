@@ -8,7 +8,6 @@
 
 [resource]
 script = ExtResource("1_5bins")
-piercing = false
 on_ready_effects = Array[ExtResource("1_pjbhv")]([ExtResource("4_wc7ec")])
 on_hit_effects = Array[ExtResource("1_pjbhv")]([ExtResource("3_wc7ec"), ExtResource("3_ns4xr")])
 metadata/_custom_type_script = "uid://bo8a4oocqe1d0"

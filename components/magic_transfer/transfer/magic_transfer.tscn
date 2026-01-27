@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bowheh3oj227i"]
+
+[ext_resource type="Script" uid="uid://1s50jis5m3dr" path="res://components/magic_transfer/transfer/magic_transfer.gd" id="1_d2bpw"]
+[ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="1_refcn"]
+[ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="2_4gpub"]
+[ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="3_d2bpw"]
+
+[sub_resource type="Curve" id="Curve_4gpub"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Resource" id="Resource_ct6ef"]
+script = ExtResource("3_d2bpw")
+line_width = 2.0
+line_max_points = 3
+line_width_curve = SubResource("Curve_4gpub")
+metadata/_custom_type_script = "uid://d4gi0xblvwguj"
+
+[node name="MagicTransfer" type="Node2D" unique_id=200391456]
+editor_description = "Animated effect to show magic transfer progress"
+script = ExtResource("1_d2bpw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1513615291]
+scale = Vector2(3, 3)
+texture = ExtResource("1_refcn")
+
+[node name="Vfx" parent="." unique_id=317326198 instance=ExtResource("2_4gpub")]
+config = SubResource("Resource_ct6ef")
