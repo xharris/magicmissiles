@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://1unta65jxpw0"]
+[gd_scene format=3 uid="uid://1unta65jxpw0"]
 
 [ext_resource type="Script" uid="uid://c1q4q6wn77rq0" path="res://components/arms/arms.gd" id="1_ia214"]
 [ext_resource type="Texture2D" uid="uid://bbj8f2xd1yei4" path="res://components/arms/hand.png" id="2_mvj64"]
 [ext_resource type="Texture2D" uid="uid://dws2mrwvqim8" path="res://components/arms/wand.png" id="3_vyekd"]
+[ext_resource type="PackedScene" uid="uid://7orwu3jpymed" path="res://components/magic_transfer/dest/magic_dest.tscn" id="4_p4r30"]
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_vyekd"]
 
@@ -20,18 +21,18 @@ filters = ["Base/ArmL/AnimatedArmL/HandL/WandSprite:position", "Base/ArmL/Animat
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_p4r30"]
 graph_offset = Vector2(-307.195, 156.234)
+nodes/output/position = Vector2(310, 260)
 nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_vyekd")
 nodes/TimeSeek/position = Vector2(-40, 320)
 nodes/idle/node = SubResource("AnimationNodeAnimation_vyekd")
 nodes/idle/position = Vector2(-220, 150)
-nodes/output/position = Vector2(310, 260)
 nodes/point/node = SubResource("AnimationNodeAnimation_p4r30")
 nodes/point/position = Vector2(-370, 350)
 nodes/point_blend/node = SubResource("AnimationNodeBlend2_rowb5")
 nodes/point_blend/position = Vector2(140, 260)
 nodes/point_no_auto_play/node = SubResource("AnimationNodeTimeScale_vyekd")
 nodes/point_no_auto_play/position = Vector2(-220, 350)
-node_connections = [&"TimeSeek", 0, &"point_no_auto_play", &"output", 0, &"point_blend", &"point_blend", 0, &"idle", &"point_blend", 1, &"TimeSeek", &"point_no_auto_play", 0, &"point"]
+node_connections = [&"output", 0, &"point_blend", &"TimeSeek", 0, &"point_no_auto_play", &"point_blend", 0, &"idle", &"point_blend", 1, &"TimeSeek", &"point_no_auto_play", 0, &"point"]
 
 [sub_resource type="Animation" id="Animation_vyekd"]
 length = 0.001
@@ -243,10 +244,14 @@ _data = {
 &"point": SubResource("Animation_p4r30")
 }
 
-[node name="Arms" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vyekd"]
+radius = 3.5355325
+height = 18.384779
+
+[node name="Arms" type="Node2D" unique_id=1035988319]
 script = ExtResource("1_ia214")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=879337975]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_p4r30")
@@ -255,50 +260,57 @@ parameters/TimeSeek/seek_request = -1.0
 parameters/point_blend/blend_amount = 1.0
 parameters/point_no_auto_play/scale = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1714883922]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_p4r30")
-}
+libraries/ = SubResource("AnimationLibrary_p4r30")
 speed_scale = 100.0
 
-[node name="Base" type="Node2D" parent="."]
+[node name="Base" type="Node2D" parent="." unique_id=977785097]
 unique_name_in_owner = true
 
-[node name="ArmL" type="Node2D" parent="Base"]
+[node name="ArmL" type="Node2D" parent="Base" unique_id=1445067803]
 unique_name_in_owner = true
 
-[node name="AnimatedArmL" type="Node2D" parent="Base/ArmL"]
+[node name="AnimatedArmL" type="Node2D" parent="Base/ArmL" unique_id=745295071]
 unique_name_in_owner = true
 rotation = -0.785398
 
-[node name="HandL" type="Node2D" parent="Base/ArmL/AnimatedArmL"]
+[node name="HandL" type="Node2D" parent="Base/ArmL/AnimatedArmL" unique_id=86737115]
 unique_name_in_owner = true
 position = Vector2(0, 6)
 
-[node name="Sprite2D" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL"]
+[node name="Sprite2D" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL" unique_id=354654164]
 texture = ExtResource("2_mvj64")
 
-[node name="Wand" type="Node2D" parent="Base/ArmL/AnimatedArmL/HandL"]
+[node name="Wand" type="Node2D" parent="Base/ArmL/AnimatedArmL/HandL" unique_id=1897940201]
 position = Vector2(2, 0)
 
-[node name="WandSprite" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand"]
+[node name="WandSprite" type="Sprite2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand" unique_id=652374274]
 position = Vector2(2, 0)
 rotation = 1.5708
 scale = Vector2(0.5, 0.75)
 texture = ExtResource("3_vyekd")
 
-[node name="WandTip" type="Marker2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand"]
+[node name="WandTip" type="Marker2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand" unique_id=1751096595]
 unique_name_in_owner = true
 position = Vector2(12, 0)
 
-[node name="ArmR" type="Node2D" parent="Base"]
+[node name="MagicDest" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=156510821 instance=ExtResource("4_p4r30")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip/MagicDest" unique_id=1379977671]
+position = Vector2(5.0918846, 0.3639574)
+rotation = 1.5707941
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("CapsuleShape2D_vyekd")
+
+[node name="ArmR" type="Node2D" parent="Base" unique_id=1558728187]
 unique_name_in_owner = true
 rotation = 0.785398
 
-[node name="HandR" type="Node2D" parent="Base/ArmR"]
+[node name="HandR" type="Node2D" parent="Base/ArmR" unique_id=525575314]
 unique_name_in_owner = true
 position = Vector2(0, 6)
 
-[node name="Sprite2D" type="Sprite2D" parent="Base/ArmR/HandR"]
+[node name="Sprite2D" type="Sprite2D" parent="Base/ArmR/HandR" unique_id=405853096]
 texture = ExtResource("2_mvj64")

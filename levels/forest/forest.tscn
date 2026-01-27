@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://cwxjkkk6axxs1"]
+[gd_scene format=4 uid="uid://cwxjkkk6axxs1"]
 
 [ext_resource type="Script" uid="uid://fhjx1ydmkhu0" path="res://levels/forest/forest.gd" id="1_yghfa"]
 [ext_resource type="PackedScene" uid="uid://s1mil07lieaw" path="res://components/wrapped_sprite/wrapped_sprite.tscn" id="2_f0ihd"]
 [ext_resource type="Texture2D" uid="uid://bd8rxvc4skc6g" path="res://levels/forest/forest_path.png" id="3_b5a7f"]
 [ext_resource type="Texture2D" uid="uid://ue4u7u1m66kl" path="res://levels/forest/sky_noise.tres" id="3_l8lv6"]
-[ext_resource type="PackedScene" uid="uid://1f8ehcj7j667" path="res://entities/player/player.tscn" id="4_k84yl"]
+[ext_resource type="PackedScene" path="res://entities/player/player.tscn" id="4_k84yl"]
 [ext_resource type="Resource" uid="uid://kdvdwul2yqkx" path="res://resources/magic_config/magic_missile.tres" id="5_arh7m"]
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="6_fuqgi"]
-[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="7_4o77n"]
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://components/magic_transfer/magic_config.gd" id="7_4o77n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8rbh7"]
 texture = ExtResource("3_b5a7f")

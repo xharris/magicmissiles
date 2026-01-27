@@ -34,6 +34,7 @@ var control: ActorControl:
 var update_action = update
 
 var _log = Logs.new("actor")#, Logs.Level.DEBUG)
+var _received_magic_configs: Array[MagicConfig]
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -78,11 +79,11 @@ func update():
     if ai_ctrl and player_ctrl:
         ai_ctrl.config = config.ai_config
         if ai_enabled:
-            _log.info("%s is ai controlled: %s" % [self, ai_ctrl.config.resource_path.get_basename()])
+            _log.debug("%s is ai controlled: %s" % [self, ai_ctrl.config.resource_path.get_basename()])
             NodeUtil.disable(player_ctrl)
             NodeUtil.enable(ai_ctrl)
         else:
-            _log.info("%s is player controlled" % [self])
+            _log.debug("%s is player controlled" % [self])
             NodeUtil.enable(player_ctrl)
             NodeUtil.disable(ai_ctrl)
         NodeUtil.reconnect_str(control, "primary", _on_primary)
@@ -127,6 +128,8 @@ func _process(delta: float) -> void:
     velocity = velocity.lerp(control.move_direction * config.move_speed, delta * 5)
     sprite.walk_speed = clampf(velocity.length() / config.move_speed, 0, 1)
     move_and_collide(velocity * delta)
+    # receiving magic
+    arms.magic_dest.enabled = arms.pointing > 0.75
 
 func _ready() -> void:
     update()
@@ -135,13 +138,18 @@ func _on_died():
     queue_free()
     
 func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
-        # apply effect
+    # apply effect
     status_effect_ctrl.apply_effect(context(), effect, ctx)
 
 func _on_primary():
+    # get configs
+    var magic_configs: Array[MagicConfig]
+    magic_configs.append_array(config.magic_configs)
+    magic_configs.append_array(arms.magic_dest.magic.filter(
+        func(m:MagicConfig): return not config.magic_configs.has(m)))
     # create magic [missile]
-    var magic = Magic.create(context(), config.magic_configs)
-    _log.debug("fire magic with configs: %s" % [config.magic_configs.map(func(c:MagicConfig):return c.resource_path)])
+    var magic = Magic.create(context(), magic_configs)
+    _log.debug("fire magic with configs: %s" % [magic_configs.map(func(c:MagicConfig):return c.resource_path)])
     var angle = control.move_direction.angle()
     var magic_position = global_position
     if arms:

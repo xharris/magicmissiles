@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://3x7nbvqsy3jx"]
+
+[ext_resource type="Script" uid="uid://c0bbm7q5hv7bo" path="res://components/magic_transfer/src/magic_src.gd" id="1_ydag8"]
+
+[node name="MagicSource" type="Area2D" unique_id=815820965]
+collision_layer = 64
+collision_mask = 256
+monitoring = false
+script = ExtResource("1_ydag8")

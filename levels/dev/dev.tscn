@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://c6stj4cbu1kpw" path="res://resources/actor_configs/player/player.tres" id="3_n1i44"]
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="3_qf2dv"]
 [ext_resource type="PackedScene" uid="uid://dmsjoa6qv5l02" path="res://components/shape_grid/shape_grid.tscn" id="5_qf2dv"]
+[ext_resource type="PackedScene" uid="uid://b46dvxtqp5ydy" path="res://entities/campfire/campfire.tscn" id="6_0qlot"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qf2dv"]
 radius = 167.0449
@@ -30,3 +31,7 @@ position = Vector2(336, -16)
 modulate = Color(1, 1, 1, 0.2)
 position = Vector2(576, 0)
 shape = SubResource("CircleShape2D_qf2dv")
+
+[node name="Campfire" parent="PatrolArea" unique_id=1682679037 instance=ExtResource("6_0qlot")]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-240, 96)

@@ -6,6 +6,7 @@ class_name Arms
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var arm_l: Node2D = %ArmL
 @onready var wand_tip: Node2D = %WandTip
+@onready var magic_dest: MagicDest = %MagicDest
 
 var face_direction: Vector2
 
