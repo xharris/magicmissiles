@@ -19,7 +19,7 @@ var enabled: bool = false
 var magic: Array[MagicConfig]
 
 var _log = Logs.new("magic_dest")#, Logs.Level.DEBUG)
-var _receiving: Dictionary[MagicConfig, Receiving]
+var _receiving: Dictionary[String, Receiving]
 
 func _ready() -> void:
     area_entered.connect(_area_entered)
@@ -33,7 +33,8 @@ func _area_entered(area: Area2D):
     if not enabled:
         return
     if area is MagicSrc:
-        if not _receiving.has(area.magic) and not magic.has(area.magic):
+        if not _receiving.has(area.magic.resource_path) and not magic.has(area.magic):
+            print(_receiving)
             _log.debug("receive magic start: %s" % [area.magic])
             # show transfer progress
             var recv = Receiving.new()
@@ -45,7 +46,7 @@ func _area_entered(area: Area2D):
             if receive_target:
                 target = receive_target
             recv.transfer = MagicTransfer.create(area.global_position, target, recv.magic)
-            _receiving.set(area.magic, recv)
+            _receiving.set(area.magic.resource_path, recv)
             receive_started.emit(area.magic)
 
 func _process(delta: float) -> void:
@@ -53,7 +54,7 @@ func _process(delta: float) -> void:
     for recv: Receiving in _receiving.values():
         recv.transfer.progress = recv.time / recv.magic.transfer_duration
         if recv.time >= recv.magic.transfer_duration:
-            _receiving.erase(recv.magic)
+            _receiving.erase(recv.magic.resource_path)
             magic.append(recv.magic)
             _log.debug("receive magic finish: %s" % [recv.magic])
             receive_finished.emit(recv.magic)

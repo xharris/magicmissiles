@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EffectKnockback" format=3 uid="uid://ddo2jebid4vp2"]
+
+[ext_resource type="Curve" uid="uid://btlxptnqxghwv" path="res://resources/status_effects/knockback/knockback_amount_curve.tres" id="1_omryn"]
+[ext_resource type="Script" uid="uid://d0uhacj4gr1sr" path="res://resources/status_effects/knockback/knockback.gd" id="2_epb4w"]
+
+[resource]
+script = ExtResource("2_epb4w")
+impact_from = 2
+metadata/_custom_type_script = "uid://d0uhacj4gr1sr"
