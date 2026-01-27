@@ -2,6 +2,7 @@ extends Node2D
 class_name ActorControl
 
 signal primary
+signal secondary
 
 var can_move: bool = true
 var can_primary: bool = true:
