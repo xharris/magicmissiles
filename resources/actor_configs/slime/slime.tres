@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="ActorConfig" load_steps=13 format=3 uid="uid://cquh7rme0ac0e"]
+[gd_resource type="Resource" script_class="ActorConfig" format=3 uid="uid://cquh7rme0ac0e"]
 
 [ext_resource type="Resource" uid="uid://bc2yf82wl8h7s" path="res://resources/factions/slime.tres" id="1_3h644"]
 [ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="1_b6ki0"]
+[ext_resource type="Resource" uid="uid://bh08hfxdjlp3r" path="res://resources/actor_configs/slime/slime_ai.tres" id="1_oiwtk"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="2_3h644"]
 [ext_resource type="Script" uid="uid://x5j4t41vi5jt" path="res://entities/actor/actor_config.gd" id="3_jr44v"]
 [ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="4_7m2b0"]
@@ -23,13 +24,11 @@ script = ExtResource("3_jr44v")
 faction = ExtResource("1_3h644")
 hp_max = 5
 move_speed = 150
-magic_configs = Array[ExtResource("1_b6ki0")]([])
 hurtbox = Array[Shape2D]([SubResource("CircleShape2D_gg6wn")])
 body = Array[Shape2D]([SubResource("CircleShape2D_7m2b0")])
-body_position = Vector2(0, 0)
 visual_scale = Vector2(2, 2)
 sprite = ExtResource("5_jr44v")
-arms = false
+ai_config = ExtResource("1_oiwtk")
 ai_sense_radius = 300
 on_hit = Array[Shape2D]([SubResource("CircleShape2D_tbwq1")])
 on_hit_status_effects = Array[ExtResource("2_3h644")]([ExtResource("4_pxuim"), ExtResource("4_7m2b0"), ExtResource("7_l6f6a"), ExtResource("8_ukk1k")])

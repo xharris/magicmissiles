@@ -5,7 +5,8 @@ enum Target {ME, SOURCE, TARGET}
 
 var duration_curve: Curve = preload("res://resources/status_effects/duration_curve.tres")
 
-@export_placeholder("auto-generated") var name: String
+@export_group("General")
+@export_placeholder("(auto-generated)") var name: String
 @export var target: StatusEffect.Target = StatusEffect.Target.TARGET
 @export var can_hit: Dictionary[Target, bool] = {
     StatusEffect.Target.ME: false,

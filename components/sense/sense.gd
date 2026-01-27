@@ -16,7 +16,7 @@ var enabled: bool = true:
         enabled = v
         update()
 
-var _log = Logger.new("sense")#, Logger.Level.DEBUG)
+var _log = Logs.new("sense")#, Logs.Level.DEBUG)
 
 func update():
     if shape:

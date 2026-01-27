@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
     # face direction
     animation_tree["parameters/face_dir_x/blend_position"] = face_direction.normalized().x
     # walk animation
-    animation_tree["parameters/walk_speed/scale"] = is_walking and walk_speed or 1
+    animation_tree["parameters/walk_speed/scale"] = walk_speed if is_walking else 1
     animation_tree["parameters/walk_state/conditions/idle"] = is_idle
     animation_tree["parameters/walk_state/conditions/walking"] = is_walking
 

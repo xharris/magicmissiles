@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AiControlConfig" load_steps=2 format=3 uid="uid://bh08hfxdjlp3r"]
+[gd_resource type="Resource" script_class="AiControlConfig" format=3 uid="uid://bh08hfxdjlp3r"]
 
 [ext_resource type="Script" uid="uid://txlfmf40bmvy" path="res://components/actor_control/ai_control/ai_control_config.gd" id="1_2h2l5"]
 
@@ -6,4 +6,6 @@
 script = ExtResource("1_2h2l5")
 chase_cooldown = 0.75
 chase_time_limit = 0.5
+patrol_cooldown = 1.0
+patrol_time_limit = 0.75
 metadata/_custom_type_script = "uid://txlfmf40bmvy"

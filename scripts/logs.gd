@@ -1,5 +1,5 @@
 extends Resource
-class_name Logger
+class_name Logs
 
 enum Level {NONE, ERROR, WARN, INFO, DEBUG}
 static var _max_prefix_length: int = 0
@@ -42,18 +42,18 @@ func _update_full_prefix():
     if _id.length() > 0:
         parts.append(_id)
     _full_prefix = ".".join(parts)
-    if _full_prefix.length() > Logger._max_prefix_length:
-        Logger._max_prefix_length = _full_prefix.length()
+    if _full_prefix.length() > Logs._max_prefix_length:
+        Logs._max_prefix_length = _full_prefix.length()
 
-func set_level(level) -> Logger:
+func set_level(level) -> Logs:
     _level = level
     return self
 
-func set_prefix(prefix: String) -> Logger:
+func set_prefix(prefix: String) -> Logs:
     _prefix = prefix
     return self
 
-func set_id(id: String) -> Logger:
+func set_id(id: String) -> Logs:
     _id = id
     return self
 
@@ -71,7 +71,7 @@ func _strip_bbcode(source: String) -> String:
 const FORMAT = "[color=%s][b]%s[/b][/color] \t[b]%s[/b] %s %s"
 
 func _print(color: Color, level: String, msg: String) -> bool:
-    var pad = max(0, Logger._max_prefix_length - _full_prefix.length())
+    var pad = max(0, Logs._max_prefix_length - _full_prefix.length())
     var formatted = FORMAT % [
         color.to_html(), level,
         _full_prefix, " ".repeat(pad),
@@ -95,8 +95,8 @@ func _print(color: Color, level: String, msg: String) -> bool:
 func _is_level_enabled(level) -> bool:
     if _level != Level.NONE:
         return _level >= level
-    if Logger.global_level != Level.NONE:
-        return Logger.global_level >= level
+    if Logs.global_level != Level.NONE:
+        return Logs.global_level >= level
     return false
 
 func info(msg: String):

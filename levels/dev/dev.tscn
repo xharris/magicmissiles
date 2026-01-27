@@ -1,21 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://csuaageviba5u"]
+[gd_scene format=3 uid="uid://csuaageviba5u"]
 
 [ext_resource type="Script" uid="uid://dn2dqm0fdu5no" path="res://levels/dev/dev.gd" id="1_rjc3s"]
 [ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="2_x24ml"]
 [ext_resource type="Resource" uid="uid://c6stj4cbu1kpw" path="res://resources/actor_configs/player/player.tres" id="3_n1i44"]
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="3_qf2dv"]
+[ext_resource type="PackedScene" uid="uid://dmsjoa6qv5l02" path="res://components/shape_grid/shape_grid.tscn" id="5_qf2dv"]
 
-[node name="Dev" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_qf2dv"]
+radius = 167.0449
+
+[node name="Dev" type="Node2D" unique_id=1274341349]
 y_sort_enabled = true
 script = ExtResource("1_rjc3s")
 
-[node name="Player" parent="." instance=ExtResource("2_x24ml")]
+[node name="Player" parent="." unique_id=979561346 instance=ExtResource("2_x24ml")]
 position = Vector2(0, -32)
 config = ExtResource("3_n1i44")
 
-[node name="CameraFocusManager" parent="." instance=ExtResource("3_qf2dv")]
+[node name="CameraFocusManager" parent="." unique_id=1152010050 instance=ExtResource("3_qf2dv")]
 unique_name_in_owner = true
 zoom = Vector2(0.5, 0.5)
 
-[node name="Slime" parent="." instance=ExtResource("2_x24ml")]
+[node name="Slime" parent="." unique_id=85275103 instance=ExtResource("2_x24ml")]
 position = Vector2(336, -16)
+
+[node name="PatrolArea" parent="." unique_id=1003190847 instance=ExtResource("5_qf2dv")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PatrolArea" unique_id=68733950]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(576, 0)
+shape = SubResource("CircleShape2D_qf2dv")

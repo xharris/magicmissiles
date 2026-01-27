@@ -13,7 +13,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
         return FAILURE
     ctx.actor_ctrl.move_direction = target - actor.global_position
     # stop at target position
-    if (target - ctx.actor_ctrl.global_position).is_zero_approx():
+    if ctx.actor_ctrl.global_position.distance_to(target) < 10:
         return FAILURE
     return RUNNING
 

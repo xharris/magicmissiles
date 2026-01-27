@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ps1ujo34e48p"]
+[gd_scene format=3 uid="uid://ps1ujo34e48p"]
 
 [ext_resource type="Script" uid="uid://bg2661hheag5t" path="res://entities/actor/actor.gd" id="1_oawin"]
 [ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="2_jsxbd"]
@@ -12,55 +12,56 @@
 [ext_resource type="PackedScene" uid="uid://cbpdxa1jy4kp4" path="res://components/actor_control/ai_control/ai_control.tscn" id="9_wq7k8"]
 [ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit.tscn" id="10_bash0"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="11_ltbwc"]
-[ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control.tscn" id="12_7gc83"]
+[ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control/player_control.tscn" id="12_7gc83"]
 [ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="12_yxgyw"]
 [ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="13_bash0"]
+[ext_resource type="Resource" uid="uid://d0c8datlyg78l" path="res://resources/status_effects/stunned/stun_mid_src.tres" id="13_wq7k8"]
 [ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_mid_target_from_src.tres" id="14_ltbwc"]
-[ext_resource type="Resource" uid="uid://vl6akb4i0vji" path="res://resources/status_effects/knockback/knockback_mid.tres" id="15_ctand"]
+[ext_resource type="Resource" uid="uid://m0bu8gbxv6ff" path="res://resources/status_effects/knockback/knockback_mid_src_from_target.tres" id="16_bash0"]
 
-[node name="Actor" type="CharacterBody2D"]
+[node name="Actor" type="CharacterBody2D" unique_id=694385484]
 script = ExtResource("1_oawin")
 config = ExtResource("2_sbr6v")
 
-[node name="Visual" type="Node2D" parent="."]
+[node name="Visual" type="Node2D" parent="." unique_id=721249314]
 unique_name_in_owner = true
 scale = Vector2(2, 2)
 
-[node name="ActorSprite" parent="Visual" instance=ExtResource("2_jsxbd")]
+[node name="ActorSprite" parent="Visual" unique_id=1975712140 instance=ExtResource("2_jsxbd")]
 unique_name_in_owner = true
 config = ExtResource("4_wq7k8")
 
-[node name="Arms" parent="Visual" instance=ExtResource("3_jsxbd")]
+[node name="Arms" parent="Visual" unique_id=817975034 instance=ExtResource("3_jsxbd")]
 unique_name_in_owner = true
 process_mode = 4
 visible = false
 
-[node name="Hurtbox" parent="." instance=ExtResource("4_yxgyw")]
+[node name="Hurtbox" parent="." unique_id=1460575517 instance=ExtResource("4_yxgyw")]
 unique_name_in_owner = true
 
-[node name="StatusEffectCtrl" type="Node2D" parent="."]
+[node name="StatusEffectCtrl" type="Node2D" parent="." unique_id=1464078639]
 unique_name_in_owner = true
 script = ExtResource("5_xbjxt")
 metadata/_custom_type_script = "uid://i04o83q47rqi"
 
-[node name="Hp" parent="." instance=ExtResource("6_g7icj")]
+[node name="Hp" parent="." unique_id=2085486096 instance=ExtResource("6_g7icj")]
 unique_name_in_owner = true
 
-[node name="Sense" parent="." instance=ExtResource("7_8hfo6")]
+[node name="Sense" parent="." unique_id=1310235492 instance=ExtResource("7_8hfo6")]
 unique_name_in_owner = true
 
-[node name="AiControl" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("9_wq7k8")]
+[node name="AiControl" parent="." unique_id=246021318 node_paths=PackedStringArray("actor") instance=ExtResource("9_wq7k8")]
 unique_name_in_owner = true
 actor = NodePath("..")
 
-[node name="OnHit" parent="." instance=ExtResource("10_bash0")]
+[node name="OnHit" parent="." unique_id=2013717377 instance=ExtResource("10_bash0")]
 unique_name_in_owner = true
-status_effects = Array[ExtResource("11_ltbwc")]([ExtResource("13_bash0"), ExtResource("14_ltbwc"), ExtResource("15_ctand")])
+status_effects = Array[ExtResource("11_ltbwc")]([ExtResource("13_wq7k8"), ExtResource("13_bash0"), ExtResource("14_ltbwc"), ExtResource("16_bash0")])
 
-[node name="PlayerControl" parent="." instance=ExtResource("12_7gc83")]
+[node name="PlayerControl" parent="." unique_id=1193232441 instance=ExtResource("12_7gc83")]
 unique_name_in_owner = true
 process_mode = 4
 visible = false
 
-[node name="CameraFocus" parent="." instance=ExtResource("12_yxgyw")]
+[node name="CameraFocus" parent="." unique_id=1024220817 instance=ExtResource("12_yxgyw")]
 unique_name_in_owner = true

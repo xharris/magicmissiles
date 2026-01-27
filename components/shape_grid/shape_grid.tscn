@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dmsjoa6qv5l02"]
+
+[ext_resource type="Script" uid="uid://khk0elnjnrlg" path="res://components/shape_grid/shape_grid.gd" id="1_ewkik"]
+
+[node name="ShapeGrid" type="Area2D" unique_id=1003190847]
+editor_description = "Create a grid of points that conform to shapes placed in this node/"
+monitoring = false
+monitorable = false
+script = ExtResource("1_ewkik")
+grid_size = Vector2(16, 16)

@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name EffectKnockback
 
-static var _log = Logger.new("knockback")#, Logger.Level.DEBUG)
+static var _log = Logs.new("knockback")#, Logs.Level.DEBUG)
 
 enum ImpactFrom {SOURCE, TARGET, ME}
 

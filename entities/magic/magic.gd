@@ -24,7 +24,7 @@ var source: ContextNode:
         source = v
         update()
 
-var _log = Logger.new("magic")#, Logger.Level.DEBUG)
+var _log = Logs.new("magic")#, Logs.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -48,7 +48,6 @@ func _ready() -> void:
         for effect in config.on_ready_effects:
             # create context
             var ctx = StatusEffectContext.new()
-            ctx.can_hit_me = true
             # add me
             ctx.me = ContextNode.new()
             ctx.me.node = self

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cvgvtjm0cdg00"]
+
+[ext_resource type="Script" uid="uid://bw656hm0vwi7h" path="res://components/actor_control/ai_control/conditions/is_patrol_enabled.gd" id="1_qt3k1"]
+
+[node name="IsPatrolEnabled" type="Node" unique_id=1847907684]
+script = ExtResource("1_qt3k1")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"

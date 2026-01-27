@@ -1,6 +1,6 @@
 extends ConditionLeaf
 
-var _log = Logger.new("is_enemy_nearby")#, Logger.Level.DEBUG)
+var _log = Logs.new("is_enemy_nearby")#, Logs.Level.DEBUG)
 
 ## target_position: Vector2
 @export var position_key: String

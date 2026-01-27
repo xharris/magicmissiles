@@ -1,7 +1,7 @@
 extends RefCounted
 class_name ContextNode
 
-static var _log = Logger.new("context_node")
+static var _log = Logs.new("context_node")
 
 static func get_ctx(node: Node) -> ContextNode:
     if not node.has_meta(Meta.CONTEXT_NODE):

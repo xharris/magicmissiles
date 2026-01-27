@@ -4,7 +4,12 @@
 
 [resource]
 script = ExtResource("1_nle00")
-name = &"stun_low_target"
+name = ""
 target = 2
+can_hit = Dictionary[int, bool]({
+0: false,
+1: false,
+2: true
+})
 duration = 0.2
 metadata/_custom_type_script = "uid://cebnh8w8q24ld"

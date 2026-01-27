@@ -1,7 +1,7 @@
 extends Node2D
 class_name StatusEffectCtrl
 
-var _log = Logger.new("status_effect_ctrl", Logger.Level.DEBUG)
+var _log = Logs.new("status_effect_ctrl")#, Logs.Level.DEBUG)
 
 class Active extends RefCounted:
     var context: StatusEffectContext

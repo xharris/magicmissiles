@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_6uh6n")
-name = &"stun_mid_src"
+name = ""
 target = 1
 can_hit = Dictionary[int, bool]({
 0: false,

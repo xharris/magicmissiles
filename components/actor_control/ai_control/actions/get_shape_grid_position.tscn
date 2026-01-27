@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bwndeu8meorcj"]
+
+[ext_resource type="Script" uid="uid://c034m6b4i4bws" path="res://components/actor_control/ai_control/actions/get_shape_grid_position.gd" id="1_la81l"]
+
+[node name="GetShapeGridPosition" type="Node" unique_id=434898340]
+script = ExtResource("1_la81l")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"

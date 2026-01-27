@@ -3,7 +3,7 @@ class_name Hurtbox
 
 signal apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext)
 
-var _log = Logger.new("hurtbox")#, Logger.Level.DEBUG)
+var _log = Logs.new("hurtbox")#, Logs.Level.DEBUG)
 var _body_entered: Array[Node2D]
 
 func _ready() -> void:

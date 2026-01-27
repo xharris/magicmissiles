@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bk0of6tmtqpdh"]
+[gd_scene format=3 uid="uid://bk0of6tmtqpdh"]
 
 [ext_resource type="AnimationLibrary" uid="uid://c7bsayy8dogee" path="res://resources/actor_configs/slime/slime_animations.res" id="2_17kfk"]
 [ext_resource type="Script" uid="uid://crttnkx3nhwfa" path="res://components/actor_sprite/actor_sprite.gd" id="2_qcuct"]
@@ -56,24 +56,23 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(105.3, -12.4875)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_371ag"]
-graph_offset = Vector2(-38.843, 155.496)
+nodes/output/position = Vector2(750, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_371ag")
 nodes/TimeScale/position = Vector2(270, 150)
 nodes/face_dir_x/node = SubResource("AnimationNodeBlendSpace1D_kxf2m")
 nodes/face_dir_x/position = Vector2(270, 340)
 nodes/face_dir_x_blend/node = SubResource("AnimationNodeBlend2_371ag")
 nodes/face_dir_x_blend/position = Vector2(500, 150)
-nodes/output/position = Vector2(750, 140)
 nodes/walk_speed/node = SubResource("AnimationNodeTimeScale_17kfk")
 nodes/walk_speed/position = Vector2(100, 150)
 nodes/walk_state/node = SubResource("AnimationNodeStateMachine_hwjrh")
 nodes/walk_state/position = Vector2(-210, 220)
-node_connections = [&"TimeScale", 0, &"walk_speed", &"face_dir_x_blend", 0, &"TimeScale", &"face_dir_x_blend", 1, &"face_dir_x", &"output", 0, &"face_dir_x_blend", &"walk_speed", 0, &"walk_state"]
+node_connections = [&"output", 0, &"face_dir_x_blend", &"TimeScale", 0, &"walk_speed", &"face_dir_x_blend", 0, &"TimeScale", &"face_dir_x_blend", 1, &"face_dir_x", &"walk_speed", 0, &"walk_state"]
 
-[node name="ActorSprite" type="Node2D"]
+[node name="ActorSprite" type="Node2D" unique_id=965991625]
 script = ExtResource("2_qcuct")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1926337144]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeBlendTree_371ag")
@@ -81,23 +80,21 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 80.0
 parameters/face_dir_x/blend_position = 0.0
 parameters/face_dir_x_blend/blend_amount = 1.0
-parameters/walk_speed/scale = true
+parameters/walk_speed/scale = 1.0
 parameters/walk_state/conditions/idle = true
 parameters/walk_state/conditions/walking = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1857563811]
 unique_name_in_owner = true
-libraries = {
-&"": ExtResource("2_17kfk")
-}
+libraries/ = ExtResource("2_17kfk")
 speed_scale = 80.0
 
-[node name="AnimatedSprite" type="Node2D" parent="."]
+[node name="AnimatedSprite" type="Node2D" parent="." unique_id=343168678]
 
-[node name="Sprite" type="Node2D" parent="AnimatedSprite"]
+[node name="Sprite" type="Node2D" parent="AnimatedSprite" unique_id=1135819985]
 unique_name_in_owner = true
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite/Sprite"]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite/Sprite" unique_id=1145657361]
 unique_name_in_owner = true
 texture = ExtResource("3_qcuct")
 hframes = 2

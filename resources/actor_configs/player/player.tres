@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActorConfig" load_steps=10 format=3 uid="uid://c6stj4cbu1kpw"]
+[gd_resource type="Resource" script_class="ActorConfig" format=3 uid="uid://c6stj4cbu1kpw"]
 
 [ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/actor_configs/player/player_camera.tres" id="1_ig03h"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_nwbdg"]
@@ -19,7 +19,6 @@ height = 48.0
 script = ExtResource("2_u0c0c")
 faction = ExtResource("1_u0c0c")
 hp_max = 3
-move_speed = 200
 magic_configs = Array[ExtResource("2_elwq2")]([ExtResource("3_l8rgj")])
 hurtbox = Array[Shape2D]([SubResource("CapsuleShape2D_elwq2")])
 body = Array[Shape2D]([SubResource("CircleShape2D_l8rgj")])
@@ -28,7 +27,4 @@ visual_scale = Vector2(4, 4)
 sprite = ExtResource("4_u0c0c")
 arms = true
 camera = ExtResource("1_ig03h")
-ai_sense_radius = 0
-on_hit = Array[Shape2D]([])
-on_hit_status_effects = Array[ExtResource("1_nwbdg")]([])
 metadata/_custom_type_script = "uid://x5j4t41vi5jt"

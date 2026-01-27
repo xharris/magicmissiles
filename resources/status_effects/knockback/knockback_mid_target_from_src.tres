@@ -8,7 +8,12 @@ script = ExtResource("2_vtp4m")
 impact_from = 0
 amount = 0.5
 amount_curve = ExtResource("1_bonj1")
-name = &"knockback_self_mid"
-duration = 0.0
+name = ""
 target = 2
+can_hit = Dictionary[int, bool]({
+0: false,
+1: false,
+2: true
+})
+duration = 0.0
 metadata/_custom_type_script = "uid://d0uhacj4gr1sr"

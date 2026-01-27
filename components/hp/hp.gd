@@ -8,7 +8,7 @@ var max: int = 5
 var current: int = 5
 var invincible: bool = false
 
-var _log = Logger.new("hp")#, Logger.Level.DEBUG)
+var _log = Logs.new("hp")#, Logs.Level.DEBUG)
 
 ## Returns true if damage was successful
 func take_damage(amount: int) -> bool:

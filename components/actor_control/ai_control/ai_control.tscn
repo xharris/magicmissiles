@@ -1,41 +1,76 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbpdxa1jy4kp4"]
+[gd_scene format=3 uid="uid://cbpdxa1jy4kp4"]
 
 [ext_resource type="Script" uid="uid://bl4rjg2ssfuia" path="res://components/actor_control/ai_control/ai_control.gd" id="1_03dc4"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_wuxqn"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="3_eq8g6"]
+[ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="3_gub6y"]
 [ext_resource type="PackedScene" uid="uid://b2i3505wra0py" path="res://components/actor_control/ai_control/conditions/has_sensed_enemy.tscn" id="4_7mrm8"]
 [ext_resource type="Script" uid="uid://2qri6rrfv8ui" path="res://addons/beehave/nodes/decorators/cooldown.gd" id="5_6xj8j"]
 [ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="6_p7sda"]
 [ext_resource type="PackedScene" uid="uid://c8fmhpeviovvn" path="res://components/actor_control/ai_control/actions/path_to_position.tscn" id="7_23iwh"]
+[ext_resource type="PackedScene" uid="uid://cvgvtjm0cdg00" path="res://components/actor_control/ai_control/conditions/is_patrol_enabled.tscn" id="9_siwb4"]
+[ext_resource type="PackedScene" uid="uid://bwndeu8meorcj" path="res://components/actor_control/ai_control/actions/get_shape_grid_position.tscn" id="9_vvgv8"]
+[ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="10_siwb4"]
 
-[node name="ActorAi" type="Node2D"]
+[node name="ActorAi" type="Node2D" unique_id=371790823]
 script = ExtResource("1_03dc4")
 
-[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+[node name="BeehaveTree" type="Node" parent="." unique_id=2033784444 node_paths=PackedStringArray("blackboard", "actor")]
 unique_name_in_owner = true
 script = ExtResource("2_wuxqn")
-blackboard = NodePath("@Node@21829")
+blackboard = NodePath("@Node@54529")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
-[node name="Chase" type="Node" parent="BeehaveTree"]
+[node name="PickBehavior" type="Node" parent="BeehaveTree" unique_id=1380769216]
+script = ExtResource("3_gub6y")
+metadata/_custom_type_script = "uid://cw22yurt5l74k"
+
+[node name="ChaseCooldown" type="Node" parent="BeehaveTree/PickBehavior" unique_id=387706907]
+unique_name_in_owner = true
+script = ExtResource("5_6xj8j")
+metadata/_custom_type_script = "uid://2qri6rrfv8ui"
+
+[node name="Chase" type="Node" parent="BeehaveTree/PickBehavior/ChaseCooldown" unique_id=1977558956]
 script = ExtResource("3_eq8g6")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="HasSensedEnemy" parent="BeehaveTree/Chase" instance=ExtResource("4_7mrm8")]
+[node name="HasSensedEnemy" parent="BeehaveTree/PickBehavior/ChaseCooldown/Chase" unique_id=1884977426 instance=ExtResource("4_7mrm8")]
 position_key = "chase_position"
 
-[node name="ChaseCooldown" type="Node" parent="BeehaveTree/Chase"]
-unique_name_in_owner = true
-script = ExtResource("5_6xj8j")
-wait_time = 0.5
-metadata/_custom_type_script = "uid://2qri6rrfv8ui"
-
-[node name="ChaseTimeLimiter" type="Node" parent="BeehaveTree/Chase/ChaseCooldown"]
+[node name="ChaseTimeLimiter" type="Node" parent="BeehaveTree/PickBehavior/ChaseCooldown/Chase" unique_id=677811110]
 unique_name_in_owner = true
 script = ExtResource("6_p7sda")
 wait_time = 0.5
 metadata/_custom_type_script = "uid://we22430vcb44"
 
-[node name="PathToPosition" parent="BeehaveTree/Chase/ChaseCooldown/ChaseTimeLimiter" instance=ExtResource("7_23iwh")]
+[node name="PathToPosition" parent="BeehaveTree/PickBehavior/ChaseCooldown/Chase/ChaseTimeLimiter" unique_id=1777691027 instance=ExtResource("7_23iwh")]
 position_key = "chase_position"
+
+[node name="PatrolCooldown" type="Node" parent="BeehaveTree/PickBehavior" unique_id=1014377146]
+unique_name_in_owner = true
+script = ExtResource("5_6xj8j")
+wait_time = 5.0
+metadata/_custom_type_script = "uid://2qri6rrfv8ui"
+
+[node name="PatrolDelay" type="Node" parent="BeehaveTree/PickBehavior/PatrolCooldown" unique_id=387442560]
+unique_name_in_owner = true
+script = ExtResource("10_siwb4")
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="Patrol" type="Node" parent="BeehaveTree/PickBehavior/PatrolCooldown/PatrolDelay" unique_id=1371343584]
+script = ExtResource("3_eq8g6")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="IsPatrolEnabled" parent="BeehaveTree/PickBehavior/PatrolCooldown/PatrolDelay/Patrol" unique_id=1847907684 instance=ExtResource("9_siwb4")]
+
+[node name="GetShapeGridPosition" parent="BeehaveTree/PickBehavior/PatrolCooldown/PatrolDelay/Patrol" unique_id=434898340 instance=ExtResource("9_vvgv8")]
+position_key = "patrol_position"
+
+[node name="PatrolTimeLimiter" type="Node" parent="BeehaveTree/PickBehavior/PatrolCooldown/PatrolDelay/Patrol" unique_id=210240410]
+unique_name_in_owner = true
+script = ExtResource("6_p7sda")
+metadata/_custom_type_script = "uid://we22430vcb44"
+
+[node name="PathToPosition" parent="BeehaveTree/PickBehavior/PatrolCooldown/PatrolDelay/Patrol/PatrolTimeLimiter" unique_id=1054775929 instance=ExtResource("7_23iwh")]
+position_key = "patrol_position"

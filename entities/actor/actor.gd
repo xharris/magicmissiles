@@ -22,7 +22,7 @@ class_name Actor
             update()
 var ai_enabled: bool:
     get():
-        return not config or config.ai_sense_radius > 0
+        return config.ai_config != null
 var control: ActorControl:
     get():
         if ai_enabled:
@@ -33,7 +33,7 @@ var control: ActorControl:
 @export_tool_button("Update", "Callable")
 var update_action = update
 
-var _log = Logger.new("actor")#, Logger.Level.DEBUG)
+var _log = Logs.new("actor")#, Logs.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -75,12 +75,14 @@ func update():
     # control (player/ai)
     if sense:
         sense.radius = config.ai_sense_radius
-        ai_ctrl.config = config.ai_config
     if ai_ctrl and player_ctrl:
+        ai_ctrl.config = config.ai_config
         if ai_enabled:
+            _log.info("%s is ai controlled: %s" % [self, ai_ctrl.config.resource_path.get_basename()])
             NodeUtil.disable(player_ctrl)
             NodeUtil.enable(ai_ctrl)
         else:
+            _log.info("%s is player controlled" % [self])
             NodeUtil.enable(player_ctrl)
             NodeUtil.disable(ai_ctrl)
         NodeUtil.reconnect_str(control, "primary", _on_primary)
@@ -112,7 +114,10 @@ func _update_shapes(node: Node2D, shapes: Array[Shape2D], color: Color, shape_po
 func _process(delta: float) -> void:
     if Engine.is_editor_hint():
         return
-    sprite.face_direction = control.aim_direction
+    if not control.move_direction.is_zero_approx():
+        sprite.face_direction = control.move_direction
+    if not control.aim_direction.is_zero_approx():
+        sprite.face_direction = control.aim_direction
     # aim
     arms.face_direction = control.aim_direction
     arms.pointing = clamp(remap(\

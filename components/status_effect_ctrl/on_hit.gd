@@ -9,7 +9,7 @@ var source: ContextNode:
         update()
 @export var status_effects: Array[StatusEffect]
 
-var _log = Logger.new("on_hit")
+var _log = Logs.new("on_hit")
 var _clearing = false
 var _body_entered: Array[Node2D]
 
