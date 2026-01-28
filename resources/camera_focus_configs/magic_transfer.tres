@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CameraFocusConfig" format=3 uid="uid://b0wqj0ydhyghd"]
+
+[ext_resource type="Script" uid="uid://bu07h85w8lnce" path="res://components/camera_focus/camera_focus_config.gd" id="1_rc88q"]
+
+[resource]
+script = ExtResource("1_rc88q")
+position_weight = 0.2
+metadata/_custom_type_script = "uid://bu07h85w8lnce"

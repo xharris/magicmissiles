@@ -20,7 +20,7 @@ var magic: Array[MagicConfig]:
         out.assign(_finished.map(func (r: MagicTransfer): return r.magic))
         return out
 
-var _log = Logs.new("magic_dest", Logs.Level.DEBUG)
+var _log = Logs.new("magic_dest")#, Logs.Level.DEBUG)
 var _in_progress: Array[MagicConfig]
 var _finished: Array[MagicTransfer]
 var _want_src: MagicSrc
@@ -66,10 +66,11 @@ func _transfer_start(config: MagicConfig, from: Vector2):
 
 func _transfer_finished(transfer: MagicTransfer):
     # the magic has arrived
-    _in_progress.erase(transfer.magic.resource_path)
-    _log.debug("magic transfer finished: %s" % [magic])
+    _in_progress = _in_progress.filter(func(m: MagicConfig):
+        return not m.equals(transfer.magic))
     # store it
     _finished.append(transfer)
+    _log.debug("magic transfer finished: %s" % [magic])
     receive_finished.emit(transfer.magic)
 
 func _process(delta: float) -> void:

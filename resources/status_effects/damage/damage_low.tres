@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="EffectDamage" load_steps=3 format=3 uid="uid://q4h3tiyid5wx"]
+[gd_resource type="Resource" script_class="EffectDamage" format=3 uid="uid://q4h3tiyid5wx"]
 
-[ext_resource type="Curve" uid="uid://dxco27j8gh02a" path="res://resources/status_effects/damage/damage_curve.tres" id="1_6jnab"]
+[ext_resource type="Curve" uid="uid://dxco27j8gh02a" path="res://resources/curves/damage_curve.tres" id="1_6jnab"]
 [ext_resource type="Script" uid="uid://gqhdeakod8xn" path="res://resources/status_effects/damage/damage.gd" id="2_vn7j8"]
 
 [resource]

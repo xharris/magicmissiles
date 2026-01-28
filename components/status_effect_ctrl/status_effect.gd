@@ -3,7 +3,7 @@ class_name StatusEffect
 
 enum Target {ME, SOURCE, TARGET}
 
-var duration_curve: Curve = preload("res://resources/status_effects/duration_curve.tres")
+var duration_curve: Curve = preload("res://resources/curves/status_effect_duration_curve.tres")
 
 @export_group("General")
 @export_placeholder("(auto-generated)") var name: String

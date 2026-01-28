@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="1_refcn"]
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="2_4gpub"]
 [ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="3_d2bpw"]
+[ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="5_gricb"]
+[ext_resource type="Resource" uid="uid://b0wqj0ydhyghd" path="res://resources/camera_focus_configs/magic_transfer.tres" id="6_gricb"]
 
 [sub_resource type="Curve" id="Curve_4gpub"]
 _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
@@ -27,3 +29,6 @@ texture = ExtResource("1_refcn")
 
 [node name="Vfx" parent="." unique_id=317326198 instance=ExtResource("2_4gpub")]
 config = SubResource("Resource_ct6ef")
+
+[node name="CameraFocus" parent="." unique_id=1571792625 instance=ExtResource("5_gricb")]
+config = ExtResource("6_gricb")

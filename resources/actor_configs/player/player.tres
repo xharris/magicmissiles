@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ActorConfig" format=3 uid="uid://c6stj4cbu1kpw"]
 
-[ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/actor_configs/player/player_camera.tres" id="1_ig03h"]
+[ext_resource type="Resource" uid="uid://dfg2ddfm7enjx" path="res://resources/camera_focus_configs/player_camera.tres" id="1_l8rgj"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_nwbdg"]
 [ext_resource type="Resource" uid="uid://q1qrr8y6juns" path="res://resources/factions/human.tres" id="1_u0c0c"]
 [ext_resource type="Script" uid="uid://x5j4t41vi5jt" path="res://entities/actor/actor_config.gd" id="2_u0c0c"]
@@ -24,5 +24,5 @@ body_position = Vector2(0, 16)
 visual_scale = Vector2(4, 4)
 sprite = ExtResource("4_u0c0c")
 arms = true
-camera = ExtResource("1_ig03h")
+camera = ExtResource("1_l8rgj")
 metadata/_custom_type_script = "uid://x5j4t41vi5jt"

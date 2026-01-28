@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MagicConfig" format=3 uid="uid://bl7y54gkecaxr"]
+
+[ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_u2p8n"]
+[ext_resource type="Resource" uid="uid://dqxa14xhfws2h" path="res://resources/magic_configs/fire/burn_tick.tres" id="2_adco6"]
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://components/magic_transfer/magic_config.gd" id="2_uso1m"]
+
+[resource]
+script = ExtResource("2_uso1m")
+on_hit_effects = Array[ExtResource("1_u2p8n")]([ExtResource("2_adco6")])
+metadata/_custom_type_script = "uid://bo8a4oocqe1d0"

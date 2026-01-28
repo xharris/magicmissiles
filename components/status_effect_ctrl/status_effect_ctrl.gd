@@ -31,6 +31,9 @@ func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectCo
     _log.debug("apply %s to %s from %s's %s" % [
         effect.name, target.node, ctx.source.node, ctx.me.node
     ])
+    if not effect.get_target(ctx):
+        _log.warn("target not found during apply effect %s" % [effect.name])
+        return
     effect.apply(ctx)
     # is ongoing effect
     if effect.duration > 0:
@@ -51,6 +54,9 @@ func remove_effect(active: StatusEffectCtrl.Active):
         func(a: StatusEffectCtrl.Active): 
             var rm = a == active
             if rm:
+                if not a.effect.get_target(a.context):
+                    _log.warn("target not found during remove effect %s" % [a.effect.name])
+                    return rm
                 a.effect.remove(a.context)
             return rm
     )

@@ -1,2 +1,0 @@
-extends StatusEffect
-class_name StatusBurning

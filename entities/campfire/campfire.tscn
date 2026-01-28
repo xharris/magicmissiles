@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="1_jaf7h"]
 [ext_resource type="PackedScene" uid="uid://3x7nbvqsy3jx" path="res://components/magic_transfer/src/magic_src.tscn" id="2_5c6lx"]
-[ext_resource type="Resource" uid="uid://kdvdwul2yqkx" path="res://resources/magic_config/magic_missile.tres" id="3_5c6lx"]
+[ext_resource type="Resource" uid="uid://bl7y54gkecaxr" path="res://resources/magic_configs/fire/fire.tres" id="3_5c6lx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jvgcx"]
 radius = 16.03122
