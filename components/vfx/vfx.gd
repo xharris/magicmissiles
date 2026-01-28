@@ -21,10 +21,14 @@ signal line_finished
         update()
 @export_tool_button("Update")
 var update_action = update
+@export var preview_animation: bool
 
 var _log = Logs.new("vfx")#, Logs.Level.DEBUG)
 var _shaded_node: CanvasItem
 var _disabled: bool
+var _editor_t: float = 0
+var _last_position: Vector2
+var _line_point_t: float = 0
 
 func disable():
     _disabled = true
@@ -44,6 +48,8 @@ func disable():
     _log.debug("disable (done)")
 
 func clear():
+    if not is_inside_tree():
+        return
     if _shaded_node:
         particles.process_material = null
         _shaded_node.material = null
@@ -51,12 +57,17 @@ func clear():
 func update():
     if not node:
         return
+    if not is_inside_tree():
+        return
+    if Engine.is_editor_hint() and config and not config.changed.is_connected(update):
+        config.changed.connect(update)
     if line:
         line.width = config.line_width if config else 0
         var gradient: Gradient
         if config and config.line_gradient:
             gradient = config.line_gradient.duplicate()
-            gradient.reverse()
+            if config.line_gradient_reverse:
+                gradient.reverse()
         line.gradient = gradient
         line.texture = config.line_texture if config else null
         line.width_curve = config.line_width_curve if config else null
@@ -77,15 +88,43 @@ func update():
     
 func _ready() -> void:
     if not Engine.is_editor_hint():
+        global_position = Vector2.ZERO
         line.clear_points()
+    _last_position = global_position
     update()
 
 func _process(delta: float) -> void:
-    if not Engine.is_editor_hint():
-        ## create new point in line
-        if _disabled and config and config.line_max_points > 0 and line.visible:
-            line.add_point(global_position)
-        if line.get_point_count() > (config.line_max_points if config else 0):
-            line.remove_point(0)
-            if line.get_point_count() == 0:
-                line_finished.emit()
+    if not is_inside_tree():
+        return
+    if Engine.is_editor_hint():
+        if preview_animation:
+            _editor_t += delta
+            var ratio = (sin(_editor_t) + 1) / 2
+            var angle = global_position.angle()
+            angle += deg_to_rad(1) * delta * lerp(100, 200, ratio)
+            position = Vector2.from_angle(angle) * lerp(50, 100, ratio)
+        else:
+            position = Vector2.ZERO
+    # calculate direction
+    particles.rotation = _last_position.angle_to_point(global_position)
+    _last_position = position
+    # create new point in line
+    var line_point_count = line.get_point_count()
+    var line_length = config.line_length if config else 0
+    var remove_point = false
+    if not _disabled and _line_point_t <= 0 and line_point_count < line_length:
+        line.add_point(global_position)
+        if line_point_count > line_length:
+            ## reached max points
+            remove_point = true
+    else:   
+        remove_point = true
+    if remove_point and line_point_count > 0:
+        line.remove_point(0)
+        if line.get_point_count() == 0:
+            line_finished.emit()
+    # update camera zoom in shader (if camera_zoom is a uniform)
+    var mat: ShaderMaterial = node.material if node else null
+    var tform = get_canvas_transform()
+    if mat and tform:
+        mat.set_shader_parameter("camera_zoom", tform.get_scale())

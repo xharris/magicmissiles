@@ -18,10 +18,26 @@ func _process(delta: float) -> void:
             remove_effect(active)
         active.age += delta
 
+func get_active(effect: StatusEffect) -> Array[Active]:
+    return active_effects.filter(func(a:Active): return a.effect.name == effect.name)
+
+func is_active(effect: StatusEffect):
+    return active_effects.any(func(a:Active): return a.effect.name == effect.name)
+
 func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectContext):
+    # repeated effect?
+    match effect.repeat_behavior:
+        StatusEffect.RepeatBehavior.REFRESH:
+            # remove previous actives
+            var previous = get_active(effect)
+            _log.debug("refresh %s (remove %d)" % [effect.name, previous.size()])
+            for prev in previous:
+                remove_effect(prev, effect.remove_on_refresh)
+    # get who is involved
     ctx.target = target
     var target_is_me = ctx.target.node == ctx.me.node
     var target_is_source = ctx.target.node == ctx.source.node
+    # check if source/target is valid
     if (not effect.can_hit[StatusEffect.Target.ME] and target_is_me) or\
        (not effect.can_hit[StatusEffect.Target.SOURCE] and target_is_source):
         _log.debug("invalid target, is_me=%s, is_source=%s, can_hit=%s,  effect=%s" % [
@@ -49,7 +65,7 @@ func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectCo
         active.context = ctx
         active_effects.append(active)
 
-func remove_effect(active: StatusEffectCtrl.Active):
+func remove_effect(active: StatusEffectCtrl.Active, skip_call_remove: bool = false):
     active_effects = active_effects.filter(
         func(a: StatusEffectCtrl.Active): 
             var rm = a == active
@@ -57,6 +73,7 @@ func remove_effect(active: StatusEffectCtrl.Active):
                 if not a.effect.get_target(a.context):
                     _log.warn("target not found during remove effect %s" % [a.effect.name])
                     return not rm
-                a.effect.remove(a.context)
+                if not skip_call_remove:
+                    a.effect.remove(a.context)
             return not rm
     )

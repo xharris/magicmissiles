@@ -10,6 +10,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0pd6u"]
 shader = ExtResource("1_oxn43")
 shader_parameter/size = 2.0
+shader_parameter/camera_zoom = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bg2c"]
 radius = 13.0
@@ -34,6 +35,7 @@ unique_name_in_owner = true
 
 [node name="Vfx" parent="CanvasGroup" unique_id=759915545 node_paths=PackedStringArray("node") instance=ExtResource("5_1bg2c")]
 unique_name_in_owner = true
+position = Vector2(43.364956, -24.99082)
 node = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=213673669]

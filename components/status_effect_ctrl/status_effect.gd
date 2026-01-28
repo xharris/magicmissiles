@@ -2,6 +2,7 @@ extends Resource
 class_name StatusEffect
 
 enum Target {ME, SOURCE, TARGET}
+enum RepeatBehavior {REFRESH, STACK}
 
 var duration_curve: Curve = preload("res://resources/curves/status_effect_duration_curve.tres")
 
@@ -20,6 +21,9 @@ var duration_curve: Curve = preload("res://resources/curves/status_effect_durati
 ## `0` happens for single frame
 @export_range(0, 1, 0.1) var duration: float
 @export var duration_curve_override: Curve
+@export var repeat_behavior: RepeatBehavior
+## Should [code]remove[/code] be called on previous instance when refreshing the effect?
+@export var remove_on_refresh: bool
 
 func get_target(ctx: StatusEffectContext) -> ContextNode:
     match target:

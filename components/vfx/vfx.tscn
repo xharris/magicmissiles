@@ -1,21 +1,80 @@
 [gd_scene format=3 uid="uid://bxm55vrlk1q2q"]
 
+[ext_resource type="Shader" uid="uid://csqbe3n88yk4u" path="res://resources/magic_configs/fire/vfx/burning.gdshader" id="1_kdcxn"]
 [ext_resource type="Script" uid="uid://dwtcej8d660we" path="res://components/vfx/vfx.gd" id="1_o3b2c"]
+[ext_resource type="Resource" uid="uid://b15o33nldetev" path="res://resources/magic_configs/fire/vfx/burning.tres" id="2_1dlr4"]
+[ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_j7232"]
+[ext_resource type="Gradient" uid="uid://najdlgs0xpvx" path="res://resources/magic_configs/fire/vfx/fire_gradient.tres" id="4_kdcxn"]
 
-[node name="Vfx" type="Node2D" unique_id=1834655722]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raw4m"]
+shader = ExtResource("1_kdcxn")
+shader_parameter/size = 32.0
+shader_parameter/camera_zoom = 1.0
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0ngxl"]
+gradient = ExtResource("4_kdcxn")
+
+[sub_resource type="Curve" id="Curve_huee3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_0ngxl"]
+curve = SubResource("Curve_huee3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w6suy"]
+lifetime_randomness = 0.5
+particle_flag_align_y = true
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 10.0
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, -10, 0)
+scale_min = 2.5
+scale_max = 3.5
+scale_curve = SubResource("CurveTexture_0ngxl")
+color_ramp = SubResource("GradientTexture1D_0ngxl")
+
+[sub_resource type="Curve" id="Curve_0ngxl"]
+_data = [Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_kdcxn"]
+offsets = PackedFloat32Array(0.1509434, 0.3301887, 0.5566038, 0.8386023)
+colors = PackedColorArray(0.16, 0.1344, 0.1344, 0, 1, 0, 0, 0.47058824, 1, 0, 0, 0.85882354, 1, 0.90300006, 0.029999971, 1)
+
+[node name="Vfx" type="Node2D" unique_id=1834655722 node_paths=PackedStringArray("node")]
+material = SubResource("ShaderMaterial_raw4m")
+position = Vector2(5.423286, 69.48493)
 script = ExtResource("1_o3b2c")
+config = ExtResource("2_1dlr4")
+node = NodePath(".")
+preview_animation = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1842044345]
 unique_name_in_owner = true
+rotation = -3.0984056
+amount = 100
+texture = ExtResource("3_j7232")
+fixed_fps = 120
+interpolate = false
+fract_delta = false
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+trail_lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_w6suy")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1166481658]
 unique_name_in_owner = true
+visible = false
 top_level = true
-points = PackedVector2Array(39, -40, 36, -21, 19, -6, 0, 0)
-width = 5.0
+points = PackedVector2Array(58.096035, 50.869015, 52.763752, 55.237, 47.175846, 59.017464, 41.39607, 62.20742, 35.485622, 64.810326, 29.50262, 66.83549, 23.501604, 68.29741, 17.533201, 69.215164, 11.643871, 69.61173, 5.423286, 69.48493)
+width = 0.0
+width_curve = SubResource("Curve_0ngxl")
+gradient = SubResource("Gradient_kdcxn")
 texture_mode = 1
 joint_mode = 2
-begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true

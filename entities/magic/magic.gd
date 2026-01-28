@@ -14,6 +14,7 @@ static func create(source: ContextNode, configs: Array[MagicConfig]) -> Magic:
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var vfx: Vfx = %Vfx
 @onready var visual: CanvasGroup = %CanvasGroup
+@onready var sprite: Sprite2D = %Sprite2D
 
 var configs: Array[MagicConfig]:
     set(v):
@@ -24,7 +25,7 @@ var source: ContextNode:
         source = v
         update()
 
-var _log = Logs.new("magic", Logs.Level.DEBUG)
+var _log = Logs.new("magic")#, Logs.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -86,3 +87,12 @@ func update():
         _log.debug("on hit effects: %s" % [on_hit.status_effects.map(func(c:StatusEffect):return c.name)])
     if vfx:
         vfx.config = configs[0].vfx if not configs.is_empty() else null
+    if sprite:
+        var hide_sprite = false
+        for config in configs:
+            if config.hide_sprite:
+                hide_sprite = true
+        if hide_sprite:
+            sprite.hide()
+        else:
+            sprite.show()

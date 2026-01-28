@@ -1,7 +1,7 @@
 extends StatusEffect
 class_name StatusExpires
 
-var _log = Logs.new("expires", Logs.Level.DEBUG)
+var _log = Logs.new("expires")#, Logs.Level.DEBUG)
 
 func remove(ctx: StatusEffectContext):
     var ctx_target = get_target(ctx)

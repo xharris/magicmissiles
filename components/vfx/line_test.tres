@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="VfxConfig" format=3 uid="uid://bwveic6winx64"]
+
+[ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="1_quysf"]
+
+[sub_resource type="Curve" id="Curve_1dlr4"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_quysf")
+line_width = 20.0
+line_width_curve = SubResource("Curve_1dlr4")
+metadata/_custom_type_script = "uid://d4gi0xblvwguj"

@@ -11,8 +11,9 @@ class_name VfxConfig
 @export_group("Line", "line_")
 @export var line_width: float
 @export var line_gradient: Gradient
+@export var line_gradient_reverse: bool
 @export var line_texture: Texture2D
-@export var line_max_points: int = 20
+@export var line_length: int = 20
 @export var line_width_curve: Curve
 @export var line_point_position_offset: Vector2
 @export var line_material: Material

@@ -11,4 +11,5 @@ script = ExtResource("2_uso1m")
 on_ready_effects = Array[ExtResource("1_u2p8n")]([ExtResource("3_vt0s3")])
 on_hit_effects = Array[ExtResource("1_u2p8n")]([ExtResource("2_adco6")])
 vfx = ExtResource("4_adco6")
+hide_sprite = true
 metadata/_custom_type_script = "uid://bo8a4oocqe1d0"
