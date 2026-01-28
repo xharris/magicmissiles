@@ -1,15 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxm55vrlk1q2q"]
+[gd_scene format=3 uid="uid://bxm55vrlk1q2q"]
 
 [ext_resource type="Script" uid="uid://dwtcej8d660we" path="res://components/vfx/vfx.gd" id="1_o3b2c"]
 
-[node name="Vfx" type="Node2D"]
+[node name="Vfx" type="Node2D" unique_id=1834655722]
 script = ExtResource("1_o3b2c")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1842044345]
 unique_name_in_owner = true
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="." unique_id=1166481658]
 unique_name_in_owner = true
 top_level = true
 points = PackedVector2Array(39, -40, 36, -21, 19, -6, 0, 0)

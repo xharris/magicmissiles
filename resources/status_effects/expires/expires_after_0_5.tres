@@ -1,9 +1,13 @@
-[gd_resource type="Resource" script_class="StatusExpires" load_steps=2 format=3 uid="uid://b1mh4ty2xccos"]
+[gd_resource type="Resource" script_class="StatusExpires" format=3 uid="uid://b1mh4ty2xccos"]
 
 [ext_resource type="Script" uid="uid://e086ludellwx" path="res://resources/status_effects/expires/expires.gd" id="1_onujr"]
 
 [resource]
 script = ExtResource("1_onujr")
-name = &"expires_0_5_sec"
+can_hit = Dictionary[int, bool]({
+0: true,
+1: false,
+2: true
+})
 duration = 0.5
 metadata/_custom_type_script = "uid://e086ludellwx"

@@ -1,8 +1,11 @@
 extends StatusEffect
 class_name StatusExpires
 
+var _log = Logs.new("expires", Logs.Level.DEBUG)
+
 func remove(ctx: StatusEffectContext):
     var ctx_target = get_target(ctx)
+    _log.debug("%s expired" % [ctx_target])
     if ctx_target.on_hit:
         NodeUtil.disable(ctx_target.on_hit)
     if ctx_target.hurtbox:

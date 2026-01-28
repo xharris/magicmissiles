@@ -6,6 +6,7 @@ class_name MagicConfig
 @export var on_ready_effects: Array[StatusEffect]
 ## applied to target on collision
 @export var on_hit_effects: Array[StatusEffect]
+@export var vfx: VfxConfig
 
 @export_group("Transfer", "transfer_")
 ## time to wait for transfer to start

@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_u2p8n"]
 [ext_resource type="Resource" uid="uid://dqxa14xhfws2h" path="res://resources/magic_configs/fire/burn_tick.tres" id="2_adco6"]
 [ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://components/magic_transfer/magic_config.gd" id="2_uso1m"]
+[ext_resource type="Resource" uid="uid://b1mh4ty2xccos" path="res://resources/status_effects/expires/expires_after_0_5.tres" id="3_vt0s3"]
+[ext_resource type="Resource" uid="uid://b15o33nldetev" path="res://resources/magic_configs/fire/vfx/burning.tres" id="4_adco6"]
 
 [resource]
 script = ExtResource("2_uso1m")
+on_ready_effects = Array[ExtResource("1_u2p8n")]([ExtResource("3_vt0s3")])
 on_hit_effects = Array[ExtResource("1_u2p8n")]([ExtResource("2_adco6")])
+vfx = ExtResource("4_adco6")
 metadata/_custom_type_script = "uid://bo8a4oocqe1d0"

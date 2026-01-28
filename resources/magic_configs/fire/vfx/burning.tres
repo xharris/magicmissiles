@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="VfxConfig" load_steps=9 format=3 uid="uid://b15o33nldetev"]
+[gd_resource type="Resource" script_class="VfxConfig" format=3 uid="uid://b15o33nldetev"]
 
-[ext_resource type="Gradient" uid="uid://najdlgs0xpvx" path="res://resources/vfxs/burning/fire_gradient.tres" id="1_huee3"]
+[ext_resource type="Gradient" uid="uid://najdlgs0xpvx" path="res://resources/magic_configs/fire/vfx/fire_gradient.tres" id="1_huee3"]
 [ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="1_w6suy"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="2_ai4ug"]
 
@@ -34,7 +34,6 @@ script = ExtResource("1_w6suy")
 particles = SubResource("ParticleProcessMaterial_w6suy")
 particles_texture = ExtResource("2_ai4ug")
 particles_amount = 100
-line_width = 0.0
 line_gradient = ExtResource("1_huee3")
 line_max_points = 6
 line_width_curve = SubResource("Curve_0ngxl")

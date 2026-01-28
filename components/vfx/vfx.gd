@@ -22,16 +22,26 @@ signal line_finished
 @export_tool_button("Update")
 var update_action = update
 
+var _log = Logs.new("vfx")#, Logs.Level.DEBUG)
 var _shaded_node: CanvasItem
 var _disabled: bool
 
 func disable():
     _disabled = true
-    if particles.emitting and particles.process_material and particles.texture:
+    _log.debug("disable")
+    if particles.emitting and particles.process_material:
         particles.emitting = false
-        await particles.finished
+        if particles.one_shot:
+            _log.debug("disable particles")
+            await particles.finished
+            _log.debug("disable particles (done)")
+        else:
+            _log.debug("disable particles (skipped - not one_shot)")
     if line.get_point_count() > 0:
+        _log.debug("disable line")
         await line_finished
+        _log.debug("disable line (done)")
+    _log.debug("disable (done)")
 
 func clear():
     if _shaded_node:

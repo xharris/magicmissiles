@@ -56,7 +56,7 @@ func remove_effect(active: StatusEffectCtrl.Active):
             if rm:
                 if not a.effect.get_target(a.context):
                     _log.warn("target not found during remove effect %s" % [a.effect.name])
-                    return rm
+                    return not rm
                 a.effect.remove(a.context)
-            return rm
+            return not rm
     )

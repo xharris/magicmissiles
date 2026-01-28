@@ -24,7 +24,7 @@ var source: ContextNode:
         source = v
         update()
 
-var _log = Logs.new("magic")#, Logs.Level.DEBUG)
+var _log = Logs.new("magic", Logs.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.new()
@@ -43,7 +43,8 @@ func _ready() -> void:
     name = "Magic-%s"%["=".join(configs.map(func(c:MagicConfig):return c.resource_path.get_file()))]
     _log.debug("casted %s" % [name])
     on_hit.hit.connect(_on_hit)
-    
+    update()
+
     for config in configs:
         for effect in config.on_ready_effects:
             # create context
@@ -59,7 +60,7 @@ func _ready() -> void:
             # add target (also me)
             var target = ctx.me.duplicate()
             status_effect_ctrl.apply_effect(target, effect, ctx)
-    update()
+            _log.debug("on ready effects: %s" % [config.on_ready_effects.map(func(c:StatusEffect):return c.name)])
 
 func _remove_non_piercing():
     configs = configs.filter(func(c:MagicConfig):
@@ -82,5 +83,6 @@ func update():
         on_hit.status_effects.clear()
         for config in configs:
             on_hit.status_effects.append_array(config.on_hit_effects)
-        _log.debug("magic with effects: %s" % [on_hit.status_effects.map(func(c:StatusEffect):return c.resource_path)])
-        
+        _log.debug("on hit effects: %s" % [on_hit.status_effects.map(func(c:StatusEffect):return c.name)])
+    if vfx:
+        vfx.config = configs[0].vfx if not configs.is_empty() else null
