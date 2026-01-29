@@ -127,6 +127,14 @@ func _process(delta: float) -> void:
     # update camera zoom in shader (if camera_zoom is a uniform)
     var mat: ShaderMaterial = node.material if node else null
 
-    var tform = get_canvas_transform()
-    if mat and tform:
-        mat.set_shader_parameter("camera_zoom", tform.get_scale())
+    var canv_tform = get_canvas_transform()
+    var view_tform = get_viewport_transform()
+    if mat and canv_tform:
+        #mat.set_shader_parameter("viewport_size", get_viewport_rect().size)
+        if config and config.shader_set_camera_scale:
+            var camera_zoom = canv_tform.get_scale().length()
+            if camera_zoom == 1 and view_tform.get_scale().length() != 1:
+                camera_zoom = view_tform.get_scale().length()
+            mat.set_shader_parameter("camera_zoom", camera_zoom)
+        else:
+            mat.set_shader_parameter("camera_zoom", 1)

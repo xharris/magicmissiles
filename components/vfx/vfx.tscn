@@ -1,58 +1,7 @@
 [gd_scene format=3 uid="uid://bxm55vrlk1q2q"]
 
 [ext_resource type="Script" uid="uid://dwtcej8d660we" path="res://components/vfx/vfx.gd" id="1_o3b2c"]
-[ext_resource type="Resource" uid="uid://bon7jj71vdlol" path="res://resources/magic_configs/fire/vfx/fire.tres" id="2_cfyc3"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_j7232"]
-
-[sub_resource type="Shader" id="Shader_cfyc3"]
-code = "shader_type canvas_item;
-
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
-uniform float size = 16.0;
-uniform float camera_zoom = 1.0;
-
-void fragment() {
-    // pixelate screen coordinates
-    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
-    float scaled_size = size / camera_zoom;
-    vec2 pixelated_coord = floor(SCREEN_UV * screen_size / scaled_size) * scaled_size;
-    vec2 pixelated_uv = pixelated_coord / screen_size;
-    COLOR = texture(SCREEN_TEXTURE, pixelated_uv);
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v3fo"]
-shader = SubResource("Shader_cfyc3")
-shader_parameter/size = 4.0
-shader_parameter/camera_zoom = 1.0
-
-[sub_resource type="Gradient" id="Gradient_17h35"]
-offsets = PackedFloat32Array(0, 0.10619469, 0.33628318)
-colors = PackedColorArray(1, 0.909804, 0.0313726, 1, 1, 0, 0, 1, 0.16, 0.1344, 0.1344, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_eonhv"]
-gradient = SubResource("Gradient_17h35")
-
-[sub_resource type="Curve" id="Curve_6v3fo"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-metadata/_snap_enabled = true
-
-[sub_resource type="CurveTexture" id="CurveTexture_onyhh"]
-curve = SubResource("Curve_6v3fo")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6f3g"]
-lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 5.0
-direction = Vector3(0, -1, 0)
-spread = 10.0
-initial_velocity_min = 20.0
-initial_velocity_max = 40.0
-gravity = Vector3(0, 0, 0)
-scale_min = 4.5
-scale_max = 5.5
-scale_curve = SubResource("CurveTexture_onyhh")
-color_ramp = SubResource("GradientTexture1D_eonhv")
 
 [sub_resource type="Curve" id="Curve_0ngxl"]
 _data = [Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -63,11 +12,8 @@ metadata/_snap_enabled = true
 offsets = PackedFloat32Array(0.1509434, 0.3301887, 0.5566038, 0.8386023)
 colors = PackedColorArray(0.16, 0.1344, 0.1344, 0, 1, 0, 0, 0.47058824, 1, 0, 0, 0.85882354, 1, 0.90300006, 0.029999971, 1)
 
-[node name="Vfx" type="CanvasGroup" unique_id=7649201 node_paths=PackedStringArray("node")]
-material = SubResource("ShaderMaterial_6v3fo")
+[node name="Vfx" type="CanvasGroup" unique_id=7649201]
 script = ExtResource("1_o3b2c")
-config = ExtResource("2_cfyc3")
-node = NodePath("")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1842044345]
 unique_name_in_owner = true
@@ -77,13 +23,11 @@ lifetime = 5.0
 fixed_fps = 120
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 trail_lifetime = 5.0
-process_material = SubResource("ParticleProcessMaterial_k6f3g")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1166481658]
 unique_name_in_owner = true
 visible = false
 top_level = true
-points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 width = 0.0
 width_curve = SubResource("Curve_0ngxl")
 gradient = SubResource("Gradient_j7232")

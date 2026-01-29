@@ -3,6 +3,8 @@ class_name VfxConfig
 
 @export var material: ShaderMaterial
 
+@export var shader_set_camera_scale: bool
+
 @export_group("Particles", "particles_")
 @export var particles: ParticleProcessMaterial
 @export var particles_texture: Texture2D

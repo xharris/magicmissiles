@@ -27,7 +27,8 @@ var _time: float
 var _done: bool
 
 func _ready() -> void:
-    _target_offset = global_position - target.global_position
+    if target:
+        _target_offset = global_position - target.global_position
     _max_length = _target_offset.length()
     _target_offset = _target_offset.normalized()
 

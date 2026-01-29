@@ -12,7 +12,7 @@ metadata/_snap_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6v3fo"]
 shader = ExtResource("2_eonhv")
-shader_parameter/size = 32.0
+shader_parameter/size = 40.0
 shader_parameter/camera_zoom = 1.0
 
 [sub_resource type="Gradient" id="Gradient_17h35"]
@@ -47,6 +47,7 @@ color_ramp = SubResource("GradientTexture1D_eonhv")
 [resource]
 script = ExtResource("4_we1go")
 material = SubResource("ShaderMaterial_6v3fo")
+shader_set_camera_scale = true
 particles = SubResource("ParticleProcessMaterial_k6f3g")
 particles_texture = ExtResource("3_sgx7s")
 particles_amount = 80
