@@ -22,7 +22,7 @@ class_name Actor
             update()
 var ai_enabled: bool:
     get():
-        return config.ai_config != null
+        return config and config.ai_config != null
 var control: ActorControl:
     get():
         if ai_enabled:

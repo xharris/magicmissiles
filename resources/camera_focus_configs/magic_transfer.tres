@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_rc88q")
 position_weight = 0.2
+zoom_weight = 0.0
 metadata/_custom_type_script = "uid://bu07h85w8lnce"

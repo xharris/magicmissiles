@@ -2,14 +2,24 @@ extends Node2D
 
 const color: = Color(0.8, 0.8, 0.8, 0.1)
 
+@onready var player: Actor = %Player
 @onready var camera: Camera2D = %CameraFocusManager
 @onready var viewport: Viewport = get_viewport()
+@onready var spawn_cam_focus: SpawnCameraFocus = %SpawnCameraFocus
 
 @export var grid_size: Vector2 = Vector2(32, 32)
 @export var origin_thickness: int = 6
 
 func _ready() -> void:
     Events.entity_created.connect(_on_entity_created)
+    spawn_cam_focus.animation_finished.connect(_on_spawn_cam_animation_finished)
+    
+    player.control.can_move = false
+    player.control.can_aim = false
+
+func _on_spawn_cam_animation_finished():
+    player.control.can_move = true
+    player.control.can_aim = true
     
 func _on_entity_created(entity: Node2D):
     add_child(entity)

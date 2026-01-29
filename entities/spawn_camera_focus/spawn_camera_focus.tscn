@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://demnd15fltwe4"]
+
+[ext_resource type="Script" uid="uid://cng3d4mt05lmo" path="res://entities/spawn_camera_focus/spawn_camera_focus.gd" id="1_0kowq"]
+[ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="1_k2lv5"]
+
+[node name="SpawnCameraFocus" type="Node2D" unique_id=1019026675]
+script = ExtResource("1_0kowq")
+
+[node name="CameraFocus" parent="." unique_id=1032969389 instance=ExtResource("1_k2lv5")]
+unique_name_in_owner = true

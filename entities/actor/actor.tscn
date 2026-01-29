@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bg2661hheag5t" path="res://entities/actor/actor.gd" id="1_oawin"]
 [ext_resource type="PackedScene" uid="uid://bk0of6tmtqpdh" path="res://components/actor_sprite/actor_sprite.tscn" id="2_jsxbd"]
-[ext_resource type="Resource" uid="uid://cquh7rme0ac0e" path="res://resources/actor_configs/slime/slime.tres" id="2_sbr6v"]
 [ext_resource type="PackedScene" uid="uid://1unta65jxpw0" path="res://components/arms/arms.tscn" id="3_jsxbd"]
 [ext_resource type="Resource" uid="uid://chu17qariadbr" path="res://resources/actor_configs/slime/slime_actor_sprite.tres" id="4_wq7k8"]
 [ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="4_yxgyw"]
@@ -22,7 +21,6 @@
 
 [node name="Actor" type="CharacterBody2D" unique_id=694385484]
 script = ExtResource("1_oawin")
-config = ExtResource("2_sbr6v")
 
 [node name="Visual" type="Node2D" parent="." unique_id=721249314]
 unique_name_in_owner = true
