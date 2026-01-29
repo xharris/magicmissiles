@@ -4,27 +4,45 @@
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="2_4gpub"]
 [ext_resource type="Resource" uid="uid://bl7y54gkecaxr" path="res://resources/magic_configs/fire/fire.tres" id="2_ct6ef"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_55gh8"]
-[ext_resource type="Resource" uid="uid://bon7jj71vdlol" path="res://resources/magic_configs/fire/vfx/fire.tres" id="4_gricb"]
 [ext_resource type="PackedScene" uid="uid://cdsl631ei3j3t" path="res://components/camera_focus/camera_focus.tscn" id="5_gricb"]
 [ext_resource type="Resource" uid="uid://b0wqj0ydhyghd" path="res://resources/camera_focus_configs/magic_transfer.tres" id="6_gricb"]
 
+[sub_resource type="Shader" id="Shader_cfyc3"]
+code = "shader_type canvas_item;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
+uniform float size = 16.0;
+uniform float camera_zoom = 1.0;
+
+void fragment() {
+    // pixelate screen coordinates
+    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+    float scaled_size = size / camera_zoom;
+    vec2 pixelated_coord = floor(SCREEN_UV * screen_size / scaled_size) * scaled_size;
+    vec2 pixelated_uv = pixelated_coord / screen_size;
+    COLOR = texture(SCREEN_TEXTURE, pixelated_uv);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v3fo"]
+shader = SubResource("Shader_cfyc3")
+shader_parameter/size = 4.0
+shader_parameter/camera_zoom = 1.0
+
 [node name="MagicTransfer" type="Node2D" unique_id=200391456]
 editor_description = "Animated effect to show magic transfer progress"
+material = SubResource("ShaderMaterial_6v3fo")
 script = ExtResource("1_d2bpw")
 magic = ExtResource("2_ct6ef")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=647900522]
+[node name="Vfx" parent="." unique_id=1834655722 node_paths=PackedStringArray("node") instance=ExtResource("2_4gpub")]
+unique_name_in_owner = true
+node = NodePath("..")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=1513615291]
+[node name="Sprite2D" type="Sprite2D" parent="Vfx" unique_id=1513615291]
 unique_name_in_owner = true
 modulate = Color(1, 0.98, 0.8, 1)
 scale = Vector2(3, 3)
 texture = ExtResource("3_55gh8")
-
-[node name="Vfx" parent="CanvasGroup" unique_id=1834655722 node_paths=PackedStringArray("node") instance=ExtResource("2_4gpub")]
-unique_name_in_owner = true
-config = ExtResource("4_gricb")
-node = NodePath("..")
 
 [node name="CameraFocus" parent="." unique_id=1571792625 instance=ExtResource("5_gricb")]
 config = ExtResource("6_gricb")

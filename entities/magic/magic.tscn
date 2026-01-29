@@ -31,15 +31,12 @@ shape = SubResource("CircleShape2D_1bg2c")
 [node name="StatusEffectCtrl" parent="." unique_id=850064587 instance=ExtResource("4_t1fop")]
 unique_name_in_owner = true
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=249816439]
-unique_name_in_owner = true
-
-[node name="Vfx" parent="CanvasGroup" unique_id=759915545 node_paths=PackedStringArray("node") instance=ExtResource("5_1bg2c")]
+[node name="Vfx" parent="." unique_id=759915545 node_paths=PackedStringArray("node") instance=ExtResource("5_1bg2c")]
 unique_name_in_owner = true
 config = ExtResource("6_oxn43")
-node = NodePath("..")
+node = NodePath("")
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=213673669]
+[node name="Sprite2D" type="Sprite2D" parent="Vfx" unique_id=213673669]
 unique_name_in_owner = true
 scale = Vector2(2, 2)
 texture = ExtResource("1_grni7")

@@ -13,7 +13,7 @@ static func create(source: ContextNode, configs: Array[MagicConfig]) -> Magic:
 @onready var on_hit: OnHit = %OnHit
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var vfx: Vfx = %Vfx
-@onready var visual: CanvasGroup = %CanvasGroup
+@onready var visual: CanvasGroup = %Vfx
 @onready var sprite: Sprite2D = %Sprite2D
 
 var configs: Array[MagicConfig]:

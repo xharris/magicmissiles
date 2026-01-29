@@ -5,9 +5,10 @@ uniform float size = 16.0;
 uniform float camera_zoom = 1.0;
 
 void fragment() {
-    // pixelate screen coordinates (TODO not working)
-    float scaled_size = size * camera_zoom;
-    vec2 pixelated_coord = FRAGCOORD.xy - mod(FRAGCOORD.xy, scaled_size);
-    pixelated_coord += scaled_size * 0.5;
-    COLOR = texture(SCREEN_TEXTURE, pixelated_coord * SCREEN_PIXEL_SIZE / TEXTURE_PIXEL_SIZE);
+    // pixelate screen coordinates
+    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+    float scaled_size = size / camera_zoom;
+    vec2 pixelated_coord = floor(SCREEN_UV * screen_size / scaled_size) * scaled_size;
+    vec2 pixelated_uv = pixelated_coord / screen_size;
+    COLOR = texture(SCREEN_TEXTURE, pixelated_uv);
 }

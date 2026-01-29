@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://dqxa14xhfws2h" path="res://resources/magic_configs/fire/burn_tick.tres" id="6_eb2i3"]
 [ext_resource type="Texture2D" uid="uid://dqhtk4m28vi16" path="res://entities/campfire/campfire.png" id="6_u22cf"]
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="7_uf2kd"]
-[ext_resource type="Resource" uid="uid://bon7jj71vdlol" path="res://resources/magic_configs/fire/vfx/fire.tres" id="8_8fgpv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jvgcx"]
 radius = 16.03122
@@ -30,12 +29,11 @@ status_effects = Array[ExtResource("5_4biq1")]([ExtResource("6_eb2i3")])
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit" unique_id=676683953]
 shape = SubResource("CircleShape2D_u78hh")
 
-[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1624914397]
+[node name="Visual" type="Node2D" parent="." unique_id=1439228848]
 
-[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup" unique_id=2089002870]
+[node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=2089002870]
 scale = Vector2(2, 2)
 texture = ExtResource("6_u22cf")
 
-[node name="Vfx" parent="CanvasGroup" unique_id=1834655722 node_paths=PackedStringArray("node") instance=ExtResource("7_uf2kd")]
-config = ExtResource("8_8fgpv")
-node = NodePath("..")
+[node name="Vfx" parent="Visual" unique_id=1834655722 node_paths=PackedStringArray("node") instance=ExtResource("7_uf2kd")]
+node = NodePath("")

@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="VfxConfig" format=3 uid="uid://bon7jj71vdlol"]
 
 [ext_resource type="Gradient" uid="uid://dast1pbf2rmcf" path="res://resources/magic_configs/fire/vfx/fire_trail.tres" id="1_2fqas"]
+[ext_resource type="Shader" uid="uid://csqbe3n88yk4u" path="res://resources/magic_configs/fire/vfx/burning.gdshader" id="2_eonhv"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_sgx7s"]
 [ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="4_we1go"]
 
@@ -9,40 +10,46 @@ _data = [Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 metadata/_snap_enabled = true
 
-[sub_resource type="Gradient" id="Gradient_vaewb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v3fo"]
+shader = ExtResource("2_eonhv")
+shader_parameter/size = 32.0
+shader_parameter/camera_zoom = 1.0
+
+[sub_resource type="Gradient" id="Gradient_17h35"]
 offsets = PackedFloat32Array(0, 0.10619469, 0.33628318)
 colors = PackedColorArray(1, 0.909804, 0.0313726, 1, 1, 0, 0, 1, 0.16, 0.1344, 0.1344, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_2fqas"]
-gradient = SubResource("Gradient_vaewb")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eonhv"]
+gradient = SubResource("Gradient_17h35")
 
-[sub_resource type="Curve" id="Curve_7vi3g"]
+[sub_resource type="Curve" id="Curve_6v3fo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 metadata/_snap_enabled = true
 
-[sub_resource type="CurveTexture" id="CurveTexture_sgx7s"]
-curve = SubResource("Curve_7vi3g")
+[sub_resource type="CurveTexture" id="CurveTexture_onyhh"]
+curve = SubResource("Curve_6v3fo")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_we1go"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6f3g"]
 lifetime_randomness = 0.5
 emission_shape = 1
-emission_sphere_radius = 2.0
+emission_sphere_radius = 5.0
 direction = Vector3(0, -1, 0)
 spread = 10.0
 initial_velocity_min = 20.0
 initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
-scale_min = 3.5
-scale_max = 4.5
-scale_curve = SubResource("CurveTexture_sgx7s")
-color_ramp = SubResource("GradientTexture1D_2fqas")
+scale_min = 4.5
+scale_max = 5.5
+scale_curve = SubResource("CurveTexture_onyhh")
+color_ramp = SubResource("GradientTexture1D_eonhv")
 
 [resource]
 script = ExtResource("4_we1go")
-particles = SubResource("ParticleProcessMaterial_we1go")
+material = SubResource("ShaderMaterial_6v3fo")
+particles = SubResource("ParticleProcessMaterial_k6f3g")
 particles_texture = ExtResource("3_sgx7s")
-particles_amount = 30
+particles_amount = 80
 particles_lifetime = 5.0
 line_gradient = ExtResource("1_2fqas")
 line_gradient_reverse = true

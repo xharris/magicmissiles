@@ -1,5 +1,5 @@
 @tool
-extends Node2D
+extends CanvasGroup
 class_name Vfx
 
 signal line_finished
@@ -109,22 +109,24 @@ func _process(delta: float) -> void:
         particles.rotation = _last_position.angle_to_point(global_position)
         _last_position = position
     # create new point in line
-    var line_point_count = line.get_point_count()
-    var line_length = config.line_length if config else 0
-    var remove_point = false
-    if not _disabled and _line_point_t <= 0 and line_point_count < line_length:
-        line.add_point(global_position)
-        if line_point_count > line_length:
-            ## reached max points
+    if line:
+        var line_point_count = line.get_point_count()
+        var line_length = config.line_length if config else 0
+        var remove_point = false
+        if not _disabled and _line_point_t <= 0 and line_point_count < line_length:
+            line.add_point(global_position)
+            if line_point_count > line_length:
+                ## reached max points
+                remove_point = true
+        else:   
             remove_point = true
-    else:   
-        remove_point = true
-    if remove_point and line_point_count > 0:
-        line.remove_point(0)
-        if line.get_point_count() == 0:
-            line_finished.emit()
+        if remove_point and line_point_count > 0:
+            line.remove_point(0)
+            if line.get_point_count() == 0:
+                line_finished.emit()
     # update camera zoom in shader (if camera_zoom is a uniform)
     var mat: ShaderMaterial = node.material if node else null
+
     var tform = get_canvas_transform()
     if mat and tform:
         mat.set_shader_parameter("camera_zoom", tform.get_scale())
