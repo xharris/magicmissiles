@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://u1ixt652jdjr" path="res://components/hp/hp.tscn" id="6_g7icj"]
 [ext_resource type="PackedScene" uid="uid://dd2svjblodqmd" path="res://components/sense/sense.tscn" id="7_8hfo6"]
 [ext_resource type="PackedScene" uid="uid://cbpdxa1jy4kp4" path="res://components/actor_control/ai_control/ai_control.tscn" id="9_wq7k8"]
-[ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit.tscn" id="10_bash0"]
+[ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit/on_hit.tscn" id="10_bash0"]
 [ext_resource type="Resource" uid="uid://bh08hfxdjlp3r" path="res://resources/actor_configs/slime/slime_ai.tres" id="11_bash0"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="11_ltbwc"]
 [ext_resource type="PackedScene" uid="uid://dk6t14i7xff37" path="res://components/actor_control/player_control/player_control.tscn" id="12_7gc83"]

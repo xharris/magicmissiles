@@ -147,6 +147,8 @@ func _on_primary():
     magic_configs.append_array(config.magic_configs)
     magic_configs.append_array(arms.magic_dest.magic.filter(
         func(m:MagicConfig): return not config.magic_configs.has(m)))
+    if magic_configs.is_empty():
+        return
     # create magic [missile]
     var magic = Magic.create(context(), magic_configs)
     _log.debug("fire magic with configs: %s" % [magic_configs.map(func(c:MagicConfig):return c.resource_path)])

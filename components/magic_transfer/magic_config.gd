@@ -15,6 +15,9 @@ class_name MagicConfig
 @export var transfer_rotation_speed: float = 10
 ## time to wait for transfer to finish
 @export var transfer_duration: float = 1
+@export var transfer_vfx: VfxConfig
+@export var transfer_sprite: Texture2D
+@export var transfer_sprite_modulate: Color
 
 func equals(other: MagicConfig) -> bool:
     return resource_path == other.resource_path

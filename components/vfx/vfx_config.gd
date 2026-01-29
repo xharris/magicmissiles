@@ -7,6 +7,9 @@ class_name VfxConfig
 @export var particles: ParticleProcessMaterial
 @export var particles_texture: Texture2D
 @export var particles_amount: int
+@export var particles_lifetime: float = 1.0
+@export var particles_fps: float
+@export var particles_calc_direction: bool
 
 @export_group("Line", "line_")
 @export var line_width: float

@@ -76,10 +76,12 @@ func update():
             line.show()
         else:
             line.hide()
-    if particles:
-        particles.process_material = config.particles if config else null
-        particles.texture = config.particles_texture if config else null
-        if config and config.particles_amount > 0:
+    if particles and config:
+        particles.lifetime = config.particles_lifetime
+        particles.process_material = config.particles
+        particles.texture = config.particles_texture
+        particles.fixed_fps = config.particles_fps if config.particles_fps > 0 else 120
+        if config.particles_amount > 0:
             particles.amount = config.particles_amount
     _shaded_node = node
     if _shaded_node:
@@ -88,7 +90,6 @@ func update():
     
 func _ready() -> void:
     if not Engine.is_editor_hint():
-        global_position = Vector2.ZERO
         line.clear_points()
     _last_position = global_position
     update()
@@ -103,11 +104,10 @@ func _process(delta: float) -> void:
             var angle = global_position.angle()
             angle += deg_to_rad(1) * delta * lerp(100, 200, ratio)
             position = Vector2.from_angle(angle) * lerp(50, 100, ratio)
-        else:
-            position = Vector2.ZERO
     # calculate direction
-    particles.rotation = _last_position.angle_to_point(global_position)
-    _last_position = position
+    if config and config.particles_calc_direction:
+        particles.rotation = _last_position.angle_to_point(global_position)
+        _last_position = position
     # create new point in line
     var line_point_count = line.get_point_count()
     var line_length = config.line_length if config else 0

@@ -1,10 +1,11 @@
+@tool
 extends Node2D
 class_name MagicTransfer
 
 const SCENE = preload("res://components/magic_transfer/transfer/magic_transfer.tscn")
 
 static func create(start_position: Vector2, target: Node2D, magic: MagicConfig) -> MagicTransfer:
-    var me = MagicTransfer.SCENE.instantiate()
+    var me: MagicTransfer = MagicTransfer.SCENE.instantiate()
     me.global_position = start_position
     me.target = target
     me.magic = magic
@@ -13,9 +14,12 @@ static func create(start_position: Vector2, target: Node2D, magic: MagicConfig) 
     
 signal finished
 
+@onready var vfx: Vfx = %Vfx
+@onready var sprite: Sprite2D = %Sprite2D
+
+@export var magic: MagicConfig
 var target: Node2D
 var progress: float
-var magic: MagicConfig
 
 var _max_length: float
 var _target_offset: Vector2
@@ -28,6 +32,16 @@ func _ready() -> void:
     _target_offset = _target_offset.normalized()
 
 func _process(delta: float) -> void:
+    if magic:
+        if Engine.is_editor_hint() and vfx and not magic.changed.is_connected(vfx.update):
+            magic.changed.connect(vfx.update)
+        if magic.transfer_vfx != vfx.config:
+            vfx.config = magic.transfer_vfx
+        if magic.transfer_sprite_modulate:
+            sprite.modulate = magic.transfer_sprite_modulate
+        sprite.texture = magic.transfer_sprite
+    if not target:
+        return
     # increase progression
     _time += delta
     progress = clampf(_time / magic.transfer_duration, 0, 1)
