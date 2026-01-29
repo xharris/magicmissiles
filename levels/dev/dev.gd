@@ -1,6 +1,6 @@
 extends Node2D
 
-const color: = Color(0.8, 0.8, 0.8, 0.1)
+const color = Color(0.8, 0.8, 0.8, 0.1)
 
 @onready var player: Actor = %Player
 @onready var camera: Camera2D = %CameraFocusManager
@@ -16,6 +16,7 @@ func _ready() -> void:
     
     player.control.can_move = false
     player.control.can_aim = false
+    spawn_cam_focus.finish_to = player.camera
 
 func _on_spawn_cam_animation_finished():
     player.control.can_move = true
