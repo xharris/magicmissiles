@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b46dvxtqp5ydy"]
 
+[ext_resource type="Script" uid="uid://8csubj5unekp" path="res://entities/campfire/campfire.gd" id="1_8fgpv"]
 [ext_resource type="PackedScene" uid="uid://3x7nbvqsy3jx" path="res://components/magic_transfer/src/magic_src.tscn" id="2_5c6lx"]
 [ext_resource type="Resource" uid="uid://bl7y54gkecaxr" path="res://resources/magic_configs/fire/fire.tres" id="3_5c6lx"]
 [ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit/on_hit.tscn" id="4_jvgcx"]
@@ -18,10 +19,16 @@ radius = 32.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6v3fo"]
 shader = ExtResource("6_uf2kd")
+shader_parameter/size = 40.0
+shader_parameter/camera_zoom = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ksai"]
+shader = ExtResource("6_uf2kd")
 shader_parameter/size = 2.0
 shader_parameter/camera_zoom = 1.0
 
 [node name="Campfire" type="Node2D" unique_id=1682679037]
+script = ExtResource("1_8fgpv")
 
 [node name="MagicSource" parent="." unique_id=815820965 instance=ExtResource("2_5c6lx")]
 magic = ExtResource("3_5c6lx")
@@ -31,12 +38,14 @@ shape = SubResource("CircleShape2D_jvgcx")
 debug_color = Color(0.9992015, 0.028068122, 9.62615e-07, 0.41960785)
 
 [node name="OnHit" parent="." unique_id=960088501 instance=ExtResource("4_jvgcx")]
+unique_name_in_owner = true
 status_effects = Array[ExtResource("5_4biq1")]([ExtResource("6_eb2i3")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit" unique_id=676683953]
 shape = SubResource("CircleShape2D_u78hh")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1439228848]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_6v3fo")
 
 [node name="Sprite2D" type="Sprite2D" parent="Visual" unique_id=2089002870]
@@ -44,6 +53,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_u22cf")
 
 [node name="Vfx" parent="Visual" unique_id=1834655722 node_paths=PackedStringArray("node") instance=ExtResource("7_uf2kd")]
-material = SubResource("ShaderMaterial_6v3fo")
+material = SubResource("ShaderMaterial_6ksai")
 config = ExtResource("8_8fgpv")
 node = NodePath("..")

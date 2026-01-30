@@ -19,6 +19,7 @@ func context() -> ContextNode:
         _log.warn("missing source for %s" % [self])
         ctx = ContextNode.new()
         ctx.node = self
+    ctx.on_hit = self
     return ctx
 
 func _ready() -> void:

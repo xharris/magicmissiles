@@ -2,17 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dn2dqm0fdu5no" path="res://levels/dev/dev.gd" id="1_rjc3s"]
 [ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="2_x24ml"]
-[ext_resource type="Shader" uid="uid://63mmctejcf30" path="res://components/death/death.gdshader" id="3_myji7"]
 [ext_resource type="Resource" uid="uid://c6stj4cbu1kpw" path="res://resources/actor_configs/player/player.tres" id="3_n1i44"]
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="3_qf2dv"]
 [ext_resource type="PackedScene" uid="uid://demnd15fltwe4" path="res://entities/spawn_camera_focus/spawn_camera_focus.tscn" id="4_x24ml"]
 [ext_resource type="PackedScene" uid="uid://dmsjoa6qv5l02" path="res://components/shape_grid/shape_grid.tscn" id="5_qf2dv"]
 [ext_resource type="PackedScene" uid="uid://b46dvxtqp5ydy" path="res://entities/campfire/campfire.tscn" id="6_0qlot"]
 [ext_resource type="Resource" uid="uid://cquh7rme0ac0e" path="res://resources/actor_configs/slime/slime.tres" id="6_n1i44"]
-[ext_resource type="PackedScene" uid="uid://7he50jmuuat1" path="res://components/death/death.tscn" id="9_xhwp0"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ocnq"]
-shader = ExtResource("3_myji7")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qf2dv"]
 radius = 167.0449
@@ -20,9 +15,6 @@ radius = 167.0449
 [node name="Dev" type="Node2D" unique_id=1274341349]
 y_sort_enabled = true
 script = ExtResource("1_rjc3s")
-
-[node name="Death" parent="." unique_id=1902104417 instance=ExtResource("9_xhwp0")]
-material = SubResource("ShaderMaterial_2ocnq")
 
 [node name="Player" parent="." unique_id=694385484 instance=ExtResource("2_x24ml")]
 unique_name_in_owner = true

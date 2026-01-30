@@ -13,10 +13,14 @@ const color = Color(0.8, 0.8, 0.8, 0.1)
 func _ready() -> void:
     Events.entity_created.connect(_on_entity_created)
     spawn_cam_focus.animation_finished.connect(_on_spawn_cam_animation_finished)
-    
+    player.hp.death.connect(_on_death.bind(player))
+
     player.control.can_move = false
     player.control.can_aim = false
     spawn_cam_focus.finish_to = player.camera
+
+func _on_death(source: Node2D, me: Actor):
+    Death.enable([me, source, camera])
 
 func _on_spawn_cam_animation_finished():
     player.control.can_move = true

@@ -15,7 +15,7 @@ var progress: float:
             return 1
         return clampf(_t / duration, 0, 1)
 
-var _log = Logs.new("spawn_camera", Logs.Level.DEBUG)
+var _log = Logs.new("spawn_camera")#, Logs.Level.DEBUG)
 var _config: CameraFocusConfig
 var _t: float = 0
 var _done: bool = false

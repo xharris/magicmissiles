@@ -7,4 +7,4 @@ class_name EffectDamage
 func apply(ctx: StatusEffectContext):
     var hp = ctx.target.hp
     if hp:
-        hp.take_damage(curve.sample(amount))
+        hp.take_damage(curve.sample(amount), ctx.source.visual_node)

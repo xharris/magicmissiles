@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 Events="*res://scripts/events.gd"
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
+Death="*uid://7he50jmuuat1"
 
 [debug]
 

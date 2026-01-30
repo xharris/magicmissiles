@@ -60,7 +60,7 @@ func update():
         camera.config = config.camera
     # hp
     if hp:
-        NodeUtil.reconnect_str(hp, "died", _on_died)
+        NodeUtil.reconnect_str(hp, "death", _on_death)
     # body
     _update_shapes(self, config.body, Color.html("2196F36b"), config.body_position)
     # visual
@@ -134,8 +134,9 @@ func _process(delta: float) -> void:
 func _ready() -> void:
     update()
     
-func _on_died():
-    queue_free()
+func _on_death(_src:Node2D):
+    if config.remove_on_death:
+        queue_free()
     
 func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
     # apply effect

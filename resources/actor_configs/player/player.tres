@@ -17,8 +17,9 @@ height = 48.0
 [resource]
 script = ExtResource("2_u0c0c")
 faction = ExtResource("1_u0c0c")
-hp_max = 3
 hurtbox = Array[Shape2D]([SubResource("CapsuleShape2D_elwq2")])
+hp_max = 3
+remove_on_death = false
 body = Array[Shape2D]([SubResource("CircleShape2D_l8rgj")])
 body_position = Vector2(0, 16)
 visual_scale = Vector2(4, 4)

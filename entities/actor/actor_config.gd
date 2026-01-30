@@ -1,12 +1,16 @@
 extends Resource
 class_name ActorConfig
 
+
 @export var faction: Faction
-@export var hp_max: int
 @export var move_speed: int = 200
 @export var magic_configs: Array[MagicConfig]
 
 @export var hurtbox: Array[Shape2D]
+
+@export_group("HP")
+@export var hp_max: int
+@export var remove_on_death: bool = true
 
 @export_group("Body", "body")
 @export var body: Array[Shape2D]

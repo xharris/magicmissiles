@@ -22,9 +22,9 @@ radius = 16.0
 [resource]
 script = ExtResource("3_jr44v")
 faction = ExtResource("1_3h644")
-hp_max = 5
 move_speed = 150
 hurtbox = Array[Shape2D]([SubResource("CircleShape2D_gg6wn")])
+hp_max = 5
 body = Array[Shape2D]([SubResource("CircleShape2D_7m2b0")])
 visual_scale = Vector2(2, 2)
 sprite = ExtResource("5_jr44v")
