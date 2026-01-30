@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cb6bisyxfcg23"]
+[gd_scene format=3 uid="uid://cb6bisyxfcg23"]
 
 [ext_resource type="Script" uid="uid://by0ggcmwdb4jk" path="res://components/camera_focus/camera_focus_manager.gd" id="1_ff70n"]
 
-[node name="CameraFocusManager" type="Camera2D"]
+[node name="CameraFocusManager" type="Camera2D" unique_id=256527880]
+process_callback = 0
 position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 script = ExtResource("1_ff70n")

@@ -49,6 +49,7 @@ func context() -> ContextNode:
     ctx.actor_ctrl = control
     ctx.sense = sense
     ctx.on_hit = on_hit
+    ctx.visual_node = %Visual
     return ctx
 
 func update():
@@ -111,7 +112,7 @@ func _update_shapes(node: Node2D, shapes: Array[Shape2D], color: Color, shape_po
         collision_shape.debug_color = color
         collision_shape.position = shape_pos
         node.add_child(collision_shape)
-        
+
 func _process(delta: float) -> void:
     if Engine.is_editor_hint():
         return
@@ -119,17 +120,21 @@ func _process(delta: float) -> void:
         sprite.face_direction = control.move_direction
     if not control.aim_direction.is_zero_approx():
         sprite.face_direction = control.aim_direction
+    sprite.walk_speed = clampf(velocity.length() / config.move_speed, 0, 1)
     # aim
     arms.face_direction = control.aim_direction
     arms.pointing = clamp(remap(\
         (global_position - control.aim_position).length(),
         60, 90, 0, 1), 0, 1)
-    # movement
-    velocity = velocity.lerp(control.move_direction * config.move_speed, delta * 5)
-    sprite.walk_speed = clampf(velocity.length() / config.move_speed, 0, 1)
-    move_and_collide(velocity * delta)
     # receiving magic
     arms.magic_dest.enabled = arms.pointing > 0.75
+
+func _physics_process(delta: float) -> void:
+    if Engine.is_editor_hint():
+        return
+    # movement
+    velocity = velocity.lerp(control.move_direction * config.move_speed, delta * 5)
+    move_and_collide(velocity * delta)
 
 func _ready() -> void:
     update()

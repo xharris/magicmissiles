@@ -3,15 +3,12 @@ class_name CameraFocusManager
 
 var _log = Logs.new("camera_focus_mgr")
 
-## how much to zoom into [code]pixel_focus[/code]
-@export var pixel_focus_ratio: float
-
-func _process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
     # get cameras
     var cameras: Array[CameraFocus]
     cameras.assign(get_tree().get_nodes_in_group(Groups.CAMERA_FOCUS))
     # final camera values
-    var final_position: Vector2 = get_target_position()
+    var final_position: Vector2 # = get_target_position()
     var final_zoom: Vector2
     var override_idx = cameras.find_custom(func(c:CameraFocus):
         return c.override)
@@ -20,10 +17,10 @@ func _process(_delta: float) -> void:
         var override = cameras[override_idx]
         final_position = override.global_position
         final_zoom = override.config.zoom
-        position_smoothing_enabled = not override.config.disable_position_smoothing
+        #position_smoothing_enabled = not override.config.disable_position_smoothing
     else:
-        position_smoothing_enabled = not cameras.any(func(c:CameraFocus): 
-            return c.config and c.config.disable_position_smoothing)
+        #position_smoothing_enabled = not cameras.any(func(c:CameraFocus): 
+            #return c.config and c.config.disable_position_smoothing)
         # calculate camera position from focus nodes
         var visible_rect = get_viewport().get_visible_rect()
         var total_position: Vector2 = Vector2.ZERO
@@ -53,3 +50,4 @@ func _process(_delta: float) -> void:
     # apply final values
     zoom = final_zoom
     global_position = final_position
+    #global_position = global_position.round()

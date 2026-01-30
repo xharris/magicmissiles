@@ -10,6 +10,8 @@ const color = Color(0.8, 0.8, 0.8, 0.1)
 @export var grid_size: Vector2 = Vector2(32, 32)
 @export var origin_thickness: int = 6
 
+var _log = Logs.new("dev", Logs.Level.DEBUG)
+
 func _ready() -> void:
     Events.entity_created.connect(_on_entity_created)
     spawn_cam_focus.animation_finished.connect(_on_spawn_cam_animation_finished)
@@ -20,6 +22,7 @@ func _ready() -> void:
     spawn_cam_focus.finish_to = player.camera
 
 func _on_death(source: Node2D, me: Actor):
+    _log.debug("death by %s" % [source])
     Death.enable([me, source, camera])
 
 func _on_spawn_cam_animation_finished():

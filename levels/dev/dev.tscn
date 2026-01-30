@@ -8,9 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://dmsjoa6qv5l02" path="res://components/shape_grid/shape_grid.tscn" id="5_qf2dv"]
 [ext_resource type="PackedScene" uid="uid://b46dvxtqp5ydy" path="res://entities/campfire/campfire.tscn" id="6_0qlot"]
 [ext_resource type="Resource" uid="uid://cquh7rme0ac0e" path="res://resources/actor_configs/slime/slime.tres" id="6_n1i44"]
+[ext_resource type="PackedScene" uid="uid://bdnqxiuocikwy" path="res://entities/shape_fill/shape_fill.tscn" id="9_2ocnq"]
+[ext_resource type="Script" uid="uid://ty8sfey8k1f8" path="res://entities/shape_fill/filler.gd" id="10_h1cvo"]
+[ext_resource type="PackedScene" uid="uid://ckyqulwfwg4lx" path="res://entities/tree/tree.tscn" id="11_5c10x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qf2dv"]
 radius = 167.0449
+
+[sub_resource type="Resource" id="Resource_ggojm"]
+script = ExtResource("10_h1cvo")
+scene = ExtResource("11_5c10x")
+offset_range = Vector2(32, 16)
+metadata/_custom_type_script = "uid://ty8sfey8k1f8"
 
 [node name="Dev" type="Node2D" unique_id=1274341349]
 y_sort_enabled = true
@@ -23,6 +32,7 @@ config = ExtResource("3_n1i44")
 [node name="SpawnCameraFocus" parent="Player" unique_id=1019026675 instance=ExtResource("4_x24ml")]
 unique_name_in_owner = true
 position = Vector2(-10, -12)
+duration = 2.0
 metadata/_edit_lock_ = true
 
 [node name="CameraFocusManager" parent="." unique_id=1152010050 instance=ExtResource("3_qf2dv")]
@@ -37,9 +47,17 @@ config = ExtResource("6_n1i44")
 [node name="Campfire" parent="." unique_id=1682679037 instance=ExtResource("6_0qlot")]
 position = Vector2(-256, 112)
 
-[node name="PatrolArea" parent="." unique_id=1003190847 instance=ExtResource("5_qf2dv")]
+[node name="PatrolArea" parent="." unique_id=1003190847 groups=["patrol_area"] instance=ExtResource("5_qf2dv")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PatrolArea" unique_id=68733950]
 modulate = Color(1, 1, 1, 0.2)
 position = Vector2(576, 0)
 shape = SubResource("CircleShape2D_qf2dv")
+
+[node name="ShapeFill" parent="." unique_id=360005954 instance=ExtResource("9_2ocnq")]
+filler = Array[ExtResource("10_h1cvo")]([SubResource("Resource_ggojm")])
+grid_size = Vector2(128, 128)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShapeFill" unique_id=1132840229]
+modulate = Color(1, 1, 1, 0.2)
+polygon = PackedVector2Array(-640, 368, -240, 368, -384, 192, -384, 0, -256, -128, -256, -352, -640, -352)

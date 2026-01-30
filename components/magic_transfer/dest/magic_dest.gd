@@ -20,7 +20,7 @@ var magic: Array[MagicConfig]:
         out.assign(_finished.map(func (r: MagicTransfer): return r.magic))
         return out
 
-var _log = Logs.new("magic_dest")#, Logs.Level.DEBUG)
+var _log = Logs.new("magic_dest", Logs.Level.DEBUG)
 var _in_progress: Array[MagicConfig]
 var _finished: Array[MagicTransfer]
 var _want_src: MagicSrc

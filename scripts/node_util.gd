@@ -32,3 +32,7 @@ static func remove(node: Node):
     var parent = node.get_parent()
     parent.remove_child(node)
     node.queue_free()
+
+static func clear_children(node: Node):
+    for child in node.get_children():
+        node.remove_child(child)

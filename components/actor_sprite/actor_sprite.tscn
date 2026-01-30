@@ -90,6 +90,7 @@ libraries/ = ExtResource("2_17kfk")
 speed_scale = 80.0
 
 [node name="AnimatedSprite" type="Node2D" parent="." unique_id=343168678]
+scale = Vector2(-1, 1)
 
 [node name="Sprite" type="Node2D" parent="AnimatedSprite" unique_id=1135819985]
 unique_name_in_owner = true

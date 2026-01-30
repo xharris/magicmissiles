@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bdnqxiuocikwy"]
+
+[ext_resource type="Script" uid="uid://8ldm7tx07rbq" path="res://entities/shape_fill/shape_fill.gd" id="1_j2b06"]
+
+[node name="ShapeFill" type="Area2D" unique_id=360005954]
+script = ExtResource("1_j2b06")
+
+[node name="Nodes" type="Node2D" parent="." unique_id=1797887054]
+unique_name_in_owner = true

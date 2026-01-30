@@ -2,6 +2,8 @@
 extends Node2D
 class_name ShapeGrid
 
+signal changed
+
 @export var grid_size: Vector2 = Vector2(32, 32):
     set(v):
         grid_size = v
@@ -32,22 +34,29 @@ func update():
     
     for child in find_children("*"):
         if child is Node2D:
-            child.modulate.a = 0.2
             if not child.visible:
                 continue
         var rect: Rect2
         if child is CollisionPolygon2D:
-            # add polygon
-            polygons.append(child.polygon)
-            for point: Vector2 in child.polygon:
-                rect = rect.expand(point)
+            child.modulate.a = 0.2
+            if child.polygon:
+                # add polygon
+                polygons.append(child.polygon)
+                for point: Vector2 in child.polygon:
+                    rect = rect.expand(point)
         if child is CollisionShape2D:
-            # add other shape
-            shapes.append(child)
-            rect = child.shape.get_rect()
+            child.modulate.a = 0.2
+            if child.shape:
+                # add other shape
+                shapes.append(child)
+                rect = child.shape.get_rect()
         rect.position += child.position
         _rects.append(rect)
         _rect = _rect.merge(rect)
+        
+    if _rect.size == Vector2.ZERO:
+        return
+        
     # get points in enclosing rect that collide with shapes
     var space = get_world_2d().direct_space_state
     for x in range(_rect.position.x, _rect.end.x, grid_size.x):
@@ -67,6 +76,7 @@ func update():
                 if collider and collider == self or is_ancestor_of(collider):
                     points.append(query.position)
             #points.append(Vector2(x, y ))
+    changed.emit()
     queue_redraw()
 
 func _ready() -> void:
@@ -82,8 +92,9 @@ func _child_exiting_tree(_child: Node):
     update()
 
 func _draw() -> void:
-    var size = 5
-    for pt in points:
-        draw_rect(Rect2(pt - Vector2(size/2, size/2), Vector2(size, size)), _color)
-    for r in _rects:
-        draw_rect(r, _color)
+    if Engine.is_editor_hint():
+        var size = 5
+        for pt in points:
+            draw_rect(Rect2(pt - Vector2(size/2, size/2), Vector2(size, size)), _color)
+        for r in _rects:
+            draw_rect(r, _color)
