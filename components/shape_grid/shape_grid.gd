@@ -90,9 +90,15 @@ func _item_rect_changed():
     update()
 
 func _child_entered_tree(_child: Node):
+    # Ignore children added to the Nodes container to prevent infinite loop
+    if _child.get_parent() and _child.get_parent().name == "Nodes":
+        return
     update()
 
 func _child_exiting_tree(_child: Node):
+    # Ignore children removed from the Nodes container to prevent infinite loop
+    if _child.get_parent() and _child.get_parent().name == "Nodes":
+        return
     update()
 
 func _draw() -> void:

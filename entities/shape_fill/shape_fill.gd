@@ -16,8 +16,17 @@ func _ready() -> void:
     changed.connect(_changed)
     super._ready()
 
+func _get_nodes() -> Node2D:
+    if nodes:
+        return nodes
+    # In tool mode, @onready might not be set yet, so find it manually
+    return get_node_or_null("%Nodes")
+
 func _changed():
-    NodeUtil.clear_children(nodes)
+    var nodes_ref = _get_nodes()
+    if not nodes_ref:
+        return
+    NodeUtil.clear_children(nodes_ref)
     if Engine.is_editor_hint() and not editor_fill:
         return
     var weights = filler.map(func(f:Filler):
@@ -30,4 +39,4 @@ func _changed():
             var node: Node2D = scene.instantiate()
             var rand_norm = Vector2(randf_range(-1, 1), randf_range(-1, 1))
             node.global_position = point + (rand_norm * fill.offset_range)
-            nodes.add_child(node)
+            nodes_ref.add_child(node)
