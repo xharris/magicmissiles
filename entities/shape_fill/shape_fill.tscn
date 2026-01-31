@@ -7,3 +7,5 @@ script = ExtResource("1_j2b06")
 
 [node name="Nodes" type="Node2D" parent="." unique_id=1797887054]
 unique_name_in_owner = true
+z_as_relative = false
+y_sort_enabled = true

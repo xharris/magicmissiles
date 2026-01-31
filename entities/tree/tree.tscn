@@ -1,11 +1,37 @@
 [gd_scene format=3 uid="uid://ckyqulwfwg4lx"]
 
+[ext_resource type="Script" uid="uid://dumm6mth3bq57" path="res://entities/tree/tree.gd" id="1_38xc8"]
 [ext_resource type="Texture2D" uid="uid://bt5utiujlnwjo" path="res://entities/tree/tree2.png" id="1_xs1ax"]
+[ext_resource type="Shader" uid="uid://dssmieo6ffk6v" path="res://resources/shaders/windy_swaying.gdshader" id="2_windy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_windy"]
+shader = ExtResource("2_windy")
+shader_parameter/wind_start_threshold = 0.678000032205
+shader_parameter/wind_end_threshold = 2.40800011438
+shader_parameter/wind_end_threshold_2 = 0.72800003458
+shader_parameter/wind_strength = 0.050000002375
+shader_parameter/wind_speed = 0.80400003167023
+shader_parameter/scale = 2.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xs1ax"]
+radius = 24.0
+height = 144.0
 
 [node name="Tree" type="Node2D" unique_id=1446912366]
+script = ExtResource("1_38xc8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=334906085]
+unique_name_in_owner = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_windy")
 position = Vector2(0, 24)
 scale = Vector2(5, 5)
 texture = ExtResource("1_xs1ax")
 offset = Vector2(0, -12)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=813729054]
+position = Vector2(0, -40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1654861727]
+rotation = 1.5707941
+shape = SubResource("CapsuleShape2D_xs1ax")

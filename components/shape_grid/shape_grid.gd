@@ -83,6 +83,10 @@ func _ready() -> void:
     add_to_group(Groups.SHAPE_GRID)
     child_entered_tree.connect(_child_entered_tree)
     child_exiting_tree.connect(_child_exiting_tree)
+    item_rect_changed.connect(_item_rect_changed)
+    update()
+
+func _item_rect_changed():
     update()
 
 func _child_entered_tree(_child: Node):

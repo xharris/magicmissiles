@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
         return
     # movement
     velocity = velocity.lerp(control.move_direction * config.move_speed, delta * 5)
-    move_and_collide(velocity * delta)
+    move_and_slide()#velocity * delta)
 
 func _ready() -> void:
     update()

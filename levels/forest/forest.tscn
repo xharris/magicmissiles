@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="6_fuqgi"]
 [ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="6_l8lv6"]
 [ext_resource type="Resource" uid="uid://c6stj4cbu1kpw" path="res://resources/actor_configs/player/player.tres" id="7_4o77n"]
+[ext_resource type="PackedScene" uid="uid://bdnqxiuocikwy" path="res://entities/shape_fill/shape_fill.tscn" id="8_s26ds"]
+[ext_resource type="Script" uid="uid://ty8sfey8k1f8" path="res://entities/shape_fill/filler.gd" id="9_40vnh"]
+[ext_resource type="Resource" uid="uid://cn0jl5rxfyvvn" path="res://resources/fillers/trees.tres" id="10_40vnh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8rbh7"]
 texture = ExtResource("3_b5a7f")
@@ -107,7 +110,7 @@ script = ExtResource("1_yghfa")
 unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=804686137]
-position = Vector2(1952, 1536)
+position = Vector2(1952, 1632)
 scale = Vector2(3.04, 2.04)
 texture = ExtResource("3_l8lv6")
 
@@ -128,5 +131,24 @@ unique_name_in_owner = true
 y_sort_enabled = true
 
 [node name="Actor" parent="Entities" unique_id=694385484 instance=ExtResource("6_l8lv6")]
-position = Vector2(640, 672)
+position = Vector2(656, 656)
 config = ExtResource("7_4o77n")
+
+[node name="Trees" type="CanvasGroup" parent="Entities" unique_id=1428071871]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="ShapeFill" parent="Entities/Trees" unique_id=360005954 instance=ExtResource("8_s26ds")]
+y_sort_enabled = true
+filler = Array[ExtResource("9_40vnh")]([ExtResource("10_40vnh")])
+grid_size = Vector2(128, 128)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entities/Trees/ShapeFill" unique_id=350981530]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-16, 0)
+polygon = PackedVector2Array(16, 592, 1872, 592, 1872, 256, 16, 256)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Trees/ShapeFill" unique_id=2016092786]
+modulate = Color(1, 1, 1, 0.2)
+position = Vector2(-16, 544)
+polygon = PackedVector2Array(16, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 256, 16, 256)

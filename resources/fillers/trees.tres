@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Filler" format=3 uid="uid://cn0jl5rxfyvvn"]
+
+[ext_resource type="PackedScene" uid="uid://ckyqulwfwg4lx" path="res://entities/tree/tree.tscn" id="1_j1gf2"]
+[ext_resource type="Script" uid="uid://ty8sfey8k1f8" path="res://entities/shape_fill/filler.gd" id="1_vk2dq"]
+
+[resource]
+script = ExtResource("1_vk2dq")
+scene = ExtResource("1_j1gf2")
+chance = 0.8
+offset_range = Vector2(32, 32)
+metadata/_custom_type_script = "uid://ty8sfey8k1f8"
