@@ -1,3 +1,4 @@
+#@tool
 extends Node2D
 class_name ShapeGrid
 
@@ -7,8 +8,8 @@ signal changed
     set(v):
         grid_size = v
         update()
-@export_tool_button("Update")
-var update_action = update
+#@export_tool_button("Update")
+#var update_action = update
 
 var _log = Logs.new("shape_grid")
 var _color: Color = Color.html("607D8B6B")

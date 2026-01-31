@@ -142,6 +142,7 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="ShapeFill" parent="Entities/Trees" unique_id=360005954 instance=ExtResource("8_s26ds")]
+z_as_relative = false
 y_sort_enabled = true
 filler = Array[ExtResource("9_40vnh")]([ExtResource("10_40vnh")])
 grid_size = Vector2(128, 128)
@@ -149,12 +150,12 @@ grid_size = Vector2(128, 128)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entities/Trees/ShapeFill" unique_id=350981530]
 modulate = Color(1, 1, 1, 0.2)
 position = Vector2(-16, 0)
-polygon = PackedVector2Array(16, 624, 1872, 624, 1872, 256, 16, 256)
+polygon = PackedVector2Array(-112, 624, 1872, 624, 1872, 256, -112, 256)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Trees/ShapeFill" unique_id=2016092786]
 modulate = Color(1, 1, 1, 0.2)
 position = Vector2(-16, 560)
-polygon = PackedVector2Array(16, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 352, 16, 336)
+polygon = PackedVector2Array(-112, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 272, -112, 272)
 
 [node name="Walls" type="StaticBody2D" parent="Entities" unique_id=880408978]
 collision_layer = 2
