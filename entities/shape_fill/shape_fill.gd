@@ -1,4 +1,3 @@
-@tool
 extends ShapeGrid
 class_name ShapeFill
 

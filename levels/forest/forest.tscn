@@ -103,6 +103,9 @@ terrain_set_0/terrain_0/name = "path"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/1 = SubResource("TileSetAtlasSource_8rbh7")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_40vnh"]
+normal = Vector2(1, 0)
+
 [node name="Forest" type="Node2D" unique_id=2106917120]
 script = ExtResource("1_yghfa")
 
@@ -150,5 +153,12 @@ polygon = PackedVector2Array(16, 624, 1872, 624, 1872, 256, 16, 256)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Trees/ShapeFill" unique_id=2016092786]
 modulate = Color(1, 1, 1, 0.2)
-position = Vector2(-16, 544)
-polygon = PackedVector2Array(16, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 384, 16, 384)
+position = Vector2(-16, 560)
+polygon = PackedVector2Array(16, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 352, 16, 336)
+
+[node name="Walls" type="StaticBody2D" parent="Entities" unique_id=880408978]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Walls" unique_id=80985292]
+shape = SubResource("WorldBoundaryShape2D_40vnh")
