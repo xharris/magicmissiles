@@ -151,4 +151,4 @@ polygon = PackedVector2Array(16, 592, 1872, 592, 1872, 256, 16, 256)
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Trees/ShapeFill" unique_id=2016092786]
 modulate = Color(1, 1, 1, 0.2)
 position = Vector2(-16, 544)
-polygon = PackedVector2Array(16, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 256, 16, 256)
+polygon = PackedVector2Array(16, 1136, 1184, 1136, 1184, 592, 1872, 592, 1872, 416, 16, 416)
