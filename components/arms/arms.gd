@@ -18,7 +18,7 @@ var face_direction: Vector2
 ## (made it a float for joystick)
 @export_range(0, 1, 1.0) var pointing: float = 0
 
-var _log = Logs.new("arms", Logs.Level.DEBUG)
+var _log = Logs.new("arms")#, Logs.Level.DEBUG)
 var wand_collider: Object
 
 func _process(delta: float) -> void:
@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
     # pointing
     animation_tree["parameters/TimeSeek/seek_request"] = pointing * 30
     arm_l.global_rotation = face_direction.angle()
+    transfer_container.global_position = wand_tip.global_position
 
 func _physics_process(delta: float) -> void:
     var collider = wand_ray.get_collider()

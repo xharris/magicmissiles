@@ -34,3 +34,9 @@ static func remove(node: Node):
 static func clear_children(node: Node):
     for child in node.get_children():
         node.remove_child(child)
+
+static func reparent2(node: Node, parent: Node):
+    if node.get_parent():
+        node.reparent(parent)
+    else:
+        parent.add_child(node)

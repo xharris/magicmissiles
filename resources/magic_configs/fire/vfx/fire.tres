@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="VfxConfig" format=3 uid="uid://bon7jj71vdlol"]
 
 [ext_resource type="Gradient" uid="uid://dast1pbf2rmcf" path="res://resources/magic_configs/fire/vfx/fire_trail.tres" id="1_2fqas"]
-[ext_resource type="Material" uid="uid://ds720jmi5pq4r" path="res://resources/magic_configs/fire/vfx/burning_material.tres" id="2_eonhv"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_sgx7s"]
 [ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="4_we1go"]
 
@@ -41,7 +40,6 @@ color_ramp = SubResource("GradientTexture1D_eonhv")
 
 [resource]
 script = ExtResource("4_we1go")
-material = ExtResource("2_eonhv")
 shader_set_camera_scale = true
 particles = SubResource("ParticleProcessMaterial_k6f3g")
 particles_texture = ExtResource("3_sgx7s")

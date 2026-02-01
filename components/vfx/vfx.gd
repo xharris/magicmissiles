@@ -11,20 +11,11 @@ signal line_finished
     set(v):
         config = v
         update()
-@export var node: CanvasItem:
-    set(v):
-        if not v:
-            v = get_parent()
-        if node != v:
-            clear()
-        node = v
-        update()
 @export_tool_button("Update")
 var update_action = update
 @export var preview_animation: bool
 
 var _log = Logs.new("vfx")#, Logs.Level.DEBUG)
-var _shaded_node: CanvasItem
 var _disabled: bool
 var _editor_t: float = 0
 var _last_position: Vector2
@@ -50,13 +41,10 @@ func disable():
 func clear():
     if not is_inside_tree():
         return
-    if _shaded_node:
-        particles.process_material = null
-        _shaded_node.material = null
+    particles.process_material = null
+    material = null
 
 func update():
-    if not node:
-        return
     if not is_inside_tree():
         return
     if Engine.is_editor_hint() and config and not config.changed.is_connected(update):
@@ -86,10 +74,8 @@ func update():
             particles.emitting = true
         else:
             particles.emitting = false
-    _shaded_node = node
-    if _shaded_node:
-        var mat = config.material if config else null
-        _shaded_node.material = mat
+    var mat = config.material if config else null
+    material = mat
     
 func _ready() -> void:
     if not Engine.is_editor_hint():
@@ -130,7 +116,7 @@ func _process(delta: float) -> void:
             if line.get_point_count() == 0:
                 line_finished.emit()
     # update camera zoom in shader (if camera_zoom is a uniform)
-    var mat: ShaderMaterial = node.material if node else null
+    var mat: ShaderMaterial = material
 
     if not is_inside_tree():
         return

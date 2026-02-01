@@ -1,8 +1,3 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://ds720jmi5pq4r"]
 
-[ext_resource type="Shader" uid="uid://csqbe3n88yk4u" path="res://resources/magic_configs/fire/vfx/burning.gdshader" id="1_1efu7"]
-
 [resource]
-shader = ExtResource("1_1efu7")
-shader_parameter/size = 40.0
-shader_parameter/camera_zoom = 1.0

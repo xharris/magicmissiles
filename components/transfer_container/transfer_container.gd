@@ -13,12 +13,15 @@ var nodes: Array[ContextNode]:
         return _nodes.filter(func(n:ContextNode): return is_instance_valid(n.node))
 var is_full:
     get:
-        return capacity > -1 and nodes.size() >= capacity
+        return capacity > -1 and (nodes.size() + _replenish_count + _transfer_count) >= capacity
 ## Can send/receive nodes
 var enabled: bool = true
 
-var _log = Logs.new("transfer_container", Logs.Level.DEBUG)
+var _log = Logs.new("transfer_container")#, Logs.Level.DEBUG)
+var _replenish_list: Array[ContextNode]
 var _replenish_t: float
+var _replenish_count: int
+var _transfer_count: int
 
 func clear():
     pass # TODO    
@@ -59,16 +62,8 @@ func remove(ctx: ContextNode, new_parent: Node2D = null):
         ctx.node.reparent(new_parent)
     else:
         remove_child(ctx.node)
+    _replenish_list.append(ctx)
     _nodes.erase(ctx)
-    # create copy if it gets replenished
-    if replenish_after > -1:
-        _log.debug("replenish after %d sec" % [replenish_after])
-        var timer = Timer.new()
-        timer.wait_time = replenish_after
-        var dupe = ctx.duplicate(true)
-        timer.timeout.connect(_replenish_timeout.bind(dupe), CONNECT_ONE_SHOT)
-        timer.autostart = true
-        add_child(timer)
 
 func transfer(to: TransferContainer, config: TransferConfig):
     if nodes.is_empty() or to.is_full or to == self or not enabled:
@@ -84,17 +79,35 @@ func transfer(to: TransferContainer, config: TransferConfig):
     remove(ctx)
     # create transfer
     _log.debug("transfer %s to %s" % [ctx, to.get_path()])
+    _replenish_list.append(ctx)
     var transf = Transfer.create(self, to, config, ctx)
+    _transfer_count += 1
+    to._transfer_count += 1
     transf.done.connect(_transfer_done.bind(transf))
 
-func _replenish_timeout(ctx: ContextNode):
-    add(ctx)
-
-func _transfer_done(transf: Transfer):
-    if not transf.to.add(transf.ctx):
-        NodeUtil.remove(transf)
+func _process(delta: float) -> void:
+    # create copy if it gets replenished
+    if replenish_after > -1 and _replenish_count == 0 and _transfer_count == 0 and not _replenish_list.is_empty():
+        _log.debug("replenish after %d sec" % [replenish_after])
+        var timer = Timer.new()
+        timer.wait_time = replenish_after
+        var dupe = _replenish_list.pop_front().duplicate(true)
+        timer.timeout.connect(_replenish_timeout.bind(dupe), CONNECT_ONE_SHOT)
+        _replenish_count += 1
+        timer.autostart = true
+        add_child(timer)
 
 func _ready() -> void:
     for child in get_children():
         var ctx = ContextNode.use(child)
         add(ctx)
+
+func _replenish_timeout(ctx: ContextNode):
+    _replenish_count -= 1
+    add(ctx)
+
+func _transfer_done(transf: Transfer):
+    _transfer_count -= 1
+    transf.to._transfer_count -= 1
+    if not transf.to.add(transf.ctx):
+        NodeUtil.remove(transf)

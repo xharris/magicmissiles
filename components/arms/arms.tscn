@@ -302,6 +302,7 @@ collide_with_bodies = false
 
 [node name="TransferContainer" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=1635864967 instance=ExtResource("4_p4r30")]
 unique_name_in_owner = true
+top_level = true
 replenish_after = 3.0
 capacity = 1
 

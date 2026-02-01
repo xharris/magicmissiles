@@ -158,11 +158,7 @@ func _wand_pointing(ctx: ContextNode):
         ctx = ContextNode.use(node.source)
     if ctx.transfer_container:
         # transfer a node to wand
-        var transf_conf = ctx.transfer_config
-        if not transf_conf:
-            transf_conf = TransferConfig.new()
-        transf_conf.duration = 1
-        ctx.transfer_container.transfer(arms.transfer_container, transf_conf)
+        ctx.transfer_container.transfer(arms.transfer_container, ctx.transfer_config)
 
 ## something transfered to wand tip
 func _arms_transfer_added(ctx: ContextNode):

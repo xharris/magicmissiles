@@ -11,7 +11,7 @@ static func create(from: TransferContainer, to: TransferContainer, config: Trans
     me.config = config
     me.global_position = from.global_position
     Events.entity_created.emit(me)
-    ctx.node.reparent.call_deferred(me)
+    NodeUtil.reparent2(ctx.node, me)
     return me
 
 signal done
