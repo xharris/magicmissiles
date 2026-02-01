@@ -34,11 +34,9 @@ file_logging/enable_file_logging=true
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
 [editor_plugins]
@@ -104,13 +102,9 @@ zoom_out={
 2d_physics/layer_4="hurt"
 2d_physics/layer_5="sense"
 2d_physics/layer_6="stimulus"
-2d_physics/layer_7="magic_src"
-2d_physics/layer_8="walkable"
-2d_physics/layer_9="magic_dest"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
 2d/snap/snap_2d_transforms_to_pixel=true
-2d/snap/snap_2d_vertices_to_pixel=true

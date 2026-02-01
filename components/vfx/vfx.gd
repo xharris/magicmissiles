@@ -83,6 +83,9 @@ func update():
         particles.fixed_fps = config.particles_fps if config.particles_fps > 0 else 120
         if config.particles_amount > 0:
             particles.amount = config.particles_amount
+            particles.emitting = true
+        else:
+            particles.emitting = false
     _shaded_node = node
     if _shaded_node:
         var mat = config.material if config else null
@@ -104,6 +107,8 @@ func _process(delta: float) -> void:
             var angle = global_position.angle()
             angle += deg_to_rad(1) * delta * lerp(100, 200, ratio)
             position = Vector2.from_angle(angle) * lerp(50, 100, ratio)
+    else:
+        position = Vector2.ZERO
     # calculate direction
     if config and config.particles_calc_direction:
         particles.rotation = _last_position.angle_to_point(global_position)
@@ -127,6 +132,8 @@ func _process(delta: float) -> void:
     # update camera zoom in shader (if camera_zoom is a uniform)
     var mat: ShaderMaterial = node.material if node else null
 
+    if not is_inside_tree():
+        return
     var canv_tform = get_canvas_transform()
     var view_tform = get_viewport_transform()
     if mat and canv_tform:

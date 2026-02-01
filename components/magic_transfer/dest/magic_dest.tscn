@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://7orwu3jpymed"]
-
-[ext_resource type="Script" uid="uid://b76m8opb0mg4y" path="res://components/magic_transfer/dest/magic_dest.gd" id="1_tf3ja"]
-
-[node name="MagicDest" type="Area2D" unique_id=156510821]
-collision_layer = 256
-collision_mask = 64
-monitorable = false
-script = ExtResource("1_tf3ja")

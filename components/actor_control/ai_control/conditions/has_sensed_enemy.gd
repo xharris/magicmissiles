@@ -6,7 +6,7 @@ var _log = Logs.new("is_enemy_nearby")#, Logs.Level.DEBUG)
 @export var position_key: String
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
-    var ctx: ContextNode = ContextNode.get_ctx(actor)
+    var ctx = ContextNode.use(actor)
     if not ctx:
         _log.warn("no context")
         blackboard.erase_value(position_key)
@@ -19,7 +19,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
     var enemies: Array[Node2D] = ctx.sense.sensed.duplicate()
     # sort enemies distance
     enemies = enemies.filter(func(s:Node2D):
-        var s_ctx: ContextNode = ContextNode.get_ctx(s)
+        var s_ctx = ContextNode.use(s)
         return s_ctx and s_ctx.faction and ctx.faction.is_hostile_to(s_ctx.faction))
     # no enemies
     if enemies.is_empty():

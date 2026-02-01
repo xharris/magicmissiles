@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="VfxConfig" format=3 uid="uid://bon7jj71vdlol"]
 
 [ext_resource type="Gradient" uid="uid://dast1pbf2rmcf" path="res://resources/magic_configs/fire/vfx/fire_trail.tres" id="1_2fqas"]
-[ext_resource type="Shader" uid="uid://csqbe3n88yk4u" path="res://resources/magic_configs/fire/vfx/burning.gdshader" id="2_eonhv"]
+[ext_resource type="Material" uid="uid://ds720jmi5pq4r" path="res://resources/magic_configs/fire/vfx/burning_material.tres" id="2_eonhv"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_sgx7s"]
 [ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="4_we1go"]
 
@@ -9,11 +9,6 @@
 _data = [Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 metadata/_snap_enabled = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6v3fo"]
-shader = ExtResource("2_eonhv")
-shader_parameter/size = 40.0
-shader_parameter/camera_zoom = 1.0
 
 [sub_resource type="Gradient" id="Gradient_17h35"]
 offsets = PackedFloat32Array(0, 0.10619469, 0.33628318)
@@ -46,7 +41,7 @@ color_ramp = SubResource("GradientTexture1D_eonhv")
 
 [resource]
 script = ExtResource("4_we1go")
-material = SubResource("ShaderMaterial_6v3fo")
+material = ExtResource("2_eonhv")
 shader_set_camera_scale = true
 particles = SubResource("ParticleProcessMaterial_k6f3g")
 particles_texture = ExtResource("3_sgx7s")

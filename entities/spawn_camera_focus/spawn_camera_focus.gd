@@ -40,13 +40,14 @@ func finish():
 
 func _init() -> void:
     _config = CameraFocusConfig.new()
+    _config.zoom_weight = 1
     start()
 
 func _ready() -> void:
     _start_position = global_position
     camera_focus.config = _config
     if disabled:
-        finish()
+        finish.call_deferred()
 
 func _process(delta: float) -> void:
     camera_focus.override = not disabled and progress < 1

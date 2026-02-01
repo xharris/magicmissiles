@@ -5,6 +5,7 @@
 
 [node name="SpawnCameraFocus" type="Node2D" unique_id=1019026675]
 script = ExtResource("1_0kowq")
+disabled = true
 
 [node name="CameraFocus" parent="." unique_id=1032969389 instance=ExtResource("1_k2lv5")]
 unique_name_in_owner = true

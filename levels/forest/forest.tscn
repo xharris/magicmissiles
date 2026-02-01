@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bdnqxiuocikwy" path="res://entities/shape_fill/shape_fill.tscn" id="8_s26ds"]
 [ext_resource type="Script" uid="uid://ty8sfey8k1f8" path="res://entities/shape_fill/filler.gd" id="9_40vnh"]
 [ext_resource type="Resource" uid="uid://cn0jl5rxfyvvn" path="res://resources/fillers/trees.tres" id="10_40vnh"]
+[ext_resource type="PackedScene" uid="uid://b46dvxtqp5ydy" path="res://entities/campfire/campfire.tscn" id="11_ppcon"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8rbh7"]
 texture = ExtResource("3_b5a7f")
@@ -133,7 +134,7 @@ limit_bottom = 2000
 unique_name_in_owner = true
 y_sort_enabled = true
 
-[node name="Actor" parent="Entities" unique_id=694385484 instance=ExtResource("6_l8lv6")]
+[node name="Player" parent="Entities" unique_id=694385484 instance=ExtResource("6_l8lv6")]
 position = Vector2(656, 656)
 config = ExtResource("7_4o77n")
 
@@ -163,3 +164,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Walls" unique_id=80985292]
 shape = SubResource("WorldBoundaryShape2D_40vnh")
+
+[node name="Campfire" parent="Entities" unique_id=1682679037 instance=ExtResource("11_ppcon")]
+position = Vector2(976, 656)

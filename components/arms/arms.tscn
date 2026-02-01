@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c1q4q6wn77rq0" path="res://components/arms/arms.gd" id="1_ia214"]
 [ext_resource type="Texture2D" uid="uid://bbj8f2xd1yei4" path="res://components/arms/hand.png" id="2_mvj64"]
 [ext_resource type="Texture2D" uid="uid://dws2mrwvqim8" path="res://components/arms/wand.png" id="3_vyekd"]
-[ext_resource type="PackedScene" uid="uid://7orwu3jpymed" path="res://components/magic_transfer/dest/magic_dest.tscn" id="4_p4r30"]
+[ext_resource type="PackedScene" uid="uid://qy5x1nu3okwk" path="res://components/transfer_container/transfer_container.tscn" id="4_p4r30"]
 
 [sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_vyekd"]
 
@@ -244,10 +244,6 @@ _data = {
 &"point": SubResource("Animation_p4r30")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vyekd"]
-radius = 3.5355325
-height = 31.112701
-
 [node name="Arms" type="Node2D" unique_id=1035988319]
 script = ExtResource("1_ia214")
 
@@ -295,15 +291,19 @@ texture = ExtResource("3_vyekd")
 unique_name_in_owner = true
 position = Vector2(12, 0)
 
-[node name="MagicDest" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=156510821 node_paths=PackedStringArray("receive_target") instance=ExtResource("4_p4r30")]
+[node name="RayCast2D" type="RayCast2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=1413335029]
 unique_name_in_owner = true
-receive_target = NodePath("..")
+position = Vector2(-4.100504, -0.3431474)
+target_position = Vector2(27.7193, 0.36395454)
+collision_mask = 12
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip/MagicDest" unique_id=1379977671]
-position = Vector2(11.455846, -0.34315038)
-rotation = 1.5707941
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("CapsuleShape2D_vyekd")
+[node name="TransferContainer" parent="Base/ArmL/AnimatedArmL/HandL/Wand/WandTip" unique_id=1635864967 instance=ExtResource("4_p4r30")]
+unique_name_in_owner = true
+replenish_after = 3.0
+capacity = 1
 
 [node name="ArmR" type="Node2D" parent="Base" unique_id=1558728187]
 unique_name_in_owner = true

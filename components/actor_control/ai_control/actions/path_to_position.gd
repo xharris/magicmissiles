@@ -4,7 +4,7 @@ extends ActionLeaf
 @export var position_key: String
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
-    var ctx: ContextNode = ContextNode.get_ctx(actor)
+    var ctx = ContextNode.use(actor)
     if not ctx or not ctx.actor_ctrl:
         return FAILURE
     # get target position
@@ -18,7 +18,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
     return RUNNING
 
 func interrupt(actor: Node, blackboard: Blackboard) -> void:
-    var ctx: ContextNode = ContextNode.get_ctx(actor)
+    var ctx = ContextNode.use(actor)
     ctx.actor_ctrl.move_direction = Vector2.ZERO
     if ctx.character:
         ctx.character.velocity = Vector2.ZERO

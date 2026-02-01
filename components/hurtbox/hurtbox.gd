@@ -29,17 +29,17 @@ func _on_body_entered(body: Node2D):
         if on_hit:
             if not on_hit.source:
                 _log.warn("%s is missing source" % [on_hit.get_path()])
-            elif not on_hit.source.node.is_ancestor_of(self):
+            elif not on_hit.source.is_ancestor_of(self):
                 _log.debug("%s hit by %s" % [self.get_path(), body.get_path()])
                 for effect in on_hit.status_effects:
                     _log.debug("apply %s" % [effect.name])
                     # setup context
                     var ctx = StatusEffectContext.new()
                     # add me (who collided with me)
-                    ctx.me = ContextNode.get_ctx(body)
+                    ctx.me = ContextNode.use(body)
                     ctx.me.node = body
                     # add source (who owns other collider)
-                    ctx.source = on_hit.source
+                    ctx.source = ContextNode.use(on_hit.source)
                     # NOTE ctx.target (hurtbox owner) is typically set in apply_status_effect listeners
                     # have listener resolve status effect
                     apply_status_effect.emit(effect, ctx)

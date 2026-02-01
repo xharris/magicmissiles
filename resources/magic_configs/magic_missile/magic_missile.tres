@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="MagicConfig" format=3 uid="uid://kdvdwul2yqkx"]
+
+[ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_vgsem"]
+[ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="2_jdpqw"]
+[ext_resource type="Resource" uid="uid://ddo2jebid4vp2" path="res://resources/status_effects/knockback/knockback_low_target_from_me.tres" id="3_tnrmp"]
+[ext_resource type="Resource" uid="uid://b1mh4ty2xccos" path="res://resources/status_effects/expires/expires_after_0_5.tres" id="4_ktepd"]
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="5_yx04i"]
+[ext_resource type="Resource" uid="uid://85wlsc8bq0ax" path="res://resources/magic_configs/magic_missile/sparkles.tres" id="6_3esi8"]
+
+[resource]
+script = ExtResource("5_yx04i")
+on_ready_effects = Array[ExtResource("1_vgsem")]([ExtResource("4_ktepd")])
+on_hit_effects = Array[ExtResource("1_vgsem")]([ExtResource("2_jdpqw"), ExtResource("3_tnrmp")])
+vfx = ExtResource("6_3esi8")
+metadata/_custom_type_script = "uid://bo8a4oocqe1d0"

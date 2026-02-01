@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b80o3boa6jxrq"]
+
+[ext_resource type="Script" uid="uid://cytoggsxwuhj0" path="res://components/transfer_container/transfer.gd" id="1_ewp3e"]
+
+[node name="Transfer" type="Node2D" unique_id=469860951]
+top_level = true
+script = ExtResource("1_ewp3e")

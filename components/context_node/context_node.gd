@@ -3,17 +3,20 @@ class_name ContextNode
 
 static var _log = Logs.new("context_node")
 
-static func get_ctx(node: Node) -> ContextNode:
+static func use(node: Node, source: Node = null) -> ContextNode:
+    if not node:
+        return
+    var ctx: ContextNode
     if not node.has_meta(Meta.CONTEXT_NODE):
-        _log.warn("missing context node for %s" % [node.get_path()])
-        var ctx = ContextNode.new()
-        ctx.node = node
-        return ctx
-    return node.get_meta(Meta.CONTEXT_NODE)
-
-static func attach_ctx(node: Node, ctx: ContextNode):
-    if not Engine.is_editor_hint():
+        ctx = ContextNode.new()
         node.set_meta(Meta.CONTEXT_NODE, ctx)
+    else:
+        ctx = node.get_meta(Meta.CONTEXT_NODE)
+    ctx.node = node
+    if source:
+        ctx.node = source
+    _log.debug("use context %s for node %s" % [ctx.get_instance_id(), node])
+    return ctx
 
 var node: Node2D
 var hurtbox: Hurtbox
@@ -27,11 +30,26 @@ var faction: Faction
 var sense: Sense
 var actor_ctrl: ActorControl
 var on_hit: OnHit
+var transfer_container: TransferContainer
+## config to use if node were to be transfered
+var transfer_config: TransferConfig
 
 ## TODO why do I need this?
-func duplicate() -> ContextNode:
+func duplicate(dupe_node: bool = false) -> ContextNode:
     var dupe = ContextNode.new()
-    dupe.node = node
+    if dupe_node:
+        if node.has_method("clone"):
+            dupe.node = node.call("clone")
+        else:
+            dupe.node = node.duplicate()
+        var parent = dupe.node.get_parent()
+        if parent:
+            parent.remove_child(dupe.node)
+    else:
+        dupe.node = node
+    var ctx = use(dupe.node)
+    if ctx:
+        return ctx
     dupe.hurtbox = hurtbox
     dupe.status_ctrl = status_ctrl
     dupe.vfx = vfx
@@ -41,10 +59,12 @@ func duplicate() -> ContextNode:
     dupe.on_hit = on_hit
     dupe.actor_ctrl = actor_ctrl
     dupe.character = character
+    dupe.transfer_container = transfer_container
+    dupe.transfer_config = transfer_config
     return dupe
 
 func _to_string() -> String:
-    return "node=%s, actor_ctrl=%s, hurtbox=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s, faction=%s, sense=%s" % [
+    return "node=%s, actor_ctrl=%s, hurtbox=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s, faction=%s, sense=%s transfer=%s (%s)" % [
         node,
         actor_ctrl != null,
         hurtbox != null,
@@ -53,5 +73,7 @@ func _to_string() -> String:
         character != null,
         visual_node != null,
         faction.name if faction != null else "none",
-        sense.sensed.size() if sense else "null"
+        sense.sensed.size() if sense else "null",
+        ["container" if transfer_container else null, "config" if transfer_config else null],
+        get_instance_id()
     ]

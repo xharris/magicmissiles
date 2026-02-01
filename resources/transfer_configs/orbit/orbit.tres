@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TransferOrbit" format=3 uid="uid://c1bkx0ums6pqe"]
+
+[ext_resource type="Script" uid="uid://baelkrxo02vc5" path="res://resources/transfer_configs/orbit/transfer_orbit.gd" id="1_6cjla"]
+
+[resource]
+script = ExtResource("1_6cjla")
+rotation_speed = 10.0
+duration = 2.0
+metadata/_custom_type_script = "uid://baelkrxo02vc5"

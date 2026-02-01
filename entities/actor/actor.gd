@@ -34,13 +34,11 @@ var control: ActorControl:
 var update_action = update
 
 var _log = Logs.new("actor")#, Logs.Level.DEBUG)
-var _received_magic_configs: Array[MagicConfig]
 
 func context() -> ContextNode:
-    var ctx = ContextNode.new()
-    if Engine.is_editor_hint():
+    var ctx = ContextNode.use(self)
+    if not is_inside_tree():
         return ctx
-    ctx.node = self
     ctx.status_ctrl = status_effect_ctrl
     ctx.hurtbox = hurtbox
     ctx.character = self
@@ -99,8 +97,15 @@ func update():
             NodeUtil.enable(arms)
         else:
             NodeUtil.disable(arms)
+        # add magic
+        arms.transfer_container.clear()
+        if not config.magic_configs.is_empty():
+            var magic = Magic.create(self, config.magic_configs)
+            arms.transfer_container.add(magic.context())
+        NodeUtil.reconnect_str(arms, "wand_pointing", _wand_pointing)
+        NodeUtil.reconnect_str(arms.transfer_container, "added", _arms_transfer_added)
     if is_visible_in_tree():
-        ContextNode.attach_ctx(self, context())
+        context()
 
 func _update_shapes(node: Node2D, shapes: Array[Shape2D], color: Color, shape_pos: Vector2 = Vector2.ZERO):
     for child in node.get_children():
@@ -127,7 +132,7 @@ func _process(delta: float) -> void:
         (global_position - control.aim_position).length(),
         60, 90, 0, 1), 0, 1)
     # receiving magic
-    arms.magic_dest.enabled = arms.pointing > 0.75
+    arms.transfer_container.enabled = arms.pointing > 0.75
 
 func _physics_process(delta: float) -> void:
     if Engine.is_editor_hint():
@@ -147,21 +152,43 @@ func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
     # apply effect
     status_effect_ctrl.apply_effect(context(), effect, ctx)
 
+func _wand_pointing(ctx: ContextNode):
+    var node = ctx.node
+    if node is OnHit:
+        ctx = ContextNode.use(node.source)
+    if ctx.transfer_container:
+        # transfer a node to wand
+        var transf_conf = ctx.transfer_config
+        if not transf_conf:
+            transf_conf = TransferConfig.new()
+        transf_conf.duration = 1
+        ctx.transfer_container.transfer(arms.transfer_container, transf_conf)
+
+## something transfered to wand tip
+func _arms_transfer_added(ctx: ContextNode):
+    var node = ctx.node
+    if node is Magic:
+        node.source = self
+
 func _on_primary():
-    # get configs
-    var magic_configs: Array[MagicConfig]
-    magic_configs.append_array(config.magic_configs)
-    magic_configs.append_array(arms.magic_dest.magic.filter(
-        func(m:MagicConfig): return not config.magic_configs.has(m)))
-    if magic_configs.is_empty():
+    # get node from wand
+    var nodes = arms.transfer_container.nodes.filter(func(n:ContextNode):
+        return n.character)
+    if nodes.is_empty():
+        _log.debug("nothing to shoot from wand")
         return
-    # create magic [missile]
-    var magic = Magic.create(context(), magic_configs)
-    _log.debug("fire magic with configs: %s" % [magic_configs.map(func(c:MagicConfig):return c.resource_path)])
-    var angle = control.move_direction.angle()
-    var magic_position = global_position
-    if arms:
-        angle = Vector2.from_angle(arms.wand_tip.global_rotation)
-        magic_position = arms.wand_tip.global_position
-    magic.velocity = angle * 500
-    magic.global_position = magic_position
+    # move a node out of the container
+    var ctx: ContextNode = nodes.pick_random()
+    arms.transfer_container.remove(ctx, get_parent())
+    # activate magic effects/hitbox
+    var node = ctx.node
+    if node is Magic:
+        node.activate()
+    # get start position
+    var char = ctx.character
+    var direction: Vector2 = control.aim_direction
+    if NodeUtil.is_enabled(arms):
+        direction = Vector2.from_angle(arms.wand_tip.global_rotation)
+    # create missile
+    char.velocity = direction * 500
+    _log.debug("shoot %s" % [ctx])

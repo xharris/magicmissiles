@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActorConfig" format=3 uid="uid://cquh7rme0ac0e"]
 
 [ext_resource type="Resource" uid="uid://bc2yf82wl8h7s" path="res://resources/factions/slime.tres" id="1_3h644"]
-[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://components/magic_transfer/magic_config.gd" id="1_b6ki0"]
+[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="1_b6ki0"]
 [ext_resource type="Resource" uid="uid://bh08hfxdjlp3r" path="res://resources/actor_configs/slime/slime_ai.tres" id="1_oiwtk"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="2_3h644"]
 [ext_resource type="Script" uid="uid://x5j4t41vi5jt" path="res://entities/actor/actor_config.gd" id="3_jr44v"]

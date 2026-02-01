@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="VfxConfig" format=3 uid="uid://85wlsc8bq0ax"]
+
+[ext_resource type="Script" uid="uid://d4gi0xblvwguj" path="res://components/vfx/vfx_config.gd" id="1_gikui"]
+[ext_resource type="Texture2D" uid="uid://dss3krqoty5qt" path="res://resources/magic_configs/magic_missile/sparkle.png" id="1_l0i2g"]
+
+[sub_resource type="Curve" id="Curve_l0i2g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.1), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_n0hl4"]
+curve = SubResource("Curve_l0i2g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n0hl4"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 9.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 0.19999999
+alpha_curve = SubResource("CurveTexture_n0hl4")
+
+[resource]
+script = ExtResource("1_gikui")
+particles = SubResource("ParticleProcessMaterial_n0hl4")
+particles_texture = ExtResource("1_l0i2g")
+particles_amount = 30
+metadata/_custom_type_script = "uid://d4gi0xblvwguj"

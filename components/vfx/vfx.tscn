@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bxm55vrlk1q2q"]
 
 [ext_resource type="Script" uid="uid://dwtcej8d660we" path="res://components/vfx/vfx.gd" id="1_o3b2c"]
-[ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="3_j7232"]
 
 [sub_resource type="Curve" id="Curve_0ngxl"]
 _data = [Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -13,16 +12,16 @@ offsets = PackedFloat32Array(0.1509434, 0.3301887, 0.5566038, 0.8386023)
 colors = PackedColorArray(0.16, 0.1344, 0.1344, 0, 1, 0, 0, 0.47058824, 1, 0, 0, 0.85882354, 1, 0.90300006, 0.029999971, 1)
 
 [node name="Vfx" type="CanvasGroup" unique_id=7649201]
+use_mipmaps = true
 script = ExtResource("1_o3b2c")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1842044345]
 unique_name_in_owner = true
-amount = 80
-texture = ExtResource("3_j7232")
-lifetime = 5.0
+process_thread_group = 2
+process_thread_group_order = 0
+process_thread_messages = 1
 fixed_fps = 120
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
-trail_lifetime = 5.0
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1166481658]
 unique_name_in_owner = true

@@ -25,6 +25,8 @@ func is_active(effect: StatusEffect):
     return active_effects.any(func(a:Active): return a.effect.name == effect.name)
 
 func apply_effect(target: ContextNode, effect: StatusEffect, ctx: StatusEffectContext):
+    if not ctx.source:
+        return
     # repeated effect?
     match effect.repeat_behavior:
         StatusEffect.RepeatBehavior.REFRESH:

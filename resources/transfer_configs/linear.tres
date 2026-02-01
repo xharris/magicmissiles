@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TransferConfig" format=3 uid="uid://bv4xxx2teua8h"]
+
+[ext_resource type="Script" uid="uid://cnkdr70xcneud" path="res://components/transfer_container/transfer_config.gd" id="1_8jyvu"]
+
+[resource]
+script = ExtResource("1_8jyvu")
+metadata/_custom_type_script = "uid://cnkdr70xcneud"

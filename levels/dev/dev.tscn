@@ -38,20 +38,19 @@ metadata/_edit_lock_ = true
 [node name="CameraFocusManager" parent="." unique_id=1152010050 instance=ExtResource("3_qf2dv")]
 unique_name_in_owner = true
 zoom = Vector2(0.5, 0.5)
-pixel_focus_ratio = 1.0
-
-[node name="Slime" parent="." unique_id=85275103 instance=ExtResource("2_x24ml")]
-position = Vector2(336, -16)
-config = ExtResource("6_n1i44")
 
 [node name="Campfire" parent="." unique_id=1682679037 instance=ExtResource("6_0qlot")]
-position = Vector2(-256, 112)
+position = Vector2(-160, 48)
+
+[node name="Slime" parent="." unique_id=85275103 instance=ExtResource("2_x24ml")]
+position = Vector2(624, -32)
+config = ExtResource("6_n1i44")
 
 [node name="PatrolArea" parent="." unique_id=1003190847 groups=["patrol_area"] instance=ExtResource("5_qf2dv")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PatrolArea" unique_id=68733950]
 modulate = Color(1, 1, 1, 0.2)
-position = Vector2(576, 0)
+position = Vector2(768, 0)
 shape = SubResource("CircleShape2D_qf2dv")
 
 [node name="ShapeFill" parent="." unique_id=360005954 instance=ExtResource("9_2ocnq")]

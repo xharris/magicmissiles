@@ -3,7 +3,7 @@ class_name Magic
 
 const SCENE = preload("res://entities/magic/magic.tscn")
 
-static func create(source: ContextNode, configs: Array[MagicConfig]) -> Magic:
+static func create(source: Node, configs: Array[MagicConfig]) -> Magic:
     var me = SCENE.instantiate() as Magic
     me.configs = configs
     me.source = source
@@ -16,52 +16,58 @@ static func create(source: ContextNode, configs: Array[MagicConfig]) -> Magic:
 @onready var visual: CanvasGroup = %Vfx
 @onready var sprite: Sprite2D = %Sprite2D
 
-var configs: Array[MagicConfig]:
+@export var configs: Array[MagicConfig]
+@export var source: Node2D
+
+var transfering: bool = false:
     set(v):
-        configs = v
-        update()
-var source: ContextNode:
-    set(v):
-        source = v
-        update()
+        transfering = v
 
 var _log = Logs.new("magic")#, Logs.Level.DEBUG)
 
 func context() -> ContextNode:
-    var ctx = ContextNode.new()
+    var ctx = ContextNode.use(self)
     ctx.status_ctrl = status_effect_ctrl
     ctx.vfx = vfx
     ctx.visual_node = visual
-    ctx.node = self
     ctx.character = self
     ctx.on_hit = on_hit
     return ctx
 
-func _ready() -> void:
-    if configs.is_empty():
-        push_error("no magic configs, src=", source, ", self=", self)
-        queue_free()
-    name = "Magic-%s"%["=".join(configs.map(func(c:MagicConfig):return c.resource_path.get_file()))]
-    _log.debug("casted %s" % [name])
-    on_hit.hit.connect(_on_hit)
-    update()
+func clone() -> Magic:
+    var me = create(source, configs)
+    #me.global_transform = global_transform
+    return me
 
+## NOTE must be called when used as a projectile
+func activate():
+    on_hit.disabled = false
     for config in configs:
         for effect in config.on_ready_effects:
             # create context
             var ctx = StatusEffectContext.new()
             # add me
-            ctx.me = ContextNode.new()
-            ctx.me.node = self
+            ctx.me = ContextNode.use(self)
             ctx.me.status_ctrl = status_effect_ctrl
             ctx.me.vfx = vfx
             ctx.me.visual_node = %Sprite2D
             # add source
-            ctx.source = source
+            ctx.source = ContextNode.use(source)
             # add target (also me)
             var target = ctx.me.duplicate()
             status_effect_ctrl.apply_effect(target, effect, ctx)
             _log.debug("on ready effects: %s" % [config.on_ready_effects.map(func(c:StatusEffect):return c.name)])
+        # apply vfx
+        if config.active_vfx:
+            vfx.config = config.active_vfx
+
+func _ready() -> void:
+    if configs.is_empty():
+        push_error("no magic configs, src=", source, ", self=", self)
+        queue_free()
+    name = "Magic-%s"%["-".join(configs.map(func(c:MagicConfig):return c.resource_path.get_file()))]
+    _log.debug("created %s" % [name])
+    update()
 
 func _remove_non_piercing():
     configs = configs.filter(func(c:MagicConfig):
@@ -78,15 +84,18 @@ func _process(delta: float) -> void:
         queue_free()
 
 func update():
-    ContextNode.attach_ctx(self, context())
+    context()
     if on_hit:
-        on_hit.source = source
+        NodeUtil.reconnect(on_hit.hit, _on_hit)
+        on_hit.source = self
         on_hit.status_effects.clear()
         for config in configs:
             on_hit.status_effects.append_array(config.on_hit_effects)
         _log.debug("on hit effects: %s" % [on_hit.status_effects.map(func(c:StatusEffect):return c.name)])
     if vfx:
-        vfx.config = configs[0].vfx if not configs.is_empty() else null
+        var config: MagicConfig = configs.back() if not configs.is_empty() else null
+        vfx.config = config.vfx if config else null
+    
     if sprite:
         var hide_sprite = false
         for config in configs:

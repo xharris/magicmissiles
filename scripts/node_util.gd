@@ -11,15 +11,13 @@ static func reconnect_str(node: Object, sig_name: String, method: Callable):
         
 static func disable(node: Node):
     node.process_mode = Node.PROCESS_MODE_DISABLED
-    if node is Node2D:
-        node.hide()
-    node.set_deferred("disabled",true)
+    if node is CanvasItem:
+        node.visible = false
     
 static func enable(node: Node):
     node.process_mode = Node.PROCESS_MODE_INHERIT
-    if node is Node2D:
-        node.show()
-    node.set_deferred("disabled",false)
+    if node is CanvasItem:
+        node.visible = true
 
 static func is_enabled(node: Node):
     if node.process_mode == Node.PROCESS_MODE_DISABLED:

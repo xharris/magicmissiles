@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qy5x1nu3okwk"]
+
+[ext_resource type="Script" uid="uid://6sjppkha1stp" path="res://components/transfer_container/transfer_container.gd" id="1_fr4s4"]
+
+[node name="TransferContainer" type="Node2D" unique_id=1635864967]
+script = ExtResource("1_fr4s4")

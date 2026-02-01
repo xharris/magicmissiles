@@ -2,28 +2,21 @@
 
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="1_grni7"]
 [ext_resource type="Script" uid="uid://beja0anjraj3i" path="res://entities/magic/magic.gd" id="1_kydgk"]
-[ext_resource type="Shader" uid="uid://csqbe3n88yk4u" path="res://resources/magic_configs/fire/vfx/burning.gdshader" id="1_oxn43"]
 [ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit/on_hit.tscn" id="2_61irk"]
 [ext_resource type="PackedScene" uid="uid://c0hlswibau2dk" path="res://components/status_effect_ctrl/status_effect_ctrl.tscn" id="4_t1fop"]
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="5_1bg2c"]
-[ext_resource type="Resource" uid="uid://b15o33nldetev" path="res://resources/magic_configs/fire/vfx/burning.tres" id="6_oxn43"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0pd6u"]
-shader = ExtResource("1_oxn43")
-shader_parameter/size = 2.0
-shader_parameter/camera_zoom = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1bg2c"]
 radius = 13.0
 
 [node name="Magic" type="CharacterBody2D" unique_id=398745343]
-material = SubResource("ShaderMaterial_0pd6u")
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("1_kydgk")
 
 [node name="OnHit" parent="." unique_id=856622931 instance=ExtResource("2_61irk")]
 unique_name_in_owner = true
+disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit" unique_id=2004984343]
 shape = SubResource("CircleShape2D_1bg2c")
@@ -33,8 +26,7 @@ unique_name_in_owner = true
 
 [node name="Vfx" parent="." unique_id=759915545 node_paths=PackedStringArray("node") instance=ExtResource("5_1bg2c")]
 unique_name_in_owner = true
-config = ExtResource("6_oxn43")
-node = NodePath("")
+node = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="Vfx" unique_id=213673669]
 unique_name_in_owner = true

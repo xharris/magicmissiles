@@ -5,7 +5,7 @@ extends ActionLeaf
 @export var group: StringName = Groups.PATROL_AREA
 
 func tick(actor: Node, blackboard: Blackboard) -> int:
-    var ctx = ContextNode.get_ctx(actor)
+    var ctx = ContextNode.use(actor)
     if not ctx:
         return FAILURE
     # get a random shape grid
