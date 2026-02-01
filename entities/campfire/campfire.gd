@@ -3,8 +3,7 @@ class_name Campfire
 
 @onready var on_hit: OnHit = %OnHit
 
-var transfer_config: TransferConfig = preload("res://resources/transfer_configs/linear.tres")
-# preload("res://resources/transfer_configs/orbit/orbit.tres")
+@export var transfer_config: TransferConfig
 
 func context() -> ContextNode:
     var ctx = ContextNode.use(self)

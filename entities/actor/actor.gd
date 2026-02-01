@@ -37,7 +37,7 @@ var _log = Logs.new("actor")#, Logs.Level.DEBUG)
 
 func context() -> ContextNode:
     var ctx = ContextNode.use(self)
-    if not is_inside_tree():
+    if Engine.is_editor_hint():
         return ctx
     ctx.status_ctrl = status_effect_ctrl
     ctx.hurtbox = hurtbox
@@ -97,6 +97,7 @@ func update():
             NodeUtil.enable(arms)
         else:
             NodeUtil.disable(arms)
+    if not Engine.is_editor_hint() and arms and arms.transfer_container:
         # add magic
         arms.transfer_container.clear()
         if not config.magic_configs.is_empty():

@@ -14,7 +14,7 @@ static func create(source: Node, configs: Array[MagicConfig]) -> Magic:
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var vfx: Vfx = %Vfx
 @onready var visual: CanvasGroup = %Vfx
-#@onready var sprite: Sprite2D = %Sprite2D
+@onready var sprite: Sprite2D = %Sprite2D
 
 @export var configs: Array[MagicConfig]
 @export var source: Node2D
@@ -92,12 +92,17 @@ func update():
         var config: MagicConfig = configs.back() if not configs.is_empty() else null
         vfx.config = config.vfx if config else null
     
-    #if sprite:
-        #var hide_sprite = false
-        #for config in configs:
-            #if config.hide_sprite:
-                #hide_sprite = true
-        #if hide_sprite:
-            #sprite.hide()
-        #else:
-            #sprite.show()
+    if sprite:
+        var hide_sprite = false
+        for config in configs:
+            if config.hide_sprite:
+                hide_sprite = true
+        if hide_sprite:
+            sprite.hide()
+        else:
+            sprite.show()
+            var color = Color.WHITE
+            for config in configs:
+                if config.sprite_color != Color.WHITE:
+                    color = config.sprite_color
+            sprite.modulate = color

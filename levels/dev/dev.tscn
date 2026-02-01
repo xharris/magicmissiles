@@ -27,6 +27,7 @@ script = ExtResource("1_rjc3s")
 
 [node name="Player" parent="." unique_id=694385484 instance=ExtResource("2_x24ml")]
 unique_name_in_owner = true
+position = Vector2(48, 48)
 config = ExtResource("3_n1i44")
 
 [node name="SpawnCameraFocus" parent="Player" unique_id=1019026675 instance=ExtResource("4_x24ml")]
@@ -43,7 +44,7 @@ zoom = Vector2(0.5, 0.5)
 position = Vector2(-160, 48)
 
 [node name="Slime" parent="." unique_id=85275103 instance=ExtResource("2_x24ml")]
-position = Vector2(624, -32)
+position = Vector2(864, -32)
 config = ExtResource("6_n1i44")
 
 [node name="PatrolArea" parent="." unique_id=1003190847 groups=["patrol_area"] instance=ExtResource("5_qf2dv")]

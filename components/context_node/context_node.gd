@@ -7,6 +7,8 @@ static func use(node: Node, source: Node = null) -> ContextNode:
     if not node:
         return
     var ctx: ContextNode
+    if Engine.is_editor_hint():
+        return ContextNode.new()
     if not node.has_meta(Meta.CONTEXT_NODE):
         ctx = ContextNode.new()
         node.set_meta(Meta.CONTEXT_NODE, ctx)

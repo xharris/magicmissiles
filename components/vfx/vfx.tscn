@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bxm55vrlk1q2q"]
 
 [ext_resource type="Script" uid="uid://dwtcej8d660we" path="res://components/vfx/vfx.gd" id="1_o3b2c"]
-[ext_resource type="Resource" uid="uid://bon7jj71vdlol" path="res://resources/magic_configs/fire/vfx/fire.tres" id="2_1dlr4"]
 [ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="4_kdcxn"]
 
 [sub_resource type="Gradient" id="Gradient_17h35"]
@@ -21,8 +20,6 @@ curve = SubResource("Curve_6v3fo")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k6f3g"]
 lifetime_randomness = 0.5
-emission_shape = 1
-emission_sphere_radius = 5.0
 direction = Vector3(0, -1, 0)
 spread = 10.0
 initial_velocity_min = 20.0
@@ -33,21 +30,9 @@ scale_max = 5.5
 scale_curve = SubResource("CurveTexture_onyhh")
 color_ramp = SubResource("GradientTexture1D_eonhv")
 
-[sub_resource type="Curve" id="Curve_0ngxl"]
-_data = [Vector2(0.3, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-metadata/_snap_enabled = true
-
-[sub_resource type="Gradient" id="Gradient_cfyc3"]
-offsets = PackedFloat32Array(0.1509434, 0.3301887, 0.5566038, 0.8386023)
-colors = PackedColorArray(0.16, 0.1344, 0.1344, 0, 1, 0, 0, 0.47058824, 1, 0, 0, 0.85882354, 1, 0.90300006, 0.029999971, 1)
-
 [node name="Vfx" type="CanvasGroup" unique_id=7649201]
-position = Vector2(71.32787, 42.001114)
 use_mipmaps = true
 script = ExtResource("1_o3b2c")
-config = ExtResource("2_1dlr4")
-preview_animation = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1842044345]
 unique_name_in_owner = true
@@ -63,12 +48,8 @@ process_material = SubResource("ParticleProcessMaterial_k6f3g")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1166481658]
 unique_name_in_owner = true
-visible = false
 top_level = true
-points = PackedVector2Array(72.85266, -20.382818, 75.19101, -13.997798, 76.96995, -7.2828975, 78.14153, -0.28580162, 78.66142, 6.938941, 78.48988, 14.330085, 77.59275, 21.819986, 75.94241, 29.33506, 72.913315, 38.339676)
 width = 0.0
-width_curve = SubResource("Curve_0ngxl")
-gradient = SubResource("Gradient_cfyc3")
 texture_mode = 1
 joint_mode = 2
 end_cap_mode = 2

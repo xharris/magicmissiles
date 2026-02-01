@@ -29,12 +29,14 @@ var progress: float:
 var _log = Logs.new("transfer")#, Logs.Level.DEBUG)
 var _t: float = 0
 var _done: bool = false
+var _target_position: Vector2
 
 func _process(delta: float) -> void:
     if _done:
         return
     _t += delta
-    ctx.node.global_position = config.get_position(delta, from.global_position, to.global_position, progress)
+    _target_position += (to.global_position - _target_position) * 0.1
+    ctx.node.global_position = config.get_position(delta, from.global_position, _target_position, progress)
     if progress >= 1.0:
         _log.debug("done")
         _done = true
@@ -42,3 +44,5 @@ func _process(delta: float) -> void:
 
 func _ready() -> void:
     _log.debug("from %s to %s" % [from.get_path(), to.get_path()])
+    config = config.duplicate()
+    _target_position = to.global_position

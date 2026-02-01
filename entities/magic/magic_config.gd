@@ -7,6 +7,7 @@ class_name MagicConfig
 ## applied to target on collision
 @export var on_hit_effects: Array[StatusEffect]
 @export var hide_sprite: bool
+@export var sprite_color: Color = Color.WHITE
 
 @export var vfx: VfxConfig
 @export var active_vfx: VfxConfig

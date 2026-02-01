@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://1t5twg5h7f0r"]
 
+[ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="1_grni7"]
 [ext_resource type="Script" uid="uid://beja0anjraj3i" path="res://entities/magic/magic.gd" id="1_kydgk"]
 [ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit/on_hit.tscn" id="2_61irk"]
 [ext_resource type="PackedScene" uid="uid://c0hlswibau2dk" path="res://components/status_effect_ctrl/status_effect_ctrl.tscn" id="4_t1fop"]
@@ -24,4 +25,8 @@ unique_name_in_owner = true
 
 [node name="Vfx" parent="." unique_id=759915545 instance=ExtResource("5_1bg2c")]
 unique_name_in_owner = true
-position = Vector2(-85.57824, -39.206844)
+
+[node name="Sprite2D" type="Sprite2D" parent="Vfx" unique_id=1096325324]
+unique_name_in_owner = true
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("1_grni7")
