@@ -26,7 +26,7 @@ var progress: float:
             return 0
         return _t / config.duration
 
-var _log = Logs.new("transfer", Logs.Level.DEBUG)
+var _log = Logs.new("transfer")#, Logs.Level.DEBUG)
 var _t: float = 0
 var _done: bool = false
 

@@ -104,6 +104,7 @@ func update():
             arms.transfer_container.add(magic.context())
         NodeUtil.reconnect_str(arms, "wand_pointing", _wand_pointing)
         NodeUtil.reconnect_str(arms.transfer_container, "added", _arms_transfer_added)
+        NodeUtil.reconnect_str(arms.transfer_container, "transfer_started", _arms_transfer_started)
     if is_visible_in_tree():
         context()
 
@@ -164,7 +165,13 @@ func _wand_pointing(ctx: ContextNode):
 func _arms_transfer_added(ctx: ContextNode):
     var node = ctx.node
     if node is Magic:
+        node.on_hit.disabled = true
         node.source = self
+
+func _arms_transfer_started(transf: Transfer):
+    var node = transf.ctx.node
+    if transf.ctx.on_hit:
+        transf.ctx.on_hit.disabled = true
 
 func _on_primary():
     # get node from wand
@@ -175,10 +182,14 @@ func _on_primary():
         return
     # move a node out of the container
     var ctx: ContextNode = nodes.pick_random()
+    var parent = get_parent()
+    if not parent is Node2D:
+        return
     arms.transfer_container.remove(ctx, get_parent())
     # activate magic effects/hitbox
     var node = ctx.node
     if node is Magic:
+        node.on_hit.disabled = false
         node.activate()
     # get start position
     var char = ctx.character

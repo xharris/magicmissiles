@@ -10,7 +10,7 @@ signal hit(target: Node2D)
 var source: Node2D
 @export var status_effects: Array[StatusEffect]
 
-var _log = Logs.new("on_hit")
+var _log = Logs.new("on_hit")#, Logs.Level.DEBUG)
 var _clearing = false
 var _body_entered: Array[Node2D]
 
@@ -24,14 +24,13 @@ func update():
         return
     context()
     if disabled:
-        NodeUtil.disable(self)
+        _log.debug("disabled %s" % [get_path()])
+        process_mode = Node.PROCESS_MODE_DISABLED
         _body_entered.clear()
-        monitorable = false
-        monitoring = false
     else:
+        _log.debug("enabled %s" % [get_path()])
+        process_mode = Node.PROCESS_MODE_INHERIT
         NodeUtil.enable(self)
-        monitorable = true
-        monitoring = true
 
 func _ready() -> void:
     area_entered.connect(_on_hit)

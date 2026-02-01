@@ -14,14 +14,10 @@ static func create(source: Node, configs: Array[MagicConfig]) -> Magic:
 @onready var status_effect_ctrl: StatusEffectCtrl = %StatusEffectCtrl
 @onready var vfx: Vfx = %Vfx
 @onready var visual: CanvasGroup = %Vfx
-@onready var sprite: Sprite2D = %Sprite2D
+#@onready var sprite: Sprite2D = %Sprite2D
 
 @export var configs: Array[MagicConfig]
 @export var source: Node2D
-
-var transfering: bool = false:
-    set(v):
-        transfering = v
 
 var _log = Logs.new("magic")#, Logs.Level.DEBUG)
 
@@ -41,7 +37,6 @@ func clone() -> Magic:
 
 ## NOTE must be called when used as a projectile
 func activate():
-    on_hit.disabled = false
     for config in configs:
         for effect in config.on_ready_effects:
             # create context
@@ -50,7 +45,7 @@ func activate():
             ctx.me = ContextNode.use(self)
             ctx.me.status_ctrl = status_effect_ctrl
             ctx.me.vfx = vfx
-            ctx.me.visual_node = %Sprite2D
+            ctx.me.visual_node = vfx
             # add source
             ctx.source = ContextNode.use(source)
             # add target (also me)
@@ -75,6 +70,7 @@ func _remove_non_piercing():
     update()
 
 func _on_hit(body: Node2D):
+    _log.debug("hit %s" % [body])
     # remove non-piercing effects (deferred so hurtbox can process the hit first)
     _remove_non_piercing.call_deferred()
 
@@ -96,12 +92,12 @@ func update():
         var config: MagicConfig = configs.back() if not configs.is_empty() else null
         vfx.config = config.vfx if config else null
     
-    if sprite:
-        var hide_sprite = false
-        for config in configs:
-            if config.hide_sprite:
-                hide_sprite = true
-        if hide_sprite:
-            sprite.hide()
-        else:
-            sprite.show()
+    #if sprite:
+        #var hide_sprite = false
+        #for config in configs:
+            #if config.hide_sprite:
+                #hide_sprite = true
+        #if hide_sprite:
+            #sprite.hide()
+        #else:
+            #sprite.show()

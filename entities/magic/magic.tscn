@@ -15,7 +15,6 @@ script = ExtResource("1_kydgk")
 
 [node name="OnHit" parent="." unique_id=856622931 instance=ExtResource("2_61irk")]
 unique_name_in_owner = true
-disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit" unique_id=2004984343]
 shape = SubResource("CircleShape2D_1bg2c")
@@ -23,6 +22,6 @@ shape = SubResource("CircleShape2D_1bg2c")
 [node name="StatusEffectCtrl" parent="." unique_id=850064587 instance=ExtResource("4_t1fop")]
 unique_name_in_owner = true
 
-[node name="Vfx" parent="." unique_id=759915545 node_paths=PackedStringArray("node") instance=ExtResource("5_1bg2c")]
+[node name="Vfx" parent="." unique_id=759915545 instance=ExtResource("5_1bg2c")]
 unique_name_in_owner = true
-node = NodePath("..")
+position = Vector2(-85.57824, -39.206844)

@@ -34,10 +34,13 @@ var transfer_container: TransferContainer
 ## config to use if node were to be transfered
 var transfer_config: TransferConfig
 
-## TODO why do I need this?
 func duplicate(dupe_node: bool = false) -> ContextNode:
     var dupe = ContextNode.new()
     if dupe_node:
+        # Check if node is still valid before accessing it
+        if not is_instance_valid(node):
+            _log.warn("Cannot duplicate freed node")
+            return null
         if node.has_method("clone"):
             dupe.node = node.call("clone")
         else:
@@ -64,10 +67,11 @@ func duplicate(dupe_node: bool = false) -> ContextNode:
     return dupe
 
 func _to_string() -> String:
-    return "node=%s, actor_ctrl=%s, hurtbox=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s, faction=%s, sense=%s transfer=%s (%s)" % [
+    return "node=%s, actor_ctrl=%s, hurtbox=%s, on_hit=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s, faction=%s, sense=%s transfer=%s (%s)" % [
         node,
         actor_ctrl != null,
         hurtbox != null,
+        on_hit != null,
         status_ctrl != null,
         vfx != null,
         character != null,

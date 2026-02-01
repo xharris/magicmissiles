@@ -1,6 +1,7 @@
 extends Node2D
 class_name TransferContainer
   
+signal transfer_started(transf: Transfer)
 signal added(ctx: ContextNode)
 
 @export var replenish_after: float = -1
@@ -32,7 +33,7 @@ func has(ctx: ContextNode) -> bool:
 ## Returns true if succesful
 func add(ctx: ContextNode) -> bool:
     var already_added = has(ctx)
-    if is_full or not enabled or already_added:
+    if is_full or already_added:
         _log.debug("cannot add: %s" % [{
             "is_full": is_full,
             "enabled": enabled,
@@ -41,6 +42,7 @@ func add(ctx: ContextNode) -> bool:
         return false
     _log.debug("add %s to %s" % [ctx, get_path()])
     # reparent to me
+    ctx.node.hide()
     if not is_ancestor_of(ctx.node):
         if ctx.node.get_parent():
             _log.debug("reparent to me")
@@ -49,6 +51,7 @@ func add(ctx: ContextNode) -> bool:
             _log.debug("add as child")
             add_child(ctx.node)
     ctx.node.global_position = global_position
+    ctx.node.show()
     _nodes.append(ctx)
     added.emit(ctx)
     return true
@@ -72,6 +75,7 @@ func transfer(to: TransferContainer, config: TransferConfig):
             "to_is_full": to.is_full,
             "is_me": to == self,
             "enabled": enabled,
+            "from": get_path(),
             "to": to.get_path(),
         })
         return
@@ -83,6 +87,8 @@ func transfer(to: TransferContainer, config: TransferConfig):
     var transf = Transfer.create(self, to, config, ctx)
     _transfer_count += 1
     to._transfer_count += 1
+    to.transfer_started.emit(transf)
+    transfer_started.emit(transf)
     transf.done.connect(_transfer_done.bind(transf))
 
 func _process(delta: float) -> void:

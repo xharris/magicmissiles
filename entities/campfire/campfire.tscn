@@ -10,14 +10,7 @@
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="5_4biq1"]
 [ext_resource type="Resource" uid="uid://dqxa14xhfws2h" path="res://resources/magic_configs/fire/burn_tick.tres" id="6_eb2i3"]
 [ext_resource type="Texture2D" uid="uid://dqhtk4m28vi16" path="res://entities/campfire/campfire.png" id="6_u22cf"]
-[ext_resource type="Shader" uid="uid://csqbe3n88yk4u" path="res://resources/magic_configs/fire/vfx/burning.gdshader" id="6_uf2kd"]
 [ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="7_uf2kd"]
-[ext_resource type="Resource" uid="uid://bon7jj71vdlol" path="res://resources/magic_configs/fire/vfx/fire.tres" id="8_8fgpv"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ksai"]
-shader = ExtResource("6_uf2kd")
-shader_parameter/size = 2.0
-shader_parameter/camera_zoom = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u78hh"]
 radius = 32.0
@@ -33,19 +26,18 @@ material = ExtResource("2_tlog8")
 scale = Vector2(2, 2)
 texture = ExtResource("6_u22cf")
 
-[node name="Vfx" parent="Visual" unique_id=1834655722 node_paths=PackedStringArray("node") instance=ExtResource("7_uf2kd")]
+[node name="Vfx" parent="Visual" unique_id=1834655722 instance=ExtResource("7_uf2kd")]
 visible = false
-material = SubResource("ShaderMaterial_6ksai")
-config = ExtResource("8_8fgpv")
-node = NodePath("..")
+position = Vector2(-28.690157, -41.22542)
 
 [node name="TransferContainer" parent="." unique_id=1635864967 instance=ExtResource("2_kexml")]
 unique_name_in_owner = true
 replenish_after = 2.0
 capacity = 1
 
-[node name="Magic" parent="TransferContainer" unique_id=398745343 instance=ExtResource("3_tlog8")]
+[node name="Magic" parent="TransferContainer" unique_id=398745343 node_paths=PackedStringArray("source") instance=ExtResource("3_tlog8")]
 configs = Array[ExtResource("3_6ksai")]([ExtResource("3_5c6lx")])
+source = NodePath("../..")
 
 [node name="OnHit" parent="." unique_id=960088501 instance=ExtResource("4_jvgcx")]
 unique_name_in_owner = true
