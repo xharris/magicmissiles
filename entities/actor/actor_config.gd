@@ -4,7 +4,7 @@ class_name ActorConfig
 
 @export var faction: Faction
 @export var move_speed: int = 200
-@export var magic_configs: Array[MagicConfig]
+@export var magic_config: MagicConfig
 
 @export var hurtbox: Array[Shape2D]
 

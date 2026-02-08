@@ -22,14 +22,21 @@ func apply(ctx: StatusEffectContext):
         _log.debug("knockback: random %s" % [impact_direction])
     else:
         # get knock back source position
+        var source_node: Node2D
         var source_position: Vector2
         match impact_from:
             ImpactFrom.ME:
-                source_position = ctx.me.character.global_position
+                source_node = ctx.me.node
+                if ctx.me.character:
+                    source_node = ctx.me.character
             ImpactFrom.SOURCE:
-                source_position = ctx.source.node.global_position
+                source_node = ctx.source.node
             ImpactFrom.TARGET:
-                source_position = ctx.target.node.global_position
+                source_node = ctx.target.node
+        if source_node:
+            source_position = source_node.global_position
+        else:
+            _log.warn("no source node found")
         # knock back
         impact_direction = \
             (source_position - target_char.global_position).normalized()

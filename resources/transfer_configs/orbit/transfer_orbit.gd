@@ -5,6 +5,7 @@ class_name TransferOrbit
 @export var rotations: int = 2
 
 func get_position(delta:float, from:Vector2, to:Vector2, progress:float) -> Vector2:
+    progress = ease(progress, 3)
     # calc angle
     var offset = from - to
     var start_angle = to.angle_to_point(from)

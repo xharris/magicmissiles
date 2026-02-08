@@ -5,7 +5,6 @@
 [ext_resource type="Material" uid="uid://ds720jmi5pq4r" path="res://resources/magic_configs/fire/vfx/burning_material.tres" id="2_tlog8"]
 [ext_resource type="Resource" uid="uid://c1bkx0ums6pqe" path="res://resources/transfer_configs/orbit/orbit.tres" id="2_updqr"]
 [ext_resource type="Resource" uid="uid://bl7y54gkecaxr" path="res://resources/magic_configs/fire/fire.tres" id="3_5c6lx"]
-[ext_resource type="Script" uid="uid://bo8a4oocqe1d0" path="res://entities/magic/magic_config.gd" id="3_6ksai"]
 [ext_resource type="PackedScene" uid="uid://1t5twg5h7f0r" path="res://entities/magic/magic.tscn" id="3_tlog8"]
 [ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit/on_hit.tscn" id="4_jvgcx"]
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="5_4biq1"]
@@ -37,7 +36,7 @@ replenish_after = 2.0
 capacity = 1
 
 [node name="Magic" parent="TransferContainer" unique_id=398745343 node_paths=PackedStringArray("source") instance=ExtResource("3_tlog8")]
-configs = Array[ExtResource("3_6ksai")]([ExtResource("3_5c6lx")])
+config = ExtResource("3_5c6lx")
 source = NodePath("../..")
 
 [node name="OnHit" parent="." unique_id=960088501 instance=ExtResource("4_jvgcx")]

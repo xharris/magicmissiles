@@ -1,5 +1,5 @@
 extends Node2D
-class_name Campfire
+class_name Wisp
 
 @onready var on_hit: OnHit = %OnHit
 @onready var transfer_container: TransferContainer = %TransferContainer

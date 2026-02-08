@@ -28,5 +28,5 @@ unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Vfx" unique_id=1096325324]
 unique_name_in_owner = true
-scale = Vector2(4.5, 4.5)
+scale = Vector2(4, 4)
 texture = ExtResource("1_grni7")

@@ -3,6 +3,7 @@ class_name TransferContainer
   
 signal transfer_started(transf: Transfer)
 signal added(ctx: ContextNode)
+signal replenished(ctx: ContextNode)
 
 @export var replenish_after: float = -1
 @export var capacity: int = -1
@@ -111,6 +112,7 @@ func _ready() -> void:
 func _replenish_timeout(ctx: ContextNode):
     _replenish_count -= 1
     add(ctx)
+    replenished.emit(ctx)
 
 func _transfer_done(transf: Transfer):
     _transfer_count -= 1

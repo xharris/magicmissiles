@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bukjy5tqq0wu5"]
+
+[ext_resource type="Script" uid="uid://cyxaro7nhg7t5" path="res://entities/wisp/wisp.gd" id="1_dbdho"]
+[ext_resource type="PackedScene" uid="uid://bxm55vrlk1q2q" path="res://components/vfx/vfx.tscn" id="1_feofb"]
+[ext_resource type="PackedScene" uid="uid://qy5x1nu3okwk" path="res://components/transfer_container/transfer_container.tscn" id="1_ko4bq"]
+[ext_resource type="PackedScene" uid="uid://1t5twg5h7f0r" path="res://entities/magic/magic.tscn" id="2_ix0pt"]
+[ext_resource type="Resource" uid="uid://c1bkx0ums6pqe" path="res://resources/transfer_configs/orbit/orbit.tres" id="2_xeau5"]
+[ext_resource type="Material" uid="uid://ds720jmi5pq4r" path="res://resources/magic_configs/fire/vfx/burning_material.tres" id="3_un3c7"]
+[ext_resource type="Texture2D" uid="uid://bp7atejjkmgbv" path="res://entities/magic/magic_missile_bare.png" id="4_dbdho"]
+[ext_resource type="Resource" uid="uid://kdvdwul2yqkx" path="res://resources/magic_configs/magic_missile/magic_missile.tres" id="4_iwjqv"]
+[ext_resource type="PackedScene" uid="uid://bi28wwel2bc5v" path="res://components/status_effect_ctrl/on_hit/on_hit.tscn" id="10_s7xd7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u78hh"]
+radius = 32.0
+
+[node name="Wisp" type="Node2D" unique_id=1682679037]
+script = ExtResource("1_dbdho")
+transfer_config = ExtResource("2_xeau5")
+
+[node name="Visual" type="Node2D" parent="." unique_id=1439228848]
+unique_name_in_owner = true
+material = ExtResource("3_un3c7")
+
+[node name="Body" type="Sprite2D" parent="Visual" unique_id=2089002870]
+scale = Vector2(2, 2)
+texture = ExtResource("4_dbdho")
+
+[node name="VfxTest" parent="Visual" unique_id=1834655722 instance=ExtResource("1_feofb")]
+visible = false
+
+[node name="TransferContainer" parent="." unique_id=1635864967 instance=ExtResource("1_ko4bq")]
+unique_name_in_owner = true
+replenish_after = 2.0
+capacity = 1
+
+[node name="Magic" parent="TransferContainer" unique_id=398745343 node_paths=PackedStringArray("source") instance=ExtResource("2_ix0pt")]
+config = ExtResource("4_iwjqv")
+source = NodePath("../..")
+
+[node name="OnHit" parent="." unique_id=960088501 instance=ExtResource("10_s7xd7")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnHit" unique_id=676683953]
+shape = SubResource("CircleShape2D_u78hh")

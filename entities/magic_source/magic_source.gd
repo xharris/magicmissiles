@@ -1,9 +1,8 @@
 extends Node2D
-class_name Campfire
+class_name MagicSource
 
-@onready var on_hit: OnHit = %OnHit
-@onready var transfer_container: TransferContainer = %TransferContainer
-
+@export var on_hit: OnHit
+@export var transfer_container: TransferContainer
 @export var transfer_config: TransferConfig
 
 func context() -> ContextNode:
@@ -16,13 +15,15 @@ func context() -> ContextNode:
 
 func _ready() -> void:
     context()
-    on_hit.source = self
+    if on_hit:
+        on_hit.source = self
     transfer_container.transfer_started.connect(_transfer_started)
     transfer_container.replenished.connect(_transfer_replenished)
     
 func _transfer_replenished(ctx: ContextNode):
-    NodeUtil.enable(on_hit)
+    if on_hit:
+        NodeUtil.enable(on_hit)
     
 func _transfer_started(transf: Transfer):
-    if transfer_container.nodes.is_empty():
+    if on_hit and transfer_container.nodes.is_empty():
         NodeUtil.disable(on_hit)

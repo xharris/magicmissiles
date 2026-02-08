@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cgaa7fx7uodbu"]
+
+[ext_resource type="Script" uid="uid://07myewk8s01j" path="res://entities/magic_source/magic_source.gd" id="1_3qvwm"]
+
+[node name="MagicSource" type="Node2D" unique_id=648377950]
+script = ExtResource("1_3qvwm")

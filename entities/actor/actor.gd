@@ -100,8 +100,8 @@ func update():
     if not Engine.is_editor_hint() and arms and arms.transfer_container:
         # add magic
         arms.transfer_container.clear()
-        if not config.magic_configs.is_empty():
-            var magic = Magic.create(self, config.magic_configs)
+        if config.magic_config:
+            var magic = Magic.create(self, config.magic_config)
             arms.transfer_container.add(magic.context())
         NodeUtil.reconnect_str(arms, "wand_pointing", _wand_pointing)
         NodeUtil.reconnect_str(arms.transfer_container, "added", _arms_transfer_added)
