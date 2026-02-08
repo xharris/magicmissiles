@@ -1,34 +1,27 @@
-[gd_scene format=3 uid="uid://cwxjkkk6axxs1"]
+[gd_scene format=3 uid="uid://sul6c1wxk6xv"]
 
-[ext_resource type="Script" uid="uid://fhjx1ydmkhu0" path="res://levels/forest/forest.gd" id="1_yghfa"]
 [ext_resource type="PackedScene" uid="uid://cb6bisyxfcg23" path="res://components/camera_focus/camera_focus_manager.tscn" id="6_fuqgi"]
 [ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="6_l8lv6"]
-[ext_resource type="Resource" uid="uid://c6stj4cbu1kpw" path="res://resources/actor_configs/player/player.tres" id="7_4o77n"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_40vnh"]
-normal = Vector2(1, 0)
+[sub_resource type="GDScript" id="GDScript_k08ah"]
+script/source = "extends Node2D
 
-[node name="Forest" type="Node2D" unique_id=2106917120]
-script = ExtResource("1_yghfa")
 
-[node name="CameraFocusManager" parent="." unique_id=2047982159 instance=ExtResource("6_fuqgi")]
-unique_name_in_owner = true
-limit_left = 0
-limit_top = 0
-limit_right = 3000
-limit_bottom = 2000
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+    pass # Replace with function body.
 
-[node name="Entities" type="Node2D" parent="." unique_id=1245582867]
-unique_name_in_owner = true
-y_sort_enabled = true
 
-[node name="Player" parent="Entities" unique_id=694385484 instance=ExtResource("6_l8lv6")]
-position = Vector2(640, 512)
-config = ExtResource("7_4o77n")
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+    pass
+"
 
-[node name="Walls" type="StaticBody2D" parent="Entities" unique_id=880408978]
-collision_layer = 2
-collision_mask = 0
+[node name="Forest" type="Node2D" unique_id=985618366]
+script = SubResource("GDScript_k08ah")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Walls" unique_id=80985292]
-shape = SubResource("WorldBoundaryShape2D_40vnh")
+[node name="CameraFocusManager" parent="." unique_id=256527880 instance=ExtResource("6_fuqgi")]
+
+[node name="Entities" type="Node2D" parent="." unique_id=1214703207]
+
+[node name="Actor" parent="Entities" unique_id=694385484 instance=ExtResource("6_l8lv6")]
