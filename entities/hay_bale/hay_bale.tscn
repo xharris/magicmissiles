@@ -18,7 +18,7 @@ size = Vector2(96, 64)
 radius = 16.0
 height = 96.0
 
-[node name="HayBale" type="Node2D" unique_id=823056055]
+[node name="HayBale" type="Node2D" unique_id=823056055 groups=["save_me"]]
 script = ExtResource("1_usuh4")
 
 [node name="UseContextNode" parent="." unique_id=1170868354 node_paths=PackedStringArray("hurtbox", "visual_node", "hp") instance=ExtResource("4_15oep")]
@@ -37,6 +37,7 @@ texture = SubResource("GradientTexture1D_0k25b")
 shape = SubResource("RectangleShape2D_usuh4")
 
 [node name="Hp" parent="." unique_id=740652530 instance=ExtResource("2_3rj4b")]
+unique_name_in_owner = true
 resist_types = Array[int]([0])
 
 [node name="Body" type="StaticBody2D" parent="." unique_id=2054118303]

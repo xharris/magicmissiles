@@ -15,7 +15,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_u78hh"]
 radius = 32.0
 
-[node name="Campfire" type="Node2D" unique_id=1682679037]
+[node name="Campfire" type="Node2D" unique_id=1682679037 groups=["save_me"]]
 script = ExtResource("1_8fgpv")
 transfer_config = ExtResource("2_updqr")
 

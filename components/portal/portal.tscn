@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://d1k8d8h28lv8i"]
+
+[ext_resource type="Script" uid="uid://drk4r7ajbn6tl" path="res://components/portal/portal.gd" id="1_6j5fy"]
+
+[node name="Portal" type="Area2D" unique_id=491723479]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_6j5fy")

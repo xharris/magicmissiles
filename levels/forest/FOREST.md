@@ -55,7 +55,7 @@ SEQUENCE
 
 - START player enters the forest
 
-- player sees 3 paths
+- [x] player sees 3 paths
   - [x] stack of hay bales blocking portal to another zone
   - [x] short path to farmhouse
   - [x] long path to pond
