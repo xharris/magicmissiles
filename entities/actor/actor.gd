@@ -102,7 +102,8 @@ func update():
         arms.transfer_container.clear()
         if config.magic_config:
             var magic = Magic.create(self, config.magic_config)
-            arms.transfer_container.add(magic.context())
+            var ctx = ContextNode.use(magic)
+            arms.transfer_container.add(ctx)
         NodeUtil.reconnect_str(arms, "wand_pointing", _wand_pointing)
         NodeUtil.reconnect_str(arms.transfer_container, "added", _arms_transfer_added)
         NodeUtil.reconnect_str(arms.transfer_container, "transfer_started", _arms_transfer_started)

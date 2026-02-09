@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="StatusTick" format=3 uid="uid://dqxa14xhfws2h"]
 
 [ext_resource type="Script" uid="uid://nsiup7qrd3ha" path="res://components/status_effect_ctrl/status_effect.gd" id="1_x80eo"]
-[ext_resource type="Resource" uid="uid://q4h3tiyid5wx" path="res://resources/status_effects/damage/damage_low.tres" id="2_18xe2"]
+[ext_resource type="Resource" uid="uid://psv26rla4ryj" path="res://resources/status_effects/damage/fire_dmg_low.tres" id="2_x80eo"]
 [ext_resource type="Resource" uid="uid://4h17qeai00yf" path="res://resources/status_effects/knockback/knockback_low_random.tres" id="3_amuye"]
 [ext_resource type="Script" uid="uid://bvpe6bch0hn5b" path="res://resources/status_effects/tick/tick.gd" id="4_svgs1"]
 
 [resource]
 script = ExtResource("4_svgs1")
-on_tick = Array[ExtResource("1_x80eo")]([ExtResource("2_18xe2"), ExtResource("3_amuye")])
+on_tick = Array[ExtResource("1_x80eo")]([ExtResource("2_x80eo"), ExtResource("3_amuye")])
 duration = 1.0
 metadata/_custom_type_script = "uid://bvpe6bch0hn5b"

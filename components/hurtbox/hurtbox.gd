@@ -25,8 +25,8 @@ func _on_body_entered(body: Node2D):
     if not _body_entered.has(body):
         _body_entered.append(body)
         
-        var on_hit: OnHit = body
-        if on_hit:
+        var on_hit = body
+        if on_hit is OnHit:
             if not on_hit.source:
                 _log.warn("%s is missing source" % [on_hit.get_path()])
             elif not on_hit.source.is_ancestor_of(self):

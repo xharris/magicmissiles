@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bimvmlxehn1x4"]
+
+[ext_resource type="Script" uid="uid://d3wer6msygyly" path="res://components/context_node/use_context_node.gd" id="1_xm02l"]
+
+[node name="UseContextNode" type="Node2D" unique_id=1170868354]
+script = ExtResource("1_xm02l")

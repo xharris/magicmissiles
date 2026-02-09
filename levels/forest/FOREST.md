@@ -56,9 +56,9 @@ SEQUENCE
 - START player enters the forest
 
 - player sees 3 paths
-  - stack of hay bales blocking portal to another zone
-  - short path to farmhouse
-  - long path to pond
+  - [x] stack of hay bales blocking portal to another zone
+  - [x] short path to farmhouse
+  - [x] long path to pond
 
 ## Portal
 

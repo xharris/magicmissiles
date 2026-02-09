@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://ck475yo8qvscu"]
+
+[ext_resource type="PackedScene" uid="uid://blpscog2fybow" path="res://components/hurtbox/hurtbox.tscn" id="1_j85u1"]
+[ext_resource type="Script" uid="uid://cmh1csanehx8c" path="res://entities/hay_bale/hay_bale.gd" id="1_usuh4"]
+[ext_resource type="PackedScene" uid="uid://u1ixt652jdjr" path="res://components/hp/hp.tscn" id="2_3rj4b"]
+[ext_resource type="PackedScene" uid="uid://bimvmlxehn1x4" path="res://components/context_node/use_context_node.tscn" id="4_15oep"]
+
+[sub_resource type="Gradient" id="Gradient_1swpq"]
+colors = PackedColorArray(0.9843137, 0.7529412, 0.1764706, 1, 0.99215686, 0.84705883, 0.20784314, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0k25b"]
+gradient = SubResource("Gradient_1swpq")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usuh4"]
+size = Vector2(96, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_usuh4"]
+radius = 16.0
+height = 96.0
+
+[node name="HayBale" type="Node2D" unique_id=823056055]
+script = ExtResource("1_usuh4")
+
+[node name="UseContextNode" parent="." unique_id=1170868354 node_paths=PackedStringArray("hurtbox", "visual_node", "hp") instance=ExtResource("4_15oep")]
+hurtbox = NodePath("../Hurtbox")
+visual_node = NodePath("../Sprite2D")
+hp = NodePath("../Hp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=576822965]
+position = Vector2(1.9073486e-06, -32)
+scale = Vector2(0.375, 64)
+texture = SubResource("GradientTexture1D_0k25b")
+
+[node name="Hurtbox" parent="." unique_id=1694905098 instance=ExtResource("1_j85u1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1821875147]
+shape = SubResource("RectangleShape2D_usuh4")
+
+[node name="Hp" parent="." unique_id=740652530 instance=ExtResource("2_3rj4b")]
+resist_types = Array[int]([0])
+
+[node name="Body" type="StaticBody2D" parent="." unique_id=2054118303]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" unique_id=716361343]
+position = Vector2(0, 16)
+rotation = 1.5707941
+shape = SubResource("CapsuleShape2D_usuh4")

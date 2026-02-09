@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EffectDamage" format=3 uid="uid://psv26rla4ryj"]
+
+[ext_resource type="Curve" uid="uid://dxco27j8gh02a" path="res://resources/curves/damage_curve.tres" id="1_p2388"]
+[ext_resource type="Script" uid="uid://gqhdeakod8xn" path="res://resources/status_effects/damage/damage.gd" id="2_q4oq1"]
+
+[resource]
+script = ExtResource("2_q4oq1")
+type = 1
+metadata/_custom_type_script = "uid://gqhdeakod8xn"

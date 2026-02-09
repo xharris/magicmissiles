@@ -1,18 +1,21 @@
 extends Node2D
 class_name Hp
 
+enum DamageType {NORMAL, BURNING, SHOCKING} # ETC
+
 signal death(source: Node2D)
 signal damaged(amount: int)
 
-var max: int = 5
-var current: int = 5
+@export var resist_types: Array[DamageType]
+@export var current: int = 5
+
 var invincible: bool = false
 
 var _log = Logs.new("hp")#, Logs.Level.DEBUG)
 
 ## Returns true if damage was successful
-func take_damage(amount: int, source: Node2D) -> bool:
-    if invincible or current <= 0:
+func take_damage(amount: int, source: Node2D, type:DamageType = DamageType.NORMAL) -> bool:
+    if invincible or current <= 0 or resist_types.has(type):
         return false
     if current > 0 and amount > 0:
         current -= amount
