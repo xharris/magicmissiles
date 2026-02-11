@@ -6,3 +6,5 @@
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_6j5fy")
+id = null
+other = 1

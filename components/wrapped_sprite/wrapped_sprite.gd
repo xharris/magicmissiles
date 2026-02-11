@@ -5,6 +5,7 @@ class_name WrappedSprite
 @onready var texture_node: Sprite2D = %Sprite2D
 @onready var parallax: Parallax2D = %Parallax2D
 
+@export var camera: Camera2D
 @export var texture: Texture2D:
     set(v):
         texture = v
@@ -22,3 +23,4 @@ func _ready() -> void:
 func _process(delta: float) -> void:
     if Engine.is_editor_hint():
         update()
+    offset = -camera.get_screen_center_position()

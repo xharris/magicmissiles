@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://tix6ciymrll8"]
+
+[ext_resource type="Script" uid="uid://cjjbwjp6mvbd8" path="res://components/entities/entities.gd" id="1_55ov2"]
+
+[node name="Entities" type="Node2D" unique_id=2129014521]
+y_sort_enabled = true
+script = ExtResource("1_55ov2")

@@ -14,7 +14,7 @@ static var global_level = Level.INFO:
         return global_level
 static var _prev_msg: String
 
-@export var ignore_repeats = true
+@export var ignore_repeats = false
 var _level = Level.NONE
 var _prefix: String = "":
     set(v):

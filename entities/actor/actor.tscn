@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://dunctek71rvt7" path="res://resources/status_effects/knockback/knockback_mid_target_from_src.tres" id="14_ltbwc"]
 [ext_resource type="Resource" uid="uid://m0bu8gbxv6ff" path="res://resources/status_effects/knockback/knockback_mid_src_from_target.tres" id="16_bash0"]
 
-[node name="Actor" type="CharacterBody2D" unique_id=694385484 groups=["save_me"]]
+[node name="Actor" type="CharacterBody2D" unique_id=694385484]
 collision_mask = 3
 script = ExtResource("1_oawin")
 

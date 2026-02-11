@@ -1,6 +1,8 @@
 extends Node
 class_name NodeUtil
 
+static var _log = Logs.new("node_util")
+
 static func reconnect(sig: Signal, method: Callable):
     if not sig.is_connected(method):
         sig.connect(method)
@@ -36,6 +38,9 @@ static func clear_children(node: Node):
         node.remove_child(child)
 
 static func reparent2(node: Node, parent: Node):
+    if not parent:
+        _log.warn("parent is null, child: %s" % [node])
+        return
     if node.get_parent():
         node.reparent(parent)
     else:

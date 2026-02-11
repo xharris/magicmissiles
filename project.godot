@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="magicmissiles"
-run/main_scene="uid://sul6c1wxk6xv"
+run/main_scene="uid://ialrkbkpyvu5"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
@@ -25,7 +25,6 @@ Events="*res://scripts/events.gd"
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 Death="*uid://7he50jmuuat1"
-Save="*uid://brkwxuypfaoeh"
 
 [debug]
 
@@ -49,6 +48,7 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 patrol_area=""
 player=""
 save_me=""
+zone_area=""
 
 [input]
 
