@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
     else:
         aim_position = aim_position.lerp(get_global_mouse_position(), delta * 10)
     aim_direction = (aim_position - global_position).normalized()
+    
     if _secondary_pressed:
         if _secondary_time >= secondary_hold_time:
             _secondary_time = 0

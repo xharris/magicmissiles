@@ -104,10 +104,12 @@ func _body_entered(body: Node2D) -> void:
         return
         
     var portal_offset = other_portal.global_position + other_portal._move_offset
+    #var scene_offset = global_position - other_portal.global_position + _move_offset
     _log.debug("use portal offset: %v" % [portal_offset])
 
     next_scene.get_viewport().get_camera_2d().position_smoothing_enabled = false
     body.global_position = portal_offset
+    #next_scene.global_position = scene_offset
     await next_scene.get_tree().process_frame
     await next_scene.get_tree().physics_frame
     next_scene.get_viewport().get_camera_2d().position_smoothing_enabled = true
