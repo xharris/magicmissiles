@@ -11,6 +11,8 @@ static func reconnect_str(node: Object, sig_name: String, method: Callable):
     if node.has_signal(sig_name) and not node.is_connected(sig_name, method):
         node.connect(sig_name, method)
         
+
+        
 static func disable(node: Node):
     node.process_mode = Node.PROCESS_MODE_DISABLED
     if node is CanvasItem:

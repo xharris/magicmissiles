@@ -53,7 +53,8 @@ QUESTIONS
 
 SEQUENCE
 
-- START player enters the forest
+- START
+  - player sitting by a tree
 
 - [x] player sees 3 paths
   - [x] stack of hay bales blocking portal to another zone
@@ -78,7 +79,7 @@ SEQUENCE
 
 ## Farmhouse
 
-- player enters farmhouse
+- [x] player enters farmhouse
 - enemies spread around farmhouse
 - there is an area of farmhouse not populated by enemies where player can move around a part of the perimeter and see other parts of first floor
 - player sees area with wisp
@@ -96,6 +97,8 @@ SEQUENCE
 - wisp moves to wand tip and gives player magic missile ability
 - magic missile can destroy hay bales
 - player then kills enemies on the way out of farmhouse
+
+## Farm
 
 - player leaves farmhouse and kills all enemies in the farm land
 - farmer asks if player can help others in the forest (add other ppl later like fisherman)

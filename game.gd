@@ -7,7 +7,8 @@ static var current: Game
 @onready var camera_manager: CameraFocusManager = %CameraFocusManager
 @onready var player: Actor = %Player
 
-var _log = Logs.new("game")#, Logs.Level.DEBUG)
+var _log = Logs.new("game", Logs.Level.DEBUG)
+var _loaded_scenes: Dictionary[String, Node2D] = {}
 
 func _init() -> void:
     current = self
@@ -17,13 +18,20 @@ func _ready() -> void:
     var entities = Entities.find_in(current_area)
     if entities:
         player.reparent(entities)
+    _loaded_scenes.set(current_area.scene_file_path, current_area)
 
-func move_to_scene(scene: PackedScene, player: Node2D) -> Node2D:
+func move_to_scene(scene: PackedScene, body: Node2D) -> Node2D:
     if not scene:
         _log.error(true, "move_to_scene called with null scene")
         return current_area
     # load scene
-    var area = scene.instantiate()
+    var area = _loaded_scenes.get(scene.resource_path)
+    if not area:
+        _log.debug("load new scene: %s" % [scene.resource_path])
+        area = scene.instantiate()
+    else:
+        _log.debug("already loaded scene: %s" % [scene.resource_path])
+    _loaded_scenes.set(scene.resource_path, area)
     if not area:
         _log.error(true, "failed to instantiate scene %s" % [scene.resource_path])
         return current_area
@@ -33,11 +41,11 @@ func move_to_scene(scene: PackedScene, player: Node2D) -> Node2D:
     # add player to new scene's entities node
     var entities = Entities.find_in(area)
     if entities:
-        player.reparent.call_deferred(entities)
+        body.reparent.call_deferred(entities)
     else:
         _log.warn("missing Entities node in new area %s" % [area.name])
-    # hide old area
+    # remove old area
     if current_area:
-        NodeUtil.disable.call_deferred(current_area)
+        remove_child(current_area)
     current_area = area
     return area

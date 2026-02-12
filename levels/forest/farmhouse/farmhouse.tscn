@@ -1,25 +1,26 @@
-[gd_scene format=3 uid="uid://cyc25nlvytd6o"]
+[gd_scene format=4 uid="uid://cyc25nlvytd6o"]
 
 [ext_resource type="TileSet" uid="uid://ckb8it4co1egq" path="res://levels/forest/forest_tileset.tres" id="1_o7k8f"]
 [ext_resource type="PackedScene" uid="uid://tix6ciymrll8" path="res://components/entities/entities.tscn" id="1_wjjmh"]
+[ext_resource type="Texture2D" uid="uid://b617ne4f8myof" path="res://levels/forest/farmhouse/stairs_up.png" id="2_gh3v2"]
 [ext_resource type="PackedScene" uid="uid://d1k8d8h28lv8i" path="res://components/portal/portal.tscn" id="3_xja5t"]
 [ext_resource type="PackedScene" uid="uid://ck475yo8qvscu" path="res://entities/hay_bale/hay_bale.tscn" id="4_r4ax2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xja5t"]
-size = Vector2(74, 58)
 
 [node name="Farmhouse" type="Node2D" unique_id=164562324 groups=["zone_area"]]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1869628024]
+tile_map_data = PackedByteArray("AAD+//3/AAAEAAAAAAD+//7/AAAEAAAAAAD+////AAAEAAAAAAD+/wAAAAAEAAAAAAD+/wEAAAAEAAAAAAD+/wIAAAAEAAAAAAD///3/AAADAAAAAAD///7/AAADAAAAAAD/////AAADAAAAAAD//wAAAAADAAAAAAD//wEAAAADAAAAAAD//wIAAAADAAAAAAAAAP3/AAADAAAAAAAAAP7/AAADAAAAAAAAAP//AAADAAAAAAAAAAAAAAADAAAAAAAAAAEAAAADAAAAAAAAAAIAAAADAAAAAAABAP3/AAAEAAAAAAABAP7/AAAEAAAAAAABAP//AAADAAAAAAABAAAAAAADAAAAAAABAAEAAAAEAAAAAAABAAIAAAAEAAAAAAACAP3/AAAEAAAAAAACAP7/AAAEAAAAAAACAP//AAADAAAAAAACAAAAAAADAAAAAAACAAEAAAAEAAAAAAACAAIAAAAEAAAAAAADAP3/AAAEAAAAAAADAP7/AAAEAAAAAAADAP//AAADAAAAAAADAAAAAAADAAAAAAADAAEAAAAEAAAAAAADAAIAAAAEAAAAAAAEAP3/AAAEAAAAAAAEAP7/AAAEAAAAAAAEAP//AAADAAAAAAAEAAAAAAADAAAAAAAEAAEAAAAEAAAAAAAEAAIAAAAEAAAAAAAFAP3/AAAEAAAAAAAFAP7/AAAEAAAAAAAFAP//AAADAAAAAAAFAAAAAAADAAAAAAAFAAEAAAAEAAAAAAAFAAIAAAAEAAAAAAAGAP3/AAAEAAAAAAAGAP7/AAAEAAAAAAAGAP//AAADAAAAAAAGAAAAAAADAAAAAAAGAAEAAAAEAAAAAAAGAAIAAAAEAAAAAAAHAP3/AAAEAAAAAAAHAP7/AAAEAAAAAAAHAP//AAADAAAAAAAHAAAAAAADAAAAAAAHAAEAAAAEAAAAAAAHAAIAAAAEAAAAAAAIAP3/AAAEAAAAAAAIAP7/AAAEAAAAAAAIAP//AAADAAAAAAAIAAAAAAADAAAAAAAIAAEAAAAEAAAAAAAIAAIAAAAEAAAAAAAJAP3/AAAEAAAAAAAJAP7/AAAEAAAAAAAJAP//AAADAAAAAAAJAAAAAAADAAAAAAAJAAEAAAAEAAAAAAAJAAIAAAAEAAAAAAAKAP3/AAAEAAAAAAAKAP7/AAAEAAAAAAAKAP//AAADAAAAAAAKAAAAAAADAAAAAAAKAAEAAAAEAAAAAAAKAAIAAAAEAAAAAAALAP3/AAAEAAAAAAALAP7/AAAEAAAAAAALAP//AAADAAAAAAALAAAAAAADAAAAAAALAAEAAAAEAAAAAAALAAIAAAAEAAAAAAAMAP3/AAAEAAAAAAAMAP7/AAAEAAAAAAAMAP//AAAEAAAAAAAMAAAAAAAEAAAAAAAMAAEAAAAEAAAAAAAMAAIAAAAEAAAAAAD//wMAAAADAAAAAAAAAAMAAAADAAAAAAD//wQAAAADAAAAAAAAAAQAAAADAAAAAAA=")
 tile_set = ExtResource("1_o7k8f")
 
+[node name="StairsUp" type="Sprite2D" parent="." unique_id=799334233]
+position = Vector2(0, -256)
+texture = ExtResource("2_gh3v2")
+
+[node name="Portal" parent="." unique_id=491723479 instance=ExtResource("3_xja5t")]
+position = Vector2(0, 352)
+move_offset = Vector2i(0, -1)
+
 [node name="Entities" parent="." unique_id=2129014521 instance=ExtResource("1_wjjmh")]
-
-[node name="Portal" parent="Entities" unique_id=491723479 instance=ExtResource("3_xja5t")]
-id = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Portal" unique_id=684908562]
-shape = SubResource("RectangleShape2D_xja5t")
 
 [node name="HayBale" parent="Entities" unique_id=823056055 instance=ExtResource("4_r4ax2")]
 position = Vector2(0, -80)

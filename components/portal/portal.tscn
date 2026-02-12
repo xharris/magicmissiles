@@ -2,9 +2,18 @@
 
 [ext_resource type="Script" uid="uid://drk4r7ajbn6tl" path="res://components/portal/portal.gd" id="1_6j5fy"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6j5fy"]
+size = Vector2(74, 58)
+
 [node name="Portal" type="Area2D" unique_id=491723479]
+process_mode = 3
 collision_layer = 0
 monitorable = false
 script = ExtResource("1_6j5fy")
-id = null
-other = 1
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2021826358]
+unique_name_in_owner = true
+gizmo_extents = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=342233193]
+shape = SubResource("RectangleShape2D_6j5fy")
