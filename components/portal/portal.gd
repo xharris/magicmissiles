@@ -115,3 +115,4 @@ func _body_entered(body: Node2D) -> void:
     next_scene.get_viewport().get_camera_2d().position_smoothing_enabled = true
 
     locked.erase(body)
+    finished_using.emit(body)

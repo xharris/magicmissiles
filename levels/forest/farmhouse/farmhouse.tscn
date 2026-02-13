@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b617ne4f8myof" path="res://levels/forest/farmhouse/stairs_up.png" id="2_gh3v2"]
 [ext_resource type="PackedScene" uid="uid://d1k8d8h28lv8i" path="res://components/portal/portal.tscn" id="3_xja5t"]
 [ext_resource type="PackedScene" uid="uid://ck475yo8qvscu" path="res://entities/hay_bale/hay_bale.tscn" id="4_r4ax2"]
+[ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="6_6hn3o"]
+[ext_resource type="Resource" uid="uid://cquh7rme0ac0e" path="res://resources/actor_configs/slime/slime.tres" id="7_pjc3s"]
 
 [node name="Farmhouse" type="Node2D" unique_id=164562324 groups=["zone_area"]]
 
@@ -23,4 +25,37 @@ move_offset = Vector2i(0, -1)
 [node name="Entities" parent="." unique_id=2129014521 instance=ExtResource("1_wjjmh")]
 
 [node name="HayBale" parent="Entities" unique_id=823056055 instance=ExtResource("4_r4ax2")]
-position = Vector2(0, -80)
+position = Vector2(128, -64)
+
+[node name="HayBale2" parent="Entities" unique_id=2070619820 instance=ExtResource("4_r4ax2")]
+position = Vector2(192, -32)
+
+[node name="HayBale3" parent="Entities" unique_id=445023849 instance=ExtResource("4_r4ax2")]
+position = Vector2(256, -64)
+
+[node name="HayBale4" parent="Entities" unique_id=720578625 instance=ExtResource("4_r4ax2")]
+position = Vector2(128, 0)
+
+[node name="HayBale5" parent="Entities" unique_id=1122028001 instance=ExtResource("4_r4ax2")]
+position = Vector2(256, 0)
+
+[node name="HayBale6" parent="Entities" unique_id=1929038803 instance=ExtResource("4_r4ax2")]
+position = Vector2(192, 32)
+
+[node name="HayBale7" parent="Entities" unique_id=1390214118 instance=ExtResource("4_r4ax2")]
+position = Vector2(128, 64)
+
+[node name="HayBale8" parent="Entities" unique_id=1291288009 instance=ExtResource("4_r4ax2")]
+position = Vector2(256, 64)
+
+[node name="Slime" parent="Entities" unique_id=694385484 instance=ExtResource("6_6hn3o")]
+position = Vector2(592, 0)
+config = ExtResource("7_pjc3s")
+
+[node name="Slime2" parent="Entities" unique_id=643062438 instance=ExtResource("6_6hn3o")]
+position = Vector2(512, -48)
+config = ExtResource("7_pjc3s")
+
+[node name="Slime3" parent="Entities" unique_id=387605342 instance=ExtResource("6_6hn3o")]
+position = Vector2(512, 32)
+config = ExtResource("7_pjc3s")

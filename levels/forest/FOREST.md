@@ -80,8 +80,8 @@ SEQUENCE
 ## Farmhouse
 
 - [x] player enters farmhouse
-- enemies spread around farmhouse
-- there is an area of farmhouse not populated by enemies where player can move around a part of the perimeter and see other parts of first floor
+- [x] enemies spread around farmhouse
+- [x] there is an area of farmhouse not populated by enemies where player can move around a part of the perimeter and see other parts of first floor
 - player sees area with wisp
 - wisp is blocked by hay bales and farm machinery
 

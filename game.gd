@@ -3,7 +3,7 @@ class_name Game
 
 static var current: Game
 
-@onready var current_area: Node2D = %Forest
+@onready var current_area: Node2D = %Farmhouse
 @onready var camera_manager: CameraFocusManager = %CameraFocusManager
 @onready var player: Actor = %Player
 

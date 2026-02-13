@@ -28,11 +28,19 @@ func update():
         else:
             NodeUtil.disable(shape)
 
-func can_see(node: Node2D) -> bool:
+func has_sensed(node: Node2D) -> bool:
     for s in sensed:
         if s == node or s.is_ancestor_of(node):
             return true
     return false
+
+func has_line_of_sight(node: Node2D) -> bool:
+    var space_state = get_world_2d().direct_space_state
+    # use global coordinates, not local to node
+    var query = PhysicsRayQueryParameters2D.create(global_position, node.global_position)
+    var result = space_state.intersect_ray(query)
+    var collider: Node2D = result.get("collider")
+    return not collider or node.is_ancestor_of(collider) or node.get_instance_id() == collider.get_instance_id()
 
 func _ready() -> void:
     range.body_entered.connect(_on_body_entered)
@@ -52,7 +60,10 @@ func _on_area_entered(area: Area2D):
     _on_body_entered(area)
     
 func _on_body_entered(body: Node2D):
-    var parent = get_parent()
-    if not sensed.has(body) and parent != body and not parent.is_ancestor_of(body) and not body.is_ancestor_of(self):
+    var parent = get_parent()    
+    if not sensed.has(body) and \
+        parent != body and \
+        not parent.is_ancestor_of(body) and \
+        not body.is_ancestor_of(self):
         _log.debug("started sensing: %s" % [body])
         sensed.append(body)

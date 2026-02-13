@@ -24,6 +24,8 @@ var duration_curve: Curve = preload("res://resources/curves/status_effect_durati
 @export var repeat_behavior: RepeatBehavior
 ## Should [code]remove[/code] be called on previous instance when refreshing the effect?
 @export var remove_on_refresh: bool
+## Can hit allies (determined via Faction)
+@export var friendly_fire: bool
 
 func get_target(ctx: StatusEffectContext) -> ContextNode:
     match target:

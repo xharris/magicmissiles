@@ -20,7 +20,7 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
     # sort enemies distance
     enemies = enemies.filter(func(s:Node2D):
         var s_ctx = ContextNode.use(s)
-        return s_ctx and s_ctx.faction and ctx.faction.is_hostile_to(s_ctx.faction))
+        return s_ctx and s_ctx.faction and ctx.faction.is_hostile_to(s_ctx.faction) and ctx.sense.has_line_of_sight(s))
     # no enemies
     if enemies.is_empty():
         blackboard.erase_value(position_key)

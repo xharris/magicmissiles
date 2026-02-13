@@ -47,6 +47,7 @@ func context() -> ContextNode:
     ctx.actor_ctrl = control
     ctx.sense = sense
     ctx.on_hit = on_hit
+    on_hit.source = self
     ctx.visual_node = %Visual
     return ctx
 
@@ -90,7 +91,7 @@ func update():
     if on_hit:
         _update_shapes(on_hit, config.on_hit, Color.html("f443366b"))
         on_hit.set("status_effects", config.on_hit_status_effects)
-        on_hit.set("source", context())
+        on_hit.set("source", self)
     # arms
     if arms:
         if config.arms:
@@ -152,6 +153,15 @@ func _on_death(_src:Node2D):
         queue_free()
     
 func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
+    ctx.target = ContextNode.use(self)
+    # check faction
+    if not effect.friendly_fire:
+        if not ctx.target.faction:
+            _log.warn("target %s missing faction" % [ctx.target])
+        if not ctx.source.faction:
+            _log.warn("source %s missing faction" % [ctx.source])
+        if not ctx.source.faction.is_ally_to(ctx.target.faction):
+            return
     # apply effect
     status_effect_ctrl.apply_effect(context(), effect, ctx)
 
