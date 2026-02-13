@@ -7,7 +7,7 @@ static func create(source: Node, config: MagicConfig) -> Magic:
     var me = SCENE.instantiate() as Magic
     me.config = config
     me.source = source
-    Events.entity_created.emit(me)
+    Events.add_entity.emit(me)
     return me
 
 @onready var on_hit: OnHit = %OnHit
@@ -68,7 +68,7 @@ func _on_hit(body: Node2D):
     _log.debug("hit %s" % [body])
     # remove if non-piercing (deferred so hurtbox can process the hit first)
     if not config.piercing:
-        queue_free()
+        NodeUtil.remove.call_deferred(self, true)
 
 func _process(delta: float) -> void:
     move_and_collide(velocity * delta)

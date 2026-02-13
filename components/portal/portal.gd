@@ -27,7 +27,7 @@ signal finished_using(body: Node2D)
         move_offset = v
         update()
 
-var _log = Logs.new("portal", Logs.Level.DEBUG)
+var _log = Logs.new("portal")#, Logs.Level.DEBUG)
 ## where to position the player when the come through the portal
 var _move_offset: Vector2:
     get:

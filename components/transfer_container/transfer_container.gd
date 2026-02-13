@@ -1,5 +1,10 @@
 extends Node2D
 class_name TransferContainer
+
+static func remove_from_all(node: Node2D):
+    for t: TransferContainer in node.get_tree().get_nodes_in_group(Groups.TRANSFER_CONTAINER):
+        var ctx = ContextNode.use(t)
+        t.remove(ctx)
   
 signal transfer_started(transf: Transfer)
 signal added(ctx: ContextNode)
@@ -54,6 +59,8 @@ func add(ctx: ContextNode) -> bool:
     ctx.node.global_position = global_position
     ctx.node.show()
     _nodes.append(ctx)
+    # replenish
+    ctx.node.tree_exiting.connect(_node_tree_exiting.bind(ctx), CONNECT_ONE_SHOT)
     added.emit(ctx)
     return true
 
@@ -62,11 +69,10 @@ func remove(ctx: ContextNode, new_parent: Node2D = null):
     if not has(ctx):
         return
     _log.debug("remove %s" % [ctx])
+    NodeUtil.remove(ctx.node, true)
     if new_parent:
-        ctx.node.reparent(new_parent)
-    else:
-        remove_child(ctx.node)
-    _replenish_list.append(ctx)
+        new_parent.add_child.call_deferred(ctx.node)
+    _replenish(ctx)
     _nodes.erase(ctx)
 
 func transfer(to: TransferContainer, config: TransferConfig):
@@ -84,13 +90,16 @@ func transfer(to: TransferContainer, config: TransferConfig):
     remove(ctx)
     # create transfer
     _log.debug("transfer %s to %s" % [ctx, to.get_path()])
-    _replenish_list.append(ctx)
     var transf = Transfer.create(self, to, config, ctx)
     _transfer_count += 1
     to._transfer_count += 1
     to.transfer_started.emit(transf)
     transfer_started.emit(transf)
     transf.done.connect(_transfer_done.bind(transf))
+
+func _replenish(ctx: ContextNode):
+    _log.debug("replenish %s" % [ctx])
+    _replenish_list.append(ctx)
 
 func _process(delta: float) -> void:
     # create copy if it gets replenished
@@ -100,21 +109,27 @@ func _process(delta: float) -> void:
         timer.wait_time = replenish_after
         var dupe = _replenish_list.pop_front().duplicate(true)
         if not dupe:
+            _log.warn("dupe is null")
             return
-        timer.timeout.connect(_replenish_timeout.bind(dupe), CONNECT_ONE_SHOT)
+        timer.timeout.connect(_replenish_timeout.bind(dupe, timer), CONNECT_ONE_SHOT)
         _replenish_count += 1
         timer.autostart = true
         add_child(timer)
 
 func _ready() -> void:
+    add_to_group(Groups.TRANSFER_CONTAINER)
     for child in get_children():
         var ctx = ContextNode.use(child)
         add(ctx)
 
-func _replenish_timeout(ctx: ContextNode):
+func _node_tree_exiting(ctx: ContextNode):
+    remove(ctx)
+
+func _replenish_timeout(ctx: ContextNode, timer: Timer):
     _replenish_count -= 1
     add(ctx)
     replenished.emit(ctx)
+    NodeUtil.remove(timer)
 
 func _transfer_done(transf: Transfer):
     _transfer_count -= 1

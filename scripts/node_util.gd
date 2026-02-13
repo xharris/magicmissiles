@@ -30,10 +30,16 @@ static func is_enabled(node: Node):
         return node.visible
     return true
 
-static func remove(node: Node):
+static func remove(node: Node, skip_free:bool = false):
     var parent = node.get_parent()
-    parent.remove_child(node)
-    node.queue_free()
+    if parent:
+        _remove_child_deferred.call_deferred(parent, node)
+    if not skip_free:
+        node.queue_free()
+
+static func _remove_child_deferred(parent:Node, child:Node):
+    if child.get_parent() == parent:
+        parent.remove_child(child)
 
 static func clear_children(node: Node):
     for child in node.get_children():

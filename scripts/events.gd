@@ -1,3 +1,3 @@
 extends Node
 
-signal entity_created(entity: Node2D)
+signal add_entity(entity: Node2D)

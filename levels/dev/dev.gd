@@ -13,7 +13,6 @@ const color = Color(0.8, 0.8, 0.8, 0.1)
 var _log = Logs.new("dev", Logs.Level.DEBUG)
 
 func _ready() -> void:
-    Events.entity_created.connect(_on_entity_created)
     spawn_cam_focus.animation_finished.connect(_on_spawn_cam_animation_finished)
     player.hp.death.connect(_on_death.bind(player))
 
@@ -28,9 +27,6 @@ func _on_death(source: Node2D, me: Actor):
 func _on_spawn_cam_animation_finished():
     player.control.can_move = true
     player.control.can_aim = true
-    
-func _on_entity_created(entity: Node2D):
-    add_child(entity)
 
 func _process(delta):
     queue_redraw()

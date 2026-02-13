@@ -158,9 +158,9 @@ func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
     if not effect.friendly_fire:
         if not ctx.target.faction:
             _log.warn("target %s missing faction" % [ctx.target.node])
-        if not ctx.source.faction:
+        elif not ctx.source.faction:
             _log.warn("source %s missing faction" % [ctx.source.node])
-        if ctx.source.faction.is_ally_to(ctx.target.faction):
+        elif ctx.source.faction.is_ally_to(ctx.target.faction):
             return
     # apply effect
     status_effect_ctrl.apply_effect(context(), effect, ctx)
@@ -194,10 +194,8 @@ func _on_primary():
         return
     # move a node out of the container
     var ctx: ContextNode = nodes.pick_random()
-    var parent = get_parent()
-    if not parent is Node2D:
-        return
-    arms.transfer_container.remove(ctx, get_parent())
+    Events.add_entity.emit(ctx.node)
+    arms.transfer_container.remove(ctx)
     # activate magic effects/hitbox
     var node = ctx.node
     ContextNode.use(node, self)

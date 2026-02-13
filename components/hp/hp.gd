@@ -11,7 +11,7 @@ signal damaged(amount: int)
 
 var invincible: bool = false
 
-var _log = Logs.new("hp")#, Logs.Level.DEBUG)
+var _log = Logs.new("hp", Logs.Level.DEBUG)
 
 ## Returns true if damage was successful
 func take_damage(amount: int, source: Node2D, type:DamageType = DamageType.NORMAL) -> bool:

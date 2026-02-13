@@ -16,4 +16,4 @@ func remove(ctx: StatusEffectContext):
         NodeUtil.disable(ctx_target.visual_node)
     if ctx_target.vfx:
         await ctx_target.vfx.disable()
-    NodeUtil.remove(ctx_target.node)
+    NodeUtil.remove(ctx_target.node, true)
