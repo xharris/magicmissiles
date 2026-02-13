@@ -14,4 +14,7 @@ func _ready() -> void:
     Events.entity_created.connect(_entity_created)
 
 func _entity_created(node: Node2D):
+    if not is_inside_tree():
+        return
     _log.debug("add %s to %s" % [node.name, get_path()])
+    add_child(node)

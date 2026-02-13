@@ -12,7 +12,7 @@ var nodes: Array[ContextNode]:
     set(v):
         _nodes.assign(v)
     get:
-        return _nodes.filter(func(n:ContextNode): return is_instance_valid(n.node))
+        return _nodes.filter(func(n:ContextNode): return n and is_instance_valid(n.node))
 var is_full:
     get:
         return capacity > -1 and (nodes.size() + _replenish_count + _transfer_count) >= capacity
@@ -99,6 +99,8 @@ func _process(delta: float) -> void:
         var timer = Timer.new()
         timer.wait_time = replenish_after
         var dupe = _replenish_list.pop_front().duplicate(true)
+        if not dupe:
+            return
         timer.timeout.connect(_replenish_timeout.bind(dupe), CONNECT_ONE_SHOT)
         _replenish_count += 1
         timer.autostart = true

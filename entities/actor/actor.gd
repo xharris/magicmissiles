@@ -157,10 +157,10 @@ func _on_apply_status_effect(effect: StatusEffect, ctx: StatusEffectContext):
     # check faction
     if not effect.friendly_fire:
         if not ctx.target.faction:
-            _log.warn("target %s missing faction" % [ctx.target])
+            _log.warn("target %s missing faction" % [ctx.target.node])
         if not ctx.source.faction:
-            _log.warn("source %s missing faction" % [ctx.source])
-        if not ctx.source.faction.is_ally_to(ctx.target.faction):
+            _log.warn("source %s missing faction" % [ctx.source.node])
+        if ctx.source.faction.is_ally_to(ctx.target.faction):
             return
     # apply effect
     status_effect_ctrl.apply_effect(context(), effect, ctx)
@@ -175,10 +175,10 @@ func _wand_pointing(ctx: ContextNode):
 
 ## something transfered to wand tip
 func _arms_transfer_added(ctx: ContextNode):
+    ctx.source_node = self
     var node = ctx.node
     if node is Magic:
         node.on_hit.disabled = true
-        node.source = self
 
 func _arms_transfer_started(transf: Transfer):
     var node = transf.ctx.node
@@ -200,6 +200,7 @@ func _on_primary():
     arms.transfer_container.remove(ctx, get_parent())
     # activate magic effects/hitbox
     var node = ctx.node
+    ContextNode.use(node, self)
     if node is Magic:
         node.on_hit.disabled = false
         node.activate()

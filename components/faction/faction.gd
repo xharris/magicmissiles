@@ -16,4 +16,4 @@ func is_hostile_to(other: Faction) -> bool:
     
 func is_ally_to(other: Faction) -> bool:
     return helps.get(other.name) or \
-        (good_evil != GoodEvil.NEUTRAL && good_evil != other.good_evil)
+        (good_evil != GoodEvil.NEUTRAL && good_evil == other.good_evil)

@@ -39,7 +39,14 @@ func _on_body_entered(body: Node2D):
                     ctx.me = ContextNode.use(body)
                     ctx.me.node = body
                     # add source (who owns other collider)
-                    ctx.source = ContextNode.use(on_hit.source) # BUG source is null when slime hits player
+                    if ctx.me.source_node:
+                        ctx.source = ContextNode.use(ctx.me.source_node)
+                    elif on_hit.source:
+                        var source_ctx = ContextNode.use(on_hit.source)
+                        if source_ctx.source_node:
+                            ctx.source = ContextNode.use(source_ctx.source_node)
+                        else:
+                            ctx.source = source_ctx
                     # NOTE ctx.target (hurtbox owner) is typically set in apply_status_effect listeners
                     # have listener resolve status effect
                     apply_status_effect.emit(effect, ctx)

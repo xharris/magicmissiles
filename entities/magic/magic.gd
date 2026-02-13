@@ -22,7 +22,7 @@ static func create(source: Node, config: MagicConfig) -> Magic:
 var _log = Logs.new("magic")#, Logs.Level.DEBUG)
 
 func context() -> ContextNode:
-    var ctx = ContextNode.use(self)
+    var ctx = ContextNode.use(self, source)
     ctx.status_ctrl = status_effect_ctrl
     ctx.vfx = vfx
     ctx.visual_node = visual

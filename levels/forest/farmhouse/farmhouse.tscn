@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ck475yo8qvscu" path="res://entities/hay_bale/hay_bale.tscn" id="4_r4ax2"]
 [ext_resource type="PackedScene" uid="uid://ps1ujo34e48p" path="res://entities/actor/actor.tscn" id="6_6hn3o"]
 [ext_resource type="Resource" uid="uid://cquh7rme0ac0e" path="res://resources/actor_configs/slime/slime.tres" id="7_pjc3s"]
+[ext_resource type="PackedScene" uid="uid://bukjy5tqq0wu5" path="res://entities/wisp/wisp.tscn" id="8_xlu5q"]
 
 [node name="Farmhouse" type="Node2D" unique_id=164562324 groups=["zone_area"]]
 
@@ -49,13 +50,16 @@ position = Vector2(128, 64)
 position = Vector2(256, 64)
 
 [node name="Slime" parent="Entities" unique_id=694385484 instance=ExtResource("6_6hn3o")]
-position = Vector2(592, 0)
+position = Vector2(480, 0)
 config = ExtResource("7_pjc3s")
 
 [node name="Slime2" parent="Entities" unique_id=643062438 instance=ExtResource("6_6hn3o")]
-position = Vector2(512, -48)
+position = Vector2(400, -48)
 config = ExtResource("7_pjc3s")
 
 [node name="Slime3" parent="Entities" unique_id=387605342 instance=ExtResource("6_6hn3o")]
-position = Vector2(512, 32)
+position = Vector2(400, 32)
 config = ExtResource("7_pjc3s")
+
+[node name="Wisp" parent="Entities" unique_id=1682679037 instance=ExtResource("8_xlu5q")]
+position = Vector2(160, 240)

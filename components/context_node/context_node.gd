@@ -16,10 +16,10 @@ static func use(node: Node, source: Node = null) -> ContextNode:
         ctx = node.get_meta(Meta.CONTEXT_NODE)
     ctx.node = node
     if source:
-        ctx.node = source
-    _log.debug("use context %s for node %s" % [ctx.get_instance_id(), node])
+        ctx.source_node = source
     return ctx
 
+var source_node: Node2D
 var node: Node2D
 var hurtbox: Hurtbox
 var status_ctrl: StatusEffectCtrl
@@ -69,17 +69,4 @@ func duplicate(dupe_node: bool = false) -> ContextNode:
     return dupe
 
 func _to_string() -> String:
-    return "node=%s, actor_ctrl=%s, hurtbox=%s, on_hit=%s, status_ctrl=%s, vfx=%s, character=%s, visual_node=%s, faction=%s, sense=%s transfer=%s (%s)" % [
-        node,
-        actor_ctrl != null,
-        hurtbox != null,
-        on_hit != null,
-        status_ctrl != null,
-        vfx != null,
-        character != null,
-        visual_node != null,
-        faction.name if faction != null else "none",
-        sense.sensed.size() if sense else "null",
-        ["container" if transfer_container else null, "config" if transfer_config else null],
-        get_instance_id()
-    ]
+    return "(%s: node=%s source=%s)" % [get_instance_id(), node, source_node]
