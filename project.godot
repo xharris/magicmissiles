@@ -48,7 +48,6 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 patrol_area=""
 player=""
 save_me=""
-zone_area=""
 
 [input]
 

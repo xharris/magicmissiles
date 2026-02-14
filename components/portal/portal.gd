@@ -4,10 +4,11 @@ class_name Portal
 
 enum ID {
     FARMHOUSE_FRONT_DOOR,
+    FARMHOUSE_STAIRS_L2,
 }
 
 static var locked: Array[Node2D]
-static var PADDING = 60
+const EXTRA_PADDING = 48
 
 ## entering a portal will move the player to the next scene in the list
 static var portal_scene: Dictionary[ID, Array] = {
@@ -15,16 +16,25 @@ static var portal_scene: Dictionary[ID, Array] = {
         "res://levels/forest/farmhouse/farmhouse.tscn",
         "res://levels/forest/forest.tscn",
     ],
+    ID.FARMHOUSE_STAIRS_L2: [
+        "res://levels/forest/farmhouse_l2/farmhouse_l2.tscn",
+        "res://levels/forest/farmhouse/farmhouse.tscn",
+    ]
 }
 
 signal finished_using(body: Node2D)
 
 @onready var marker: Marker2D = %Marker2D
+@onready var collision_shape: CollisionShape2D = %CollisionShape2D
 
 @export var id: ID
 @export var move_offset: Vector2i:
     set(v):
         move_offset = v
+        update()
+@export var shape: RectangleShape2D:
+    set(v):
+        shape = v
         update()
 
 var _log = Logs.new("portal")#, Logs.Level.DEBUG)
@@ -32,16 +42,21 @@ var _log = Logs.new("portal")#, Logs.Level.DEBUG)
 var _move_offset: Vector2:
     get:
         _log.debug("move_offset %v" % [move_offset])
-        var out = Vector2(move_offset) * Vector2(74 + PADDING, 58 + PADDING)
+        var out = Vector2(move_offset) * (padding + (Vector2.ONE * EXTRA_PADDING))
         _log.debug("_move_offset %v" % [out])
         return out
-var game_scene_path: String
-
+var padding: Vector2
+        
 func update() -> void:
     if not Engine.is_editor_hint():
         return
     if marker:
         marker.position = _move_offset
+    if shape:
+        NodeUtil.reconnect_str(shape, "changed", update)
+    if collision_shape and shape:
+        collision_shape.shape = shape
+        padding = shape.size / 2
         
 func is_eq(other: Portal):
     return get_path() == other.get_path()    

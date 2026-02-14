@@ -12,13 +12,6 @@ var _loaded_scenes: Dictionary[String, Node2D] = {}
 
 func _init() -> void:
     current = self
-    
-func _ready() -> void:
-    # move player into Entities
-    var entities = Entities.find_in(current_area)
-    if entities:
-        player.reparent(entities)
-    _loaded_scenes.set(current_area.scene_file_path, current_area)
 
 func move_to_scene(scene: PackedScene, body: Node2D) -> Node2D:
     if not scene:
@@ -49,3 +42,15 @@ func move_to_scene(scene: PackedScene, body: Node2D) -> Node2D:
         remove_child(current_area)
     current_area = area
     return area
+
+func _ready() -> void:
+    player.hp.death.connect(_player_death)
+    
+    # move player into Entities
+    var entities = Entities.find_in(current_area)
+    if entities:
+        player.reparent(entities)
+    _loaded_scenes.set(current_area.scene_file_path, current_area)
+
+func _player_death(source: Node2D):
+    Death.enable([player, source])

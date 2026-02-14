@@ -35,6 +35,8 @@ var on_hit: OnHit
 var transfer_container: TransferContainer
 ## config to use if node were to be transfered
 var transfer_config: TransferConfig
+## TODO
+var time_scale: float = 1
 
 func duplicate(dupe_node: bool = false) -> ContextNode:
     var dupe = ContextNode.new()

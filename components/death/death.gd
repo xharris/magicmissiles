@@ -17,7 +17,7 @@ func enable(participants: Array[Node2D]):
         var parent = p.get_parent()
         _prev_parent.set(p, parent)
         p.reparent.call_deferred(subviewport)
-        # get all nodes that should be slowed down
+        # quickly reduce time scale of all participants
         ## TODO
     canvas.show()
 

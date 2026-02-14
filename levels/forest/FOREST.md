@@ -82,16 +82,26 @@ SEQUENCE
 - [x] player enters farmhouse
 - [x] enemies spread around farmhouse
 - [x] there is an area of farmhouse not populated by enemies where player can move around a part of the perimeter and see other parts of first floor
-- player sees area with wisp
-- wisp is blocked by hay bales and farm machinery
+- [x] player sees area with wisp
+- [x] wisp is blocked by hay bales and farm machinery
 
-- player moves to 2nd floor of farmhouse
+- stairs to 2nd floor are blocked by hay bales
+- player moves to 2nd floor of farmhouse via a ladder in one of the stables
 - 2nd floor is dark
+
+### 2nd floor draft 1 
+
 - there are thieves with lanterns (lantern light is round but show which direction they are looking since it is slightly offset from actor model)
 - player moves past theives without being seen
 - player pushes box to reveal small hidden area
 - hidden area has a hole
 - hole leads to area with wisp
+
+### 2nd floor draft 2
+
+- a little flooring on left side near stairs
+- player can walk across ceiling supports (or whatever they're called)
+- player drops into stable with wisp
 
 - player points wand at wisp
 - wisp moves to wand tip and gives player magic missile ability
